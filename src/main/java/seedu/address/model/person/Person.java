@@ -43,11 +43,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Id id, Phone phone) {
-        requireAllNonNull(name, phone, id);
+    public Person(Name name, Id id, Phone phone, Set<Tag> tags) {
+        requireAllNonNull(name, phone, id, tags);
         this.name = name;
         this.phone = phone;
         this.id = id;
+        this.tags.addAll(tags);
+
         this.email = new Email("test@gmail.com");
         this.address = new Address("test");
     }
