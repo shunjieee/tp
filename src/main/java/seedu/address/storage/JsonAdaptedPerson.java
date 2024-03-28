@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-//import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -56,9 +56,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                             @JsonProperty("phone") String phone
+                             @JsonProperty("phone") String phone,
     //@JsonProperty("email") String email, @JsonProperty("address") String address,
-    // @JsonProperty("tags") List<JsonAdaptedTag> tags
+    @JsonProperty("tags") List<JsonAdaptedTag> tags
     ) {
         this.name = name;
         this.id = id;
@@ -79,9 +79,9 @@ class JsonAdaptedPerson {
         //email = source.getEmail().value;
         //address = source.getAddress().value;
         id = source.getId().value;
-        //tags.addAll(source.getTags().stream()
-        //        .map(JsonAdaptedTag::new)
-        //        .collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream()
+               .map(JsonAdaptedTag::new)
+               .collect(Collectors.toList()));
         email = "test";
         address = "test";
 
