@@ -34,7 +34,7 @@ import seedu.address.model.person.Phone;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "?";
+    public static final String COMMAND_WORD = ">";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the id in the displayed person list. "
