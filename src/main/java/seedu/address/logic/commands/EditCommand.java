@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         boolean isPersonExist = false;
-        Person personToEdit = new Person(new Name("test"), 
+        Person personToEdit = new Person(new Name("test"),
                 new Id("test"), new Phone("123"), new HashSet<Tag>());
         for (int i = 0; i < lastShownList.size(); i++) {
             Person currentPerson = lastShownList.get(i);
@@ -196,7 +196,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        
         // public void setEmail(Email email) {
         //     this.email = email;
         // }
@@ -212,22 +211,22 @@ public class EditCommand extends Command {
         // public Optional<Address> getAddress() {
         //     return Optional.ofNullable(address);
         // }
-        
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-           this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-         /**
+        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
-           return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         public void setId(Id id) {
