@@ -23,7 +23,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         if (args.equals(" -a")) {
-            return new ListCommand(PREDICATE_SHOW_ALL_PERSONS);
+            return new ListCommand(PREDICATE_SHOW_ALL_PERSONS, "the addressbook");
 
         } else {
             String trimmedArgs = args.trim();
@@ -34,7 +34,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
             String[] tagKeywords = trimmedArgs.split("\\s+");
 
-            return new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+            return new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)), args);
         }
     }
 
