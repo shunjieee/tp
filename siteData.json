@@ -46,6 +46,7 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
+        "implemented-edit-feature": "[Implemented] Edit feature",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
         "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
@@ -102,20 +103,15 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "ab-3-user-guide": "AB-3 User Guide",
+        "adding-a-contact": "Adding a contact: +",
+        "deleting-a-contact": "Deleting a contact: -",
+        "toggle-display": "Toggle display: $",
+        "sort": "Sort",
+        "delete-sample-data": "Delete sample data",
+        "hi-re-user-guide": "Hi:Re User Guide",
         "quick-start": "Quick start",
+        "commands": "Commands",
         "features": "Features",
-        "viewing-help-help": "Viewing help : help",
-        "adding-a-person-add": "Adding a person: add",
-        "listing-all-persons-list": "Listing all persons : list",
-        "editing-a-person-edit": "Editing a person : edit",
-        "locating-persons-by-name-find": "Locating persons by name: find",
-        "deleting-a-person-delete": "Deleting a person : delete",
-        "clearing-all-entries-clear": "Clearing all entries : clear",
-        "exiting-the-program-exit": "Exiting the program : exit",
-        "saving-the-data": "Saving the data",
-        "editing-the-data-file": "Editing the data file",
-        "archiving-data-files-coming-in-v2-0": "Archiving data files [coming in v2.0]",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
@@ -126,7 +122,9 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "hi-re": "Hi:Re 📖",
+        "getting-started": "Getting started",
+        "develop-your-own-hi-re": "Develop your own Hi:Re"
       },
       "headingKeywords": {}
     },
