@@ -280,6 +280,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+Currently data is being archived via storing it locally as a `.json` file.
+
+In the future, we are looking to create functions to export the data into different file formats such as `.xlsx`, `.pdf` or `.txt` files.
 
 --------------------------------------------------------------------------------------------------------------------
 
