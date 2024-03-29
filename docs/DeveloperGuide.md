@@ -370,17 +370,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a specific person in the database and input the details
-2. Hi:Re deletes the person
-3. Hi:Re shows a message for the successful deletion
+2. Hi:Re prompts the user with a dialog box to confirm deletion
+3. User confirms the deletion
+4. Hi:Re deletes the person
+5. Hi:Re shows a message for the successful deletion
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given details is invalid.
+* 1a. The given details are invalid.
 
     * 1a1. Hi:Re shows an error message
 
+      Use case ends.
+  
+
+* 2a. The user chooses to cancel the deletion.
+
+    * 2a1. Hi:Re shows a message that the deletion is cancelled
+  
       Use case ends.
 
 
