@@ -66,28 +66,60 @@ Format: `help`
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
 
-  <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+  <box type="important" seamless>
 
+  * The order of input values is interchangeable and doesn't matter. Feel free to input the details in any sequence as long as all required information is provided.
+
+  * The ID must be unique for each contact. ID cannot duplicate with existing IDs. Attempting to use a duplicate ID will result in an error.
+
+  * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  * The phone number should only contain numbers, and it should be at least 3 digits long.
+
+  * The name should only contain alphanumeric characters and spaces, and should not be blank.
+  
+  </box>
+
+  (The Initial UI before addition)                       
+    <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+
+  * **Confirmation of Successful Contact Addition**<br>
+
+  Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
   <box type="success">
-    A GUI similar to below should appear upon successful command input.<br><br>
+    GUI upon successful addition command <br><br>
     <img src="images/ui/add/afterAdd.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  <box type="important" seamless>
-    All 3 fields must be present and filled in order as specified.<br>
-    ID is <b>unique</b> (i.e. No duplicates of ID is allowed).
-  </box>
+  * **Error Handling Protocols**<br> 
+    1. Duplicate ID Error: Entry of a non-unique ID will trigger an error. 
+       <box type="wrong">
+       Duplicate ID error <br><br>
+       <img src="images/ui/add/duplicateId.png" width="452.5"><br><br>
+       </box>
 
-  <box type="wrong">
-    Duplicate ID.<br><br>
-    <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
-  </box>
-
-  <box type="wrong">
-    Insufficient fields.<br><br>
-    <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
-  </box>
-
+    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error. 
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/add/insufficientFields.png" width="452.5"><br><br>
+       </box>
+     
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+    
+       * Invalid name
+       
+       <img src="images/ui/add/invalidname.png" width="452.5"><br><br>
+    
+       * Invalid phone number
+       
+       <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
+       
+       * Invalid id
+       
+       <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
+       </box>
 </panel>
 
 <panel header="### Deleting a contact: <code>-</code>" peek>
@@ -97,18 +129,52 @@ Format: `help`
 
   Example: <code>- /id johndoe46</code><br>
 
+  <box type="important" seamless>
+
+* The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  </box>
+  (The Initial UI before deletion)
+  
   <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
 
+  * **Confirmation of Successful Contact Deletion**<br>
+  Following the accurate input of the command, if the person with the input id does exist in the address book, a window will pop up asking for your confirmation to delete.
+  Click OK to continue with the deletion. After confirmation, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
   <box type="success">
-    A GUI similar to below should appear upon successful command input.<br><br>
-    <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
+  
+  * Pop-up window for confirmation
+  
+    <img src="images/ui/delete/prompt.png" width="452.5"><br><br>
+
+  * GUI upon successful addition command <br><br>
+  <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  <box type="wrong">
-    Invalid ID.<br><br>
-    <img src="images/ui/delete/invalidId.png" width="452.5" height="369.5"><br><br>
-  </box>
+  * **Error Handling Protocols**<br>
+    1. ID Not Found Error: If there is no such person with the input id in the list, an error will be triggered.
+       <box type="wrong">
+       ID not found error <br><br>
+       <img src="images/ui/delete/idnotfound.png" width="452.5"><br><br>
+       </box>
+    
+    2. Command Cancelled Error: When the confirmation dialog box pops up, if the user chooses to cancel the operation, it can trigger an error.
+       <box type="wrong">
+       Command cancelled error <br><br>
+       <img src="images/ui/delete/deletecancelled.png" width="452.5"><br><br>
+       </box>
+    
+    3. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
+       <box type="wrong">
+       Incomplete field error <br><br>
+       <img src="images/ui/delete/insufficientField.png" width="452.5"><br><br>
+       </box>
 
+    4. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
+        <box type="wrong">
+        Invalid field error <br><br>
+        <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
+        </box>
 </panel>
 
 <panel header="### Toggle display: <code>$</code>" peek>
