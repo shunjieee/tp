@@ -167,7 +167,7 @@ Format: `help`
     3. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
        <box type="wrong">
        Incomplete field error <br><br>
-       <img src="images/ui/delete/insufficientField.png" width="452.5"><br><br>
+       <img src="images/ui/delete/insufficientfield.png" width="452.5"><br><br>
        </box>
 
     4. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
