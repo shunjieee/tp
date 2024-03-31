@@ -74,11 +74,13 @@ Format: `help`
 
   * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
-  * The phone numbers should only contain numbers, and it should be at least 3 digits long.
+  * The phone number should only contain numbers, and it should be at least 3 digits long.
+
+  * The name should only contain alphanumeric characters and spaces, and should not be blank.
   
   </box>
 
-  (The Initial UI before addition)
+  (The Initial UI before addition)                       
     <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
 
   * **Confirmation of Successful Contact Addition**<br>
@@ -90,7 +92,7 @@ Format: `help`
   </box>
 
   * **Error Handling Protocols**<br> 
-    1. Duplicate ID error: Entry of a non-unique ID will trigger an error. 
+    1. Duplicate ID Error: Entry of a non-unique ID will trigger an error. 
        <box type="wrong">
        Duplicate ID error <br><br>
        <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
@@ -101,6 +103,23 @@ Format: `help`
        Incomplete fields error <br><br>
        <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
        </box>
+     
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+    
+       * Invalid name
+       
+       <img src="images/ui/add/invalidname.png" width="452.5"><br><br>
+    
+       * Invalid phone number
+       
+       <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
+       
+       * Invalid id
+       
+       <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
+       </box>
 </panel>
 
 <panel header="### Deleting a contact: <code>-</code>" peek>
@@ -110,6 +129,13 @@ Format: `help`
 
   Example: <code>- /id johndoe46</code><br>
 
+  <box type="important" seamless>
+
+* ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  </box>
+  (The Initial UI before deletion)
+  
   <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
 
   <box type="success">
