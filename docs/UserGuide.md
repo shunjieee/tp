@@ -131,7 +131,7 @@ Format: `help`
 
   <box type="important" seamless>
 
-* ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+* The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
   </box>
   (The Initial UI before deletion)
