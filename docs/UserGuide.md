@@ -66,28 +66,41 @@ Format: `help`
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
 
-  <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+  <box type="important" seamless>
 
+  * The order of input values is interchangeable and doesn't matter. Feel free to input the details in any sequence as long as all required information is provided.
+
+  * The ID must be unique for each contact. ID cannot duplicate with existing IDs. Attempting to use a duplicate ID will result in an error.
+
+  * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  * The phone numbers should only contain numbers, and it should be at least 3 digits long.
+  
+  </box>
+
+  (The Initial UI before addition)
+    <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+
+  * **Confirmation of Successful Contact Addition**<br>
+
+  Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
   <box type="success">
-    A GUI similar to below should appear upon successful command input.<br><br>
+    GUI upon successful command input <br><br>
     <img src="images/ui/add/afterAdd.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  <box type="important" seamless>
-    All 3 fields must be present and filled in order as specified.<br>
-    ID is <b>unique</b> (i.e. No duplicates of ID is allowed).
-  </box>
+  * **Error Handling Protocols**<br> 
+    1. Duplicate ID error: Entry of a non-unique ID will trigger an error. 
+       <box type="wrong">
+       Duplicate ID error <br><br>
+       <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
+       </box>
 
-  <box type="wrong">
-    Duplicate ID.<br><br>
-    <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
-  </box>
-
-  <box type="wrong">
-    Insufficient fields.<br><br>
-    <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
-  </box>
-
+    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error. 
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
+       </box>
 </panel>
 
 <panel header="### Deleting a contact: <code>-</code>" peek>
