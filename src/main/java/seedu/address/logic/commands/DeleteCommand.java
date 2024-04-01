@@ -98,6 +98,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ID_NOT_FOUND, this.targetId.toString()));
         }
 
+        model.addExecutedCommand(this);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedInformation));
     }
 

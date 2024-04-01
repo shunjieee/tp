@@ -29,6 +29,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         addressBookBoforeClear = model.getAddressBook();
         model.setAddressBook(new AddressBook());
+        model.addExecutedCommand(this);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

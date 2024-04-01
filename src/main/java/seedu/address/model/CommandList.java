@@ -48,23 +48,47 @@ public class CommandList {
     /**
      * Reverts the most recent command, if possible. This method should only be called if
      * {@link #canUndo()} returns true.
+     * This method identifies the type of the last executed command
+     * and calls the corresponding undo method to reverse its effects.
      *
      * @return true if the operation was successful, false otherwise.
      */
-    public Command undo() {
-        // Method implementation goes here
-        return null;
+    public void undo() {
+        Command lastCommand = commandHistory.get(currentCommandIndex);
+        if (lastCommand instanceof AddCommand) {
+            undoAdd((AddCommand) lastCommand);
+        } else if (lastCommand instanceof DeleteCommand) {
+            undoDelete((DeleteCommand) lastCommand);
+        } else if (lastCommand instanceof EditCommand) {
+            undoEdit((EditCommand) lastCommand);
+        } else if (lastCommand instanceof ClearCommand) {
+            undoClear((ClearCommand) lastCommand);
+        }
+
+        currentCommandIndex--;
     }
 
     /**
      * Reapplies the most recent undone command, if possible. This method should only be called if
      * {@link #canRedo()} returns true.
+     * This method identifies the type of the last executed command
+     * and calls the corresponding undo method to reverse its effects.
      *
      * @return true if the operation was successful, false otherwise.
      */
-    public boolean redo() {
-        // Method implementation goes here
-        return false;
+    public void redo() {
+        Command commandToRedo = commandHistory.get(currentCommandIndex + 1);
+        if (commandToRedo instanceof AddCommand) {
+            redoAdd((AddCommand) commandToRedo);
+        } else if (commandToRedo instanceof DeleteCommand) {
+            redoDelete((DeleteCommand) commandToRedo);
+        } else if (commandToRedo instanceof EditCommand) {
+            redoEdit((EditCommand) commandToRedo);
+        } else if (commandToRedo instanceof ClearCommand) {
+            redoClear((ClearCommand) commandToRedo);
+        }
+
+        currentCommandIndex++;
     }
 
     /**

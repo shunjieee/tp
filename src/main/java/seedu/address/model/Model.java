@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Person;
 
 /**
@@ -104,4 +105,13 @@ public interface Model {
      * Restores the model's address book to its previously undone state.
      */
     void redoCommand();
+
+    /**
+     * Adds the specified command to the command history list.
+     * This method is intended to track commands that have been executed,
+     * allowing for potential undo or redo actions.
+     *
+     * @param command The command that has been executed and is to be added to the history.
+     */
+    void addExecutedCommand(Command command);
 }
