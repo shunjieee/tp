@@ -43,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem toggleDisplayMenuItem;
+
+    @FXML
+    private MenuItem EditMenuItem;
+
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -172,6 +176,16 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleToggleDisplay() {
         personListPanel.toggleDisplay();
+    }
+
+    @FXML
+    private void handleUndo() throws CommandException, ParseException {
+        logic.execute("undo");
+    }
+
+    @FXML
+    private void handleRedo() throws CommandException, ParseException {
+        logic.execute("redo");
     }
 
     public PersonListPanel getPersonListPanel() {
