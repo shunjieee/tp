@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redo the most recent redone command. ";
-    public static final String MESSAGE_REDO_SUCCESS = "The command: %1$s has been redone.";
+    public static final String MESSAGE_REDO_SUCCESS = "The command has been redone.";
     public static final String MESSAGE_REDO_FAILURE = "There is no more command to redo!";
 
     @Override

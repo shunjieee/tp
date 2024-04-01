@@ -180,13 +180,28 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleUndo() throws CommandException, ParseException {
-        logic.execute("undo");
+        try {
+            CommandResult commandResult = logic.execute("undo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "undo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     @FXML
     private void handleRedo() throws CommandException, ParseException {
-        logic.execute("redo");
+        try {
+            CommandResult commandResult = logic.execute("redo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "redo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
+
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;

@@ -163,7 +163,7 @@ public class CommandList {
      */
     private void redoDelete(DeleteCommand command) {
         Person personToDelete = command.getPersonToDelete();
-        model.addPerson(personToDelete);
+        model.deletePerson(personToDelete);
     }
 
     //=========== Undo and redo of edit =====================================================================

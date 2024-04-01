@@ -13,7 +13,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
-    private ReadOnlyAddressBook addressBookBoforeClear;
+    private ReadOnlyAddressBook addressBookBeforeClear;
 
     /**
      * Retrieves the original {@code AddressBook} instance that is targeted to be replaced by an empty one.
@@ -21,13 +21,13 @@ public class ClearCommand extends Command {
      * @return The {@code AddressBook} instance that was initially marked to be cleared.
      */
     public ReadOnlyAddressBook getAddressBookBeforeClear() {
-        return addressBookBoforeClear;
+        return addressBookBeforeClear;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        addressBookBoforeClear = new AddressBook(model.getAddressBook());
+        addressBookBeforeClear = new AddressBook(model.getAddressBook());
         model.setAddressBook(new AddressBook());
         model.addExecutedCommand(this);
         return new CommandResult(MESSAGE_SUCCESS);
