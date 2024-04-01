@@ -40,6 +40,12 @@
               <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#handleRedo" text="Redo"/>
             </items>
           </Menu>
+          <Menu mnemonicParsing="false" text="Account">
+            <items>
+              <MenuItem fx:id="RegisterMenuItem" mnemonicParsing="false" onAction="#handleRegister" text="Register"/>
+              <MenuItem fx:id="LoginMenuItem" mnemonicParsing="false" onAction="#handleLogin" text="Login"/>
+            </items>
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">

@@ -1,15 +1,19 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
-
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.account.account.AccountList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -26,6 +30,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+    private AccountList accountList;
 
     private Stage primaryStage;
     private Logic logic;
@@ -46,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem editMenuItem;
+
+    @FXML
+    private MenuItem accountMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -202,6 +211,35 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    private void handleRegister() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterForm.fxml"));
+            RegisterFormController controller = new RegisterFormController(accountList);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
+            LoginFormController controller = new LoginFormController(accountList);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
