@@ -1,10 +1,14 @@
 package seedu.address.model;
 
-import seedu.address.logic.commands.*;
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.model.person.Person;
 
 /**
  * Maintains a list of all executed commands.
@@ -14,13 +18,23 @@ import java.util.List;
  */
 public class CommandList {
     private final List<Command> commandHistory;
+
+    /**
+     * The current index in the {@code commandHistory} list. This index tracks the position
+     * up to which commands have been executed or undone, allowing for correct redo and undo operations.
+     */
     private int currentCommandIndex;
     private Model model;
 
-
+    /**
+     * Constructs a new {@code CommandList} with an empty command history. This setup indicates
+     * that no commands have been executed yet, initializing the current command index to -1
+     * to reflect this state. The command history is initialized as an empty list, ready to
+     * record executed commands for future undo and redo operations.
+     */
     public CommandList() {
         commandHistory = new ArrayList<>();
-        currentCommandIndex = -1; // Indicates that no commands have been executed yet.
+        currentCommandIndex = -1;
     }
 
     public void linkToModel(Model model) {
@@ -46,12 +60,9 @@ public class CommandList {
     }
 
     /**
-     * Reverts the most recent command, if possible. This method should only be called if
-     * {@link #canUndo()} returns true.
+     * Reverts the most recent command, if possible.
      * This method identifies the type of the last executed command
      * and calls the corresponding undo method to reverse its effects.
-     *
-     * @return true if the operation was successful, false otherwise.
      */
     public void undo() {
         Command lastCommand = commandHistory.get(currentCommandIndex);
@@ -69,12 +80,9 @@ public class CommandList {
     }
 
     /**
-     * Reapplies the most recent undone command, if possible. This method should only be called if
-     * {@link #canRedo()} returns true.
+     * Reapplies the most recent undone command, if possible.
      * This method identifies the type of the last executed command
      * and calls the corresponding undo method to reverse its effects.
-     *
-     * @return true if the operation was successful, false otherwise.
      */
     public void redo() {
         Command commandToRedo = commandHistory.get(currentCommandIndex + 1);

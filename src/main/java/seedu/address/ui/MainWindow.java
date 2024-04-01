@@ -45,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem toggleDisplayMenuItem;
 
     @FXML
-    private MenuItem EditMenuItem;
+    private MenuItem editMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
