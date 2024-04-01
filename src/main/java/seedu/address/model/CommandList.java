@@ -115,4 +115,25 @@ public class CommandList {
         model.addPerson(personToAdd);
     }
 
+    //=========== Undo and redo of delete ===================================================================
+
+    /**
+     * Reverses the deletion of a person from the address book.
+     *
+     * @param command The {@code AddCommand} whose effect is to be undone.
+     */
+    private void undoDelete(DeleteCommand command) {
+        Person personDeleted = command.getPersonToDelete();
+        model.addPerson(personDeleted);
+    }
+
+    /**
+     * Re-executes the deletion of a person from the address book.
+     *
+     * @param command The {@code AddCommand} whose effect is to be redone.
+     */
+    private void redoDelete(DeleteCommand command) {
+        Person personToDelete = command.getPersonToDelete();
+        model.addPerson(personToDelete);
+    }
 }
