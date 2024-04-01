@@ -1,6 +1,10 @@
 package seedu.address.model;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.person.Id;
+import seedu.address.model.person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +18,16 @@ import java.util.List;
 public class CommandList {
     private final List<Command> commandHistory;
     private int currentCommandIndex;
+    private Model model;
+
 
     public CommandList() {
         commandHistory = new ArrayList<>();
         currentCommandIndex = -1; // Indicates that no commands have been executed yet.
+    }
+
+    public void linkToModel(Model model) {
+        this.model = model;
     }
 
     /**
@@ -81,6 +91,28 @@ public class CommandList {
      */
     public boolean canRedo() {
         return commandHistory.size() > currentCommandIndex + 1;
+    }
+
+    //=========== Undo and redo of add ======================================================================
+
+    /**
+     * Reverses the addition of a person to the address book.
+     *
+     * @param command The {@code AddCommand} whose effect is to be undone.
+     */
+    private void undoAdd(AddCommand command) {
+        Person personAdded = command.getPersonToAdd();
+        model.deletePerson(personAdded);
+    }
+
+    /**
+     * Re-executes the addition of a person to the address book.
+     *
+     * @param command The {@code AddCommand} whose effect is to be redone.
+     */
+    private void redoAdd(AddCommand command) {
+        Person personToAdd = command.getPersonToAdd();
+        model.addPerson(personToAdd);
     }
 
 }

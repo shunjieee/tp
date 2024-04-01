@@ -64,6 +64,16 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
+    /**
+     * Retrieves the {@code Person} object that is to be added to the address book.
+     * This method allows access to the person specified at the creation of this command.
+     *
+     * @return The {@code Person} object set to be added by this command.
+     */
+    public Person getPersonToAdd() {
+        return toAdd;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
