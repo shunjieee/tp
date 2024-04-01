@@ -1,10 +1,6 @@
 package seedu.address.model;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.person.Id;
+import seedu.address.logic.commands.*;
 import seedu.address.model.person.Person;
 
 import java.util.ArrayList;
@@ -139,6 +135,7 @@ public class CommandList {
     }
 
     //=========== Undo and redo of edit =====================================================================
+
     /**
      * Reverses the edit of a person in the address book.
      *
@@ -162,4 +159,30 @@ public class CommandList {
         model.deletePerson(personToEdit);
         model.addPerson(editedPerson);
     }
+
+    //=========== Undo and redo of clear ====================================================================
+
+    /**
+     * Reverses the effect of a clear operation on the address book.
+     * This method restores the state of the address book to what it was before the clear operation
+     * was executed.
+     *
+     * @param command The {@code ClearCommand} whose clearing effect is to be undone.
+     */
+    private void undoClear(ClearCommand command) {
+        ReadOnlyAddressBook addressBookToRestore = command.getAddressBookBeforeClear();
+        model.setAddressBook(addressBookToRestore);
+    }
+
+    /**
+     * Re-executes the clear operation on the address book.
+     * After an undo operation has restored the address book to its previous state, this method
+     * allows for the redo of the clear operation, effectively emptying the address book once again.
+     *
+     * @param command The {@code ClearCommand} that is to be redone, clearing the address book.
+     */
+    private void redoClear(ClearCommand command) {
+        model.setAddressBook(new AddressBook());
+    }
+
 }
