@@ -3,6 +3,7 @@ package seedu.address.model;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
@@ -120,7 +121,7 @@ public class CommandList {
     /**
      * Reverses the deletion of a person from the address book.
      *
-     * @param command The {@code AddCommand} whose effect is to be undone.
+     * @param command The {@code DeleteCommand} whose effect is to be undone.
      */
     private void undoDelete(DeleteCommand command) {
         Person personDeleted = command.getPersonToDelete();
@@ -130,10 +131,35 @@ public class CommandList {
     /**
      * Re-executes the deletion of a person from the address book.
      *
-     * @param command The {@code AddCommand} whose effect is to be redone.
+     * @param command The {@code DeleteCommand} whose effect is to be redone.
      */
     private void redoDelete(DeleteCommand command) {
         Person personToDelete = command.getPersonToDelete();
         model.addPerson(personToDelete);
+    }
+
+    //=========== Undo and redo of edit =====================================================================
+    /**
+     * Reverses the edit of a person in the address book.
+     *
+     * @param command The {@code EditCommand} whose effect is to be undone.
+     */
+    private void undoEdit(EditCommand command) {
+        Person personToEdit = command.getPersonToEdit();
+        Person editedPerson = command.getEditedPerson();
+        model.deletePerson(editedPerson);
+        model.addPerson(personToEdit);
+    }
+
+    /**
+     * Re-executes the edit of a person in the address book.
+     *
+     * @param command The {@code EditCommand} whose effect is to be redone.
+     */
+    private void redoEdit(EditCommand command) {
+        Person personToEdit = command.getPersonToEdit();
+        Person editedPerson = command.getEditedPerson();
+        model.deletePerson(personToEdit);
+        model.addPerson(editedPerson);
     }
 }

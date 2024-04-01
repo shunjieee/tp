@@ -58,6 +58,8 @@ public class EditCommand extends Command {
 
     private final Id id;
     private final EditPersonDescriptor editPersonDescriptor;
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param id of the person in the filtered person list to edit
@@ -77,7 +79,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         boolean isPersonExist = false;
-        Person personToEdit = new Person(new Name("test"), new Id("test"), new Phone("123"));
+        personToEdit = new Person(new Name("test"), new Id("test"), new Phone("123"));
         for (int i = 0; i < lastShownList.size(); i++) {
             Person currentPerson = lastShownList.get(i);
             if (currentPerson.getId().equals(id)) {
@@ -91,7 +93,7 @@ public class EditCommand extends Command {
         }
         assert !personToEdit.equals(new Person(new Name("test"), new Id("test"), new Phone("123")))
                 : "Should not reach here";
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -133,6 +135,24 @@ public class EditCommand extends Command {
         EditCommand otherEditCommand = (EditCommand) other;
         return id.equals(otherEditCommand.id)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+    }
+
+    /**
+     * Retrieves the original {@code Person} instance that is targeted for editing.
+     *
+     * @return The {@code Person} instance that was initially marked for editing.
+     */
+    public Person getPersonToEdit() {
+        return personToEdit;
+    }
+
+    /**
+     * Retrieves the modified {@code Person} instance after edits have been applied.
+     *
+     * @return The {@code Person} instance that represents the edited state.
+     */
+    public Person getEditedPerson() {
+        return editedPerson;
     }
 
     @Override
