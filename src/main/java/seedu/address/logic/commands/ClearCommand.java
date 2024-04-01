@@ -27,7 +27,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        addressBookBoforeClear = model.getAddressBook();
+        addressBookBoforeClear = new AddressBook(model.getAddressBook());
         model.setAddressBook(new AddressBook());
         model.addExecutedCommand(this);
         return new CommandResult(MESSAGE_SUCCESS);
