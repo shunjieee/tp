@@ -1,14 +1,19 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import seedu.address.account.account.Account;
 import seedu.address.account.account.AccountList;
 import seedu.address.account.account.Username;
 
+/**
+ * Represents a controller for the registration form.
+ * Each RegisterFormController is associated with a username field, a password field, and an account list.
+ * The RegisterFormController handles the registration process, including input validation and user creation.
+ */
 public class RegisterFormController {
 
     @FXML

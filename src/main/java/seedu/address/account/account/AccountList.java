@@ -1,17 +1,21 @@
 package seedu.address.account.account;
 
-import seedu.address.account.account.Account;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
-
+/**
+ * Represents a list of Accounts.
+ * Each AccountList is associated with a map that stores accounts with their usernames as keys.
+ */
 public class AccountList {
     private Map<Username, Account> accounts;
 
+    /**
+     * Constructs an AccountList instance with an empty map of accounts.
+     */
     public AccountList() {
         this.accounts = new HashMap<>();
     }
@@ -35,21 +39,34 @@ public class AccountList {
     public Account authenticate(String username, String passwordHash) {
         Account account = accounts.get(username);
         if (account != null && account.getPasswordHash().equals(passwordHash)) {
-            return account; // Authentication successful
+            return account;
         }
-        return null; // Authentication failed
+        return null;
     }
 
+    /**
+     * Hashes a password using SHA-256.
+     *
+     * @param password The password to be hashed.
+     * @return The hashed password.
+     * @throws RuntimeException if the SHA-256 algorithm is not found.
+     */
     public String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return bytesToHex(encodedhash);
+            byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            return bytesToHex(encodedHash);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Converts a byte array to a hexadecimal string.
+     *
+     * @param hash The byte array to be converted.
+     * @return The hexadecimal string.
+     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {
