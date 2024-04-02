@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import seedu.address.account.account.Account;
 import seedu.address.account.account.AccountList;
+import seedu.address.account.account.Username;
 import seedu.address.account.function.AccountParser;
 import seedu.address.account.function.AccountStorage;
 import seedu.address.commons.core.LogsCenter;
@@ -19,11 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 
 /**
  * Manages the current session, including the logged-in account and the associated logic manager.
@@ -67,6 +64,8 @@ public class AccountManager {
      */
     public void login(Account account) {
         this.currentAccount = account;
+        Username username = account.getUsername();
+        updateModelManagerForUser(username.getUsername());
         isUserLogin = true;
     }
 
@@ -76,7 +75,7 @@ public class AccountManager {
     public void logout() {
         this.currentAccount = null;
         this.isUserLogin = false;
-        //this.addressBook = null;
+        clearModelManagerAfterLogOut();
     }
 
     /**
@@ -128,6 +127,31 @@ public class AccountManager {
         logic.setModel(new ModelManager(initialData, userPrefs));
     }
 
+    private void clearModelManagerAfterLogOut() {
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(Paths.get("preferences.json"));
+        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        Storage storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
+        try {
+            addressBookOptional = storage.readAddressBook();
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.");
+            initialData = new AddressBook();
+        }
+
+        logic.setModel(new ModelManager(initialData, userPrefs));
+    }
+
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using preference file : " + prefsFilePath);
@@ -152,5 +176,9 @@ public class AccountManager {
         }
 
         return initializedPrefs;
+    }
+
+    public boolean getLoginStatus() {
+        return isUserLogin;
     }
 }
