@@ -47,7 +47,7 @@ public class RegisterFormController {
         // If the input is valid, create a new Account and add it to the AccountList
         Username usernameObj = new Username(username);
         String passwordHash = accountManager.getAccountList().hashPassword(password);
-        Account account = new Account(usernameObj, passwordHash, null);
+        Account account = new Account(usernameObj, passwordHash);
 
         boolean success = accountManager.getAccountList().addAccount(account);
         if (success) {

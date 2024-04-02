@@ -2,24 +2,21 @@ package seedu.address.account.account;
 
 /**
  * Represents an Account.
- * Each Account is associated with a username, a hashed password, and a secret question.
+ * Each Account is associated with a username and a hashed password.
  */
 public class Account {
-    private Username username;
+    private final Username username;
     private String passwordHash;
-    private SecretQuestion secretQuestion;
 
     /**
-     * Constructs an Account instance with the specified username, password hash, and secret question.
+     * Constructs an Account instance with the specified username and password hash.
      *
      * @param username The username associated with this account.
      * @param passwordHash The hashed password for this account.
-     * @param secretQuestion The secret question for this account.
      */
-    public Account(Username username, String passwordHash, SecretQuestion secretQuestion) {
+    public Account(Username username, String passwordHash) {
         this.username = username;
         this.passwordHash = passwordHash;
-        this.secretQuestion = secretQuestion;
     }
 
     /**
@@ -41,30 +38,12 @@ public class Account {
     }
 
     /**
-     * Returns the secret question associated with this account.
-     *
-     * @return The secret question of this account.
-     */
-    public SecretQuestion getSecretQuestion() {
-        return secretQuestion;
-    }
-
-    /**
      * Sets the hashed password for this account.
      *
      * @param passwordHash The new hashed password.
      */
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
-    }
-
-    /**
-     * Sets the secret question for this account.
-     *
-     * @param secretQuestion The new secret question.
-     */
-    public void setSecretQuestion(SecretQuestion secretQuestion) {
-        this.secretQuestion = secretQuestion;
     }
 
     /**
@@ -78,16 +57,6 @@ public class Account {
     }
 
     /**
-     * Checks if the provided secret question matches the account's secret question.
-     *
-     * @param secretQuestion The secret question to check.
-     * @return True if the provided secret question matches the account's secret question, false otherwise.
-     */
-    public boolean checkSecretQuestion(SecretQuestion secretQuestion) {
-        return this.secretQuestion.equals(secretQuestion);
-    }
-
-    /**
      * Checks if the provided username matches the account's username.
      *
      * @param username The username to check.
@@ -98,15 +67,13 @@ public class Account {
     }
 
     /**
-     * Returns a string representation of the account, including the username, hashed password, and secret question.
+     * Returns a string representation of the account, including the username and hashed password.
      *
      * @return A string representation of the account.
      */
     @Override
     public String toString() {
-        String question = secretQuestion.getQuestion();
-        String answer = secretQuestion.getAnswer();
         return "Username: " + username + " | Password Hashed: "
-                + passwordHash + " | Secret Question: " + question + " | Answer: " + answer;
+                + passwordHash;
     }
 }

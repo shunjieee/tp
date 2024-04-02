@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.account.account.Account;
-import seedu.address.account.account.SecretQuestion;
 import seedu.address.account.account.Username;
 
 /**
@@ -25,12 +24,9 @@ public class AccountParser {
             String[] parts = data.split("\\|");
             String username = parts[0].split(":")[1].trim();
             String passwordHash = parts[1].split(":")[1].trim();
-            String secretQuestion = parts[2].split(":")[1].trim();
-            String answer = parts[3].split(":")[1].trim();
 
             Username usernameObj = new Username(username);
-            SecretQuestion secretQuestionObj = new SecretQuestion(secretQuestion, answer);
-            Account account = new Account(usernameObj, passwordHash, secretQuestionObj);
+            Account account = new Account(usernameObj, passwordHash);
             accounts.add(account);
         }
 
@@ -47,10 +43,7 @@ public class AccountParser {
         List<String> accountData = new ArrayList<>();
 
         for (Account account : accounts) {
-            String data = "username: " + account.getUsername().getUsername() + " | "
-                    + "passwordHashed: " + account.getPasswordHash() + " | "
-                    + "secretquestion: " + account.getSecretQuestion().getQuestion() + " | "
-                    + "answer: " + account.getSecretQuestion().getAnswer();
+            String data = account.toString();
             accountData.add(data);
         }
 
