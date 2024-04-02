@@ -182,7 +182,7 @@ Format: `help`
 
 <panel header="### Undo" peek>
 
-  Restores the address book to the state before the previous **undoable** command was executed.<br><br>
+  Restores the address book to the state before the previous **undoable** command was executed.<br>
 
   <box type="important" seamless>
 
@@ -207,20 +207,44 @@ Format: `help`
 * **Error Handling Protocols**<br>
 
   1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
-  
-       <box type="wrong">
-       No undoable command error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
-       </box>
+      <box type="wrong">
+      No undoable command error <br><br>
+      <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+      </box>
 </panel>
 
 <panel header="### Redo" peek>
-  Redo the most recently undone command if possible.<br><br>
+
+Reverses the most recently undone command.<br>
 
   <box type="important" seamless>
 
-This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work.
-</box>
+* This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+  
+  </box>
+Example:<br>
+1. Delete the person with the id `johndoe41`.<br>
+2. Undo the deletion. The person will reappear.<br>
+3. Redo the undone deletion. The person will be deleted again.<br><br>
+   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+* **Confirmation of Successful Redo**<br>
+
+  If there is still any undone command that can be redone, a graphical user interface (GUI) indicative of a successful redo will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful redo command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. No Redoable Command Error: If there is no more undone command that can be redone, an error will be triggered.<br>
+       <box type="wrong">
+       No redoable command error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+       </panel>
 
 </panel>
 
