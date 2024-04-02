@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import seedu.address.account.account.Account;
-import seedu.address.account.account.AccountList;
+import seedu.address.logic.AccountManager;
 
 /**
  * Represents a controller for the login form.
@@ -20,10 +20,10 @@ public class LoginFormController {
     @FXML
     private PasswordField passwordField;
 
-    private AccountList accountList;
+    private AccountManager accountManager;
 
-    public LoginFormController(AccountList accountList) {
-        this.accountList = accountList;
+    public LoginFormController(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 
     @FXML
@@ -38,8 +38,8 @@ public class LoginFormController {
         }
 
         // If the input is valid, authenticate the user
-        String passwordHash = accountList.hashPassword(password);
-        Account account = accountList.authenticate(username, passwordHash);
+        String passwordHash = accountManager.getAccountList().hashPassword(password);
+        Account account = accountManager.getAccountList().authenticate(username, passwordHash);
         if (account != null) {
             // Authentication successful
             showAlert("Success", "Login successful");

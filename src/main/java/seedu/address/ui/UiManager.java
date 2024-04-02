@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.AccountManager;
 import seedu.address.logic.Logic;
 
 /**
@@ -25,11 +26,17 @@ public class UiManager implements Ui {
     private Logic logic;
     private MainWindow mainWindow;
 
+    private AccountManager accountManager;
+
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
         this.logic = logic;
+    }
+
+    public UiManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 
     @Override
@@ -49,6 +56,11 @@ public class UiManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+
+    public void lodaLogic(Logic logic) {
+        this.logic = logic;
+    }
+
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));

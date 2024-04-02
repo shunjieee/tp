@@ -6,8 +6,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import seedu.address.account.account.Account;
-import seedu.address.account.account.AccountList;
 import seedu.address.account.account.Username;
+import seedu.address.logic.AccountManager;
 
 /**
  * Represents a controller for the registration form.
@@ -22,10 +22,10 @@ public class RegisterFormController {
     @FXML
     private PasswordField passwordField;
 
-    private AccountList accountList;
+    private AccountManager accountManager;
 
-    public RegisterFormController(AccountList accountList) {
-        this.accountList = accountList;
+    public RegisterFormController(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 
     @FXML
@@ -46,10 +46,10 @@ public class RegisterFormController {
 
         // If the input is valid, create a new Account and add it to the AccountList
         Username usernameObj = new Username(username);
-        String passwordHash = accountList.hashPassword(password);
+        String passwordHash = accountManager.getAccountList().hashPassword(password);
         Account account = new Account(usernameObj, passwordHash, null);
 
-        boolean success = accountList.addAccount(account);
+        boolean success = accountManager.getAccountList().addAccount(account);
         if (success) {
             // Registration successful
             showAlert("Success", "Registration successful");

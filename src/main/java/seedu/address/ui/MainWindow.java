@@ -14,9 +14,9 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.account.account.AccountList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.AccountManager;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private AccountList accountList;
+    private AccountManager accountManager;
 
     private Stage primaryStage;
     private Logic logic;
@@ -81,6 +81,21 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        helpWindow = new HelpWindow();
+    }
+
+    /**
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code AccountManager}.
+     * It also initializes a new {@code HelpWindow}.
+     *
+     * @param primaryStage The primary stage for the application.
+     * @param accountManager The account manager for managing user accounts.
+     */
+    public MainWindow(Stage primaryStage, AccountManager accountManager) {
+        super(FXML, primaryStage);
+
+        this.primaryStage = primaryStage;
+        this.accountManager = accountManager;
         helpWindow = new HelpWindow();
     }
 
@@ -216,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleRegister() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterForm.fxml"));
-            RegisterFormController controller = new RegisterFormController(accountList);
+            RegisterFormController controller = new RegisterFormController(accountManager);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -231,7 +246,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleLogin() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
-            LoginFormController controller = new LoginFormController(accountList);
+            LoginFormController controller = new LoginFormController(accountManager);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
