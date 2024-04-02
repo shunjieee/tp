@@ -43,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem toggleDisplayMenuItem;
+
+    @FXML
+    private MenuItem editMenuItem;
+
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -173,6 +177,31 @@ public class MainWindow extends UiPart<Stage> {
     private void handleToggleDisplay() {
         personListPanel.toggleDisplay();
     }
+
+    @FXML
+    private void handleUndo() throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = logic.execute("undo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "undo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRedo() throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = logic.execute("redo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "redo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
