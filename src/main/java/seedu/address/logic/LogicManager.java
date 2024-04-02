@@ -31,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
@@ -42,6 +42,11 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+    }
+
+    @Override
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     @Override

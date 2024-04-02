@@ -70,7 +70,7 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        accountManager = new AccountManager();
+        accountManager = new AccountManager(logic);
     }
 
     /**
@@ -174,10 +174,6 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    public void initModelManagerForUser(String username) {
-
-
-    }
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
