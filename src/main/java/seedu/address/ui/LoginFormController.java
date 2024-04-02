@@ -43,6 +43,7 @@ public class LoginFormController {
         if (account != null) {
             // Authentication successful
             showAlert("Success", "Login successful");
+            accountManager.login(account);
         } else {
             // Authentication failed
             showAlert("Error", "Login failed. Invalid username or password.");

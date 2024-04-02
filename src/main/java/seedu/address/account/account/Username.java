@@ -39,4 +39,28 @@ public class Username {
     private boolean isValidUsername(String username) {
         return username != null && username.matches("[a-zA-Z0-9]{4,10}");
     }
+
+    @Override
+    public String toString() {
+        return username;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Username)) {
+            return false;
+        }
+
+        Username otherUsername = (Username) obj;
+        return otherUsername.getUsername().equals(username);
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
+    }
 }

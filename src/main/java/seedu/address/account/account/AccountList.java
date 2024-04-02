@@ -3,8 +3,12 @@ package seedu.address.account.account;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import seedu.address.account.function.AccountParser;
+import seedu.address.account.function.AccountStorage;
 
 /**
  * Represents a list of Accounts.
@@ -12,6 +16,8 @@ import java.util.Map;
  */
 public class AccountList {
     private Map<Username, Account> accounts;
+    private AccountParser accountParser = new AccountParser();
+    private AccountStorage accountStorage = new AccountStorage("data/accounts.txt");
 
     /**
      * Constructs an AccountList instance with an empty map of accounts.
@@ -29,6 +35,7 @@ public class AccountList {
             return false;
         }
         accounts.put(account.getUsername(), account);
+        save();
         return true;
     }
 
@@ -37,7 +44,7 @@ public class AccountList {
      * Returns the Account object if authentication is successful, or null otherwise.
      */
     public Account authenticate(String username, String passwordHash) {
-        Account account = accounts.get(username);
+        Account account = accounts.get(new Username(username));
         if (account != null && account.getPasswordHash().equals(passwordHash)) {
             return account;
         }
@@ -77,5 +84,13 @@ public class AccountList {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+
+    public void save() {
+        try {
+            accountStorage.save(accountParser.parseToString(new ArrayList<>(accounts.values())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
