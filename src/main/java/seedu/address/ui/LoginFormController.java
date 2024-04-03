@@ -36,6 +36,11 @@ public class LoginFormController {
 
     @FXML
     private void handleLogin() {
+        if (accountManager.getLoginStatus()) {
+            showAlert("Error", "You are already logged in. Please log out first.");
+            return;
+        }
+
         String username = usernameField.getText();
         String password = passwordField.getText();
 
