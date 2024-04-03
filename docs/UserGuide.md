@@ -92,6 +92,7 @@ Format: `help`
   </box>
 
   * **Error Handling Protocols**<br> 
+
     1. Duplicate ID Error: Entry of a non-unique ID will trigger an error. 
        <box type="wrong">
        Duplicate ID error <br><br>
@@ -138,7 +139,8 @@ Format: `help`
   
   <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
 
-  * **Confirmation of Successful Contact Deletion**<br>
+  * **Confirmation of Contact Deletion**<br>
+  
   Following the accurate input of the command, if the person with the input id does exist in the address book, a window will pop up asking for your confirmation to delete.
   Click OK to continue with the deletion. After confirmation, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
   <box type="success">
@@ -152,6 +154,7 @@ Format: `help`
   </box>
 
   * **Error Handling Protocols**<br>
+  
     1. ID Not Found Error: If there is no such person with the input id in the list, an error will be triggered.
        <box type="wrong">
        ID not found error <br><br>
@@ -177,6 +180,74 @@ Format: `help`
         </box>
 </panel>
 
+<panel header="### Undo" peek>
+
+  Restores the address book to the state before the previous **undoable** command was executed.<br>
+
+  <box type="important" seamless>
+
+  * This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `undo` in the command box will not work. <br><br>
+  * Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+  </box>
+
+  Example:<br>
+  1. Delete the person with the id `johndoe41`.<br>
+  2. Undo the deletion. The person will reappear.<br><br>
+     <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+ * **Confirmation of Successful Undo**<br>
+
+   If there is still any executed command that can be undone, a graphical user interface (GUI) indicative of a successful undo will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful undo command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+  1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
+      <box type="wrong">
+      No undoable command error <br><br>
+      <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+      </box>
+</panel>
+
+<panel header="### Redo" peek>
+
+Reverses the most recently undone command.<br>
+
+  <box type="important" seamless>
+
+* This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+  
+  </box>
+Example:<br>
+1. Delete the person with the id `johndoe41`.<br>
+2. Undo the deletion. The person will reappear.<br>
+3. Redo the undone deletion. The person will be deleted again.<br><br>
+   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+* **Confirmation of Successful Redo**<br>
+
+  If there is still any undone command that can be redone, a graphical user interface (GUI) indicative of a successful redo will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful redo command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. No Redoable Command Error: If there is no more undone command that can be redone, an error will be triggered.<br>
+       <box type="wrong">
+       No redoable command error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+       </panel>
+
+</panel>
+
 <panel header="### Toggle display: <code>$</code>" peek>
   Toggle display to view / hide the addressbook.<br><br>
 
@@ -195,20 +266,6 @@ Format: `help`
 </panel>
 
 <!--
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
