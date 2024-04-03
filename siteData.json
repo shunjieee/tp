@@ -105,16 +105,23 @@
       "headings": {
         "adding-a-contact": "Adding a contact: +",
         "deleting-a-contact": "Deleting a contact: -",
+        "editing-a-contact": "Editing a contact: +",
+        "undo": "Undo",
+        "redo": "Redo",
         "toggle-display": "Toggle display: $",
         "sort": "Sort",
         "delete-sample-data": "Delete sample data",
         "hi-re-user-guide": "Hi:Re User Guide",
+        "table-of-contents": "Table of Contents",
+        "welcome-note": "Welcome Note",
+        "product-information": "Product Information",
         "quick-start": "Quick start",
         "commands": "Commands",
-        "features": "Features",
+        "built-in-features": "Built-In Features",
         "faq": "FAQ",
         "known-issues": "Known issues",
-        "command-summary": "Command summary"
+        "command-summary": "Command summary",
+        "support-and-feedback": "Support and Feedback"
       },
       "headingKeywords": {}
     },
