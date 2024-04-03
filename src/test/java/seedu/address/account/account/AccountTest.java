@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class AccountTest {
     private static final String TEST_USERNAME = "test";
-    private static final String TEST_PASSWORD_HASH = "5f4dcc3b5aa765d61d8327deb882cf99"; // md5 hash for "password"
+    private static final String TEST_PASSWORD_HASH = "5f4dcc3b5aa765d61d8327deb882cf99";
     private static final String WRONG_PASSWORD_HASH = "wrong_hash";
 
     @Test
