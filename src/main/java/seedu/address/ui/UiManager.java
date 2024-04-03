@@ -26,17 +26,11 @@ public class UiManager implements Ui {
     private Logic logic;
     private MainWindow mainWindow;
 
-    private AccountManager accountManager;
-
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
         this.logic = logic;
-    }
-
-    public UiManager(AccountManager accountManager) {
-        this.accountManager = accountManager;
     }
 
     @Override
@@ -57,10 +51,9 @@ public class UiManager implements Ui {
         }
     }
 
-    public void lodaLogic(Logic logic) {
-        this.logic = logic;
+    public void resetUI() {
+        mainWindow.fillInnerParts();
     }
-
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));

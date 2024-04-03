@@ -21,9 +21,11 @@ public class LoginFormController {
     private PasswordField passwordField;
 
     private AccountManager accountManager;
+    private MainWindow mainWindow;
 
-    public LoginFormController(AccountManager accountManager) {
+    public LoginFormController(AccountManager accountManager, MainWindow mainWindow) {
         this.accountManager = accountManager;
+        this.mainWindow = mainWindow;
     }
 
     @FXML
@@ -44,6 +46,7 @@ public class LoginFormController {
             // Authentication successful
             showAlert("Success", "Login successful");
             accountManager.login(account);
+            mainWindow.fillInnerParts();
         } else {
             // Authentication failed
             showAlert("Error", "Login failed. Invalid username or password.");

@@ -180,6 +180,10 @@ public class MainApp extends Application {
         ui.start(primaryStage);
     }
 
+    public void resetUI() {
+        ((UiManager) ui).resetUI();
+    }
+
     @Override
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");

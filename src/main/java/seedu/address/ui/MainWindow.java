@@ -253,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
-            LoginFormController controller = new LoginFormController(accountManager);
+            LoginFormController controller = new LoginFormController(accountManager, this);
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -272,6 +272,7 @@ public class MainWindow extends UiPart<Stage> {
         }
         accountManager.logout();
         resultDisplay.setFeedbackToUser("You have successfully logged out.");
+        fillInnerParts();
     }
 
     public PersonListPanel getPersonListPanel() {

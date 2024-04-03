@@ -104,9 +104,9 @@ public class AccountManager {
 
     private void updateModelManagerForUser(String username) {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(Paths.get("data", username + ".json"));
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(Paths.get("data", username + ".json"));
+        UserPrefs userPrefs = loadUserPrefs(userPrefsStorage);
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(Paths.get("data", username + "AddressBook.json"));
         Storage storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
         logger.info("Using data file : " + storage.getAddressBookFilePath());
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -125,11 +125,13 @@ public class AccountManager {
         }
 
         logic.setModel(new ModelManager(initialData, userPrefs));
+        logic.setStorage(storage);
+        System.out.println("ModelManager updated for user: " + userPrefs.getAddressBookFilePath());
     }
 
     private void clearModelManagerAfterLogOut() {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(Paths.get("preferences.json"));
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        UserPrefs userPrefs = clearUserPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         Storage storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
@@ -150,9 +152,10 @@ public class AccountManager {
         }
 
         logic.setModel(new ModelManager(initialData, userPrefs));
+        System.out.println("ModelManager updated for user: " + userPrefs.getAddressBookFilePath());
     }
 
-    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+    protected UserPrefs loadUserPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using preference file : " + prefsFilePath);
 
@@ -163,6 +166,7 @@ public class AccountManager {
                 logger.info("Creating new preference file " + prefsFilePath);
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
+
         } catch (DataLoadingException e) {
             logger.warning("Preference file at " + prefsFilePath + " could not be loaded."
                     + " Using default preferences.");
@@ -170,9 +174,31 @@ public class AccountManager {
         }
         //Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
+            initializedPrefs.setAddressBookFilePath(Paths.get("data", currentAccount.getUsername().getUsername() + "AddressBook.json"));
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+        }
+
+        return initializedPrefs;
+    }
+
+    protected UserPrefs clearUserPrefs(UserPrefsStorage storage) {
+        Path prefsFilePath = Paths.get("preferences.json");
+        logger.info("Using preference file : " + prefsFilePath);
+
+        UserPrefs initializedPrefs;
+        try {
+            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            if (!prefsOptional.isPresent()) {
+                logger.info("Creating new preference file " + prefsFilePath);
+            }
+            initializedPrefs = prefsOptional.orElse(new UserPrefs());
+
+        } catch (DataLoadingException e) {
+            logger.warning("Preference file at " + prefsFilePath + " could not be loaded."
+                    + " Using default preferences.");
+            initializedPrefs = new UserPrefs();
         }
 
         return initializedPrefs;
