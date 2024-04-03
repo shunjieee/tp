@@ -278,8 +278,8 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
         accountManager.logout();
-        resultDisplay.setFeedbackToUser("You have successfully logged out.");
         fillInnerParts();
+        resultDisplay.setFeedbackToUser("You have logged out.");
     }
 
     public PersonListPanel getPersonListPanel() {
