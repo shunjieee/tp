@@ -20,7 +20,12 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * Manages the current session, including the logged-in account and the associated logic manager.
@@ -105,7 +110,8 @@ public class AccountManager {
     private void updateModelManagerForUser(String username) {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(Paths.get("data", username + ".json"));
         UserPrefs userPrefs = loadUserPrefs(userPrefsStorage);
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(Paths.get("data", username + "AddressBook.json"));
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(
+                Paths.get("data", username + "AddressBook.json"));
         Storage storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         logger.info("Using data file : " + storage.getAddressBookFilePath());
@@ -174,7 +180,8 @@ public class AccountManager {
         }
         //Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
-            initializedPrefs.setAddressBookFilePath(Paths.get("data", currentAccount.getUsername().getUsername() + "AddressBook.json"));
+            initializedPrefs.setAddressBookFilePath(
+                    Paths.get("data", currentAccount.getUsername().getUsername() + "AddressBook.json"));
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));

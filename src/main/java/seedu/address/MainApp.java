@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import seedu.address.account.account.AccountList;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -42,7 +41,6 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected AccountManager accountManager;
-    protected AccountList accountList;
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -178,10 +176,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
-    }
-
-    public void resetUI() {
-        ((UiManager) ui).resetUI();
     }
 
     @Override

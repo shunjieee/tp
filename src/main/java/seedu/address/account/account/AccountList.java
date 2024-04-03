@@ -86,6 +86,12 @@ public class AccountList {
         return hexString.toString();
     }
 
+    /**
+     * Saves the current state of the accounts to the storage.
+     * It first converts the account values to a string using the accountParser,
+     * then saves this string representation to the accountStorage.
+     * If an exception occurs during this process, it is caught and its stack trace is printed.
+     */
     public void save() {
         try {
             accountStorage.save(accountParser.parseToString(new ArrayList<>(accounts.values())));

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.AccountManager;
 import seedu.address.logic.Logic;
 
 /**

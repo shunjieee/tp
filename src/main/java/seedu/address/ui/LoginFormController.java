@@ -23,6 +23,12 @@ public class LoginFormController {
     private AccountManager accountManager;
     private MainWindow mainWindow;
 
+    /**
+     * Constructs a LoginFormController with the specified AccountManager and MainWindow.
+     *
+     * @param accountManager The AccountManager to be used for user authentication.
+     * @param mainWindow The MainWindow to be updated upon successful login.
+     */
     public LoginFormController(AccountManager accountManager, MainWindow mainWindow) {
         this.accountManager = accountManager;
         this.mainWindow = mainWindow;
@@ -53,6 +59,12 @@ public class LoginFormController {
         }
     }
 
+    /**
+     * Displays an alert with the specified title and message.
+     *
+     * @param title The title of the alert.
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
