@@ -269,7 +269,7 @@ GUI upon successful addition command <br><br>
 * **Error Handling Protocols**<br>
     1. No ID Error: No ID given will trigger an error.
        <box type="wrong">
-       Duplicate ID error <br><br>
+       No ID error <br><br>
        <img src="images/ui/edit/editinvalidId.png" width="452.5"><br><br>
        </box>
 
