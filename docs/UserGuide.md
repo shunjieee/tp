@@ -269,8 +269,8 @@ GUI upon successful addition command <br><br>
 * **Error Handling Protocols**<br>
     1. No ID Error: No ID given will trigger an error.
        <box type="wrong">
-       Duplicate ID error <br><br>
-       <img src="images/ui/edit/editInvalidId.png" width="452.5"><br><br>
+       No ID error <br><br>
+       <img src="images/ui/edit/editinvalidId.png" width="452.5"><br><br>
        </box>
 
     2. Incomplete Fields Error: Failure to complete at least 1 field will trigger an error.
@@ -293,7 +293,7 @@ GUI upon successful addition command <br><br>
 
         * Id not found
 
-       <img src="images/ui/edit/editIdNotFound.png" width="452.5"><br><br>
+       <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
        </box>
   
 </panel>
