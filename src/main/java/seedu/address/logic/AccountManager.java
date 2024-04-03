@@ -46,7 +46,7 @@ public class AccountManager {
      * If the file cannot be read, an empty AccountList is created.
      */
     public AccountManager(Logic logic) {
-        AccountStorage accountStorage = new AccountStorage("data/accounts.txt");
+        AccountStorage accountStorage = new AccountStorage("accounts.txt");
         try {
             List<String> accountListInString = accountStorage.load();
             List<Account> accountListInAccount = accountParser.parseToAccount(accountListInString);
