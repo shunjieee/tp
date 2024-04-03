@@ -1,10 +1,8 @@
 package seedu.address.account.account;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.address.account.account.Account;
-import seedu.address.account.account.Username;
+import org.junit.jupiter.api.Test;
 
 public class AccountTest {
     private static final String TEST_USERNAME = "test";

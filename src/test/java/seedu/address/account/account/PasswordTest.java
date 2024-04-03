@@ -1,9 +1,8 @@
 package seedu.address.account.account;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.address.account.account.Password;
+import org.junit.jupiter.api.Test;
 
 public class PasswordTest {
     private static final String TEST_PASSWORD_HASH = "5f4dcc3b5aa765d61d8327deb882cf99"; // md5 hash for "password"

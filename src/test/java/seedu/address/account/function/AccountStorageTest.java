@@ -1,6 +1,5 @@
 package seedu.address.account.function;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
@@ -12,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class AccountStorageTest {
     private static final String TEST_FILE_PATH = "testFilePath.txt";

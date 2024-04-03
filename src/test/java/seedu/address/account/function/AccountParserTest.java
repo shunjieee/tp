@@ -1,15 +1,15 @@
 package seedu.address.account.function;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import seedu.address.account.account.Account;
-import seedu.address.account.account.Username;
-import seedu.address.account.function.AccountParser;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.account.account.Account;
+import seedu.address.account.account.Username;
 
 public class AccountParserTest {
     private static final String TEST_USERNAME = "test";
