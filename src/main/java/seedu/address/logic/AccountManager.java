@@ -84,24 +84,10 @@ public class AccountManager {
     }
 
     /**
-     * Loads the address book associated with the specified account.
-     *
-     * @param account The account whose address book is to be loaded.
-     * @return The loaded address book.
-     */
-    private AddressBook loadAddressBook(Account account) {
-        account.getUsername();
-        return null;
-    }
-
-    /**
      * Returns the current account.
      *
      * @return The current account.
      */
-    public Account getCurrentAccount() {
-        return currentAccount;
-    }
 
     public AccountList getAccountList() {
         return accountList;
