@@ -6,14 +6,66 @@
 
 # Hi:Re User Guide
 
-Hi:Re is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## Table of Contents
 
-<!-- * Table of Contents -->
-<page-nav-print />
+- [Welcome Note](#welcome-note)
+- [Product Information](#product-information)
+- [Quick Start](#quick-start)
+- [Commands](#commands)
+- [Built-In Features](#built-in-features)
+- [FAQ](#faq)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
+- [Support and Feedback](#support-and-feedback)
+
+## Welcome Note
+Greetings HR employees, managers and executives! 
+
+- Tired from **scrolling** through endless rows in **spreadsheet** applications?
+- Worried about **data leak** issues caused by the lack in security of such applications?
+- Frustrated by the **slow input** of cell by cell in such applications?
+- Constrained by company **budgeting** and unable to appeal for a HR application?
+
+*Well, Hi:Re, our one-stop employee profiling application is for you!*
+
+We recommend reading our **[product information](#product-information)** section first to understand what Hi:Re
+can do for you and if it suits your companies' needs! After that, 
+dive into the **[quick start](#quick-start)** section, and we hope you 
+enjoy using Hi:Re as your company's HR employee profiling solution!
+
+
+
+***
+
+## Product Information
+
+[back to top](#table-of-contents)
+
+Hi:Re is a **desktop app for managing employee details,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+
+That means most work is done via *typing* commands on a command line instead of *clicking* with your mouse!
+- **Fast types**, Hi:Re will be your **best assistant** to get your contact management tasks done
+  **faster** than traditional GUI apps.
+- Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master**
+  Hi:Re, that is already **streamlined for HR purposes**!
+
+Breakdown of commands:
+1) Add contacts
+2) Delete contacts
+3) Edit contacts
+4) Find contacts
+5) List contacts
+6) Toggle Display
+7) Undo and redo panel
+8) Register, Login and Logout panel
+9) Export data into .csv file
 
 ***
 
 ## Quick start
+[back to top](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -29,15 +81,18 @@ Hi:Re is a **desktop app for managing contacts, optimized for use via a Command 
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
+1. Register your account and password before you are ready to use Hi:Re!
+
 1. Type the command in the `command box` and press `Enter` to execute it.
 
 1. Refer to the [Commands](#commands) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of built-in features.
+1. Refer to the [Built-In Features](#features) below for details of built-in features.
 
 ***
 
 ## Commands
+[back to top](#table-of-contents)
 
 <box type="info" seamless>
 
@@ -177,6 +232,67 @@ Format: `help`
         </box>
 </panel>
 
+<panel header="### Editing a contact: <code>+</code>" peek>
+  Edits a person in the address book.<br><br>
+
+Format: <code> > (id) /name (name) /hp (handphone)</code><br>
+
+Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
+
+  <box type="important" seamless>
+
+* The ID must be the first thing typed in. Other than that, the order of the other fields are interchangeable and doesn't matter. Feel free to input the details in any sequence. 
+
+* Fields to be edited are optional, but at least 1 field must be given. ID does not count. ID is used to identify the contact. Any change to the ID should be a deletion of the contact.
+
+* The phone number should only contain numbers, and it should be at least 3 digits long.
+
+* The name should only contain alphanumeric characters and spaces, and should not be blank.
+
+  </box>
+
+(The Initial UI before editing)                       
+<img src="images/ui/edit/beforeEdit.png" width="500" height="250"><br>
+
+* **Confirmation of Successful Contact Editing**<br>
+
+Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
+<box type="success">
+GUI upon successful addition command <br><br>
+<img src="images/ui/edit/afterEdit.png" width="500" height="250"><br><br>
+</box>
+
+* **Error Handling Protocols**<br>
+    1. No ID Error: No ID given will trigger an error.
+       <box type="wrong">
+       Duplicate ID error <br><br>
+       <img src="images/ui/edit/editInvalidId.png" width="452.5"><br><br>
+       </box>
+
+    2. Incomplete Fields Error: Failure to complete at least 1 field will trigger an error.
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/edit/editMissingField.png" width="452.5"><br><br>
+       </box>
+
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid name
+
+       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+
+        * Invalid phone number
+
+       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+
+        * Id not found
+
+       <img src="images/ui/edit/editIdNotFound.png" width="452.5"><br><br>
+       </box>
+</panel>
+
 <panel header="### Toggle display: <code>$</code>" peek>
   Toggle display to view / hide the addressbook.<br><br>
 
@@ -300,7 +416,9 @@ _Details coming soon ..._
 -->
 ***
 
-## Features
+## Built-In Features
+
+[back to top](#table-of-contents)
 
 Features are built-in for the ease of use. They do not require any commands for it to work.
 
@@ -338,23 +456,44 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 ## FAQ
 
+[back to top](#table-of-contents)
+
 <panel header="**Q**: How do I transfer my data to another Computer?">
+
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+</panel>
+<panel header="**Q**: What is Java 11 and where can I download it?">
+
+**A**: Java 11 is the version of the Java Programming Language that our application uses to function. Any version of Java, 11 and above will work. You can download it from
+the [official Java website](https://www.oracle.com/sg/java/).
 </panel>
 
 ***
 
 ## Known issues
 
+[back to top](#table-of-contents)
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ***
 
 ## Command summary
 
+[back to top](#table-of-contents)
+
 Action     | Format
 -----------|---------
 **Add**    | `+ /name (name) /id (id) /hp (handphone)`
 **Delete** | `- /id (id)`
+**Edit** | `> (id) /name (name) /hp (handphone)`
 **Toggle** | `$`
 
+***
+
+## Support and Feedback
+
+[back to top](#table-of-contents)
+
+We are a dedicated team of developers committed to evolving Hi:Re to always be better.
+
+Should you have any enquiries or feedback, do reach out to us at our [website!](https://github.com/AY2324S2-CS2103T-T12-3)
