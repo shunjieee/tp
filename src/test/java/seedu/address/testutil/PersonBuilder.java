@@ -36,8 +36,8 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        //        email = new Email(DEFAULT_EMAIL);
+        //        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         id = new Id(DEFAULT_ID);
     }
@@ -48,8 +48,8 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        //        email = personToCopy.getEmail();
+        //        address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         id = personToCopy.getId();
     }
