@@ -43,6 +43,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private boolean isFirstTime = true;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -140,6 +142,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        if (isFirstTime) {
+            isFirstTime = false;
+            resultDisplay.setFeedbackToUser("Welcome to Hi:Re! Please login to continue.");
+        }
     }
 
     /**
