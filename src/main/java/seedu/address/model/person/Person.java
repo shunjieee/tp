@@ -19,26 +19,26 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    //private final Email email;
 
     // Data fields
-    private final Address address;
+    //private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Id id;
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.id = id;
-    }
+    //    /**
+    //     * Every field must be present and not null.
+    //     */
+    //    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id) {
+    //        requireAllNonNull(name, phone, email, address, tags);
+    //        this.name = name;
+    //        this.phone = phone;
+    //        this.email = email;
+    //        this.address = address;
+    //        this.tags.addAll(tags);
+    //        this.id = id;
+    //    }
 
     /**
      * Every field must be present and not null.
@@ -48,8 +48,8 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.id = id;
-        this.email = new Email("test@gmail.com");
-        this.address = new Address("test");
+        //    this.email = new Email("test@gmail.com");
+        //    this.address = new Address("test");
     }
 
     public Name getName() {
@@ -60,13 +60,13 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
+    //    public Email getEmail() {
+    //        return email;
+    //    }
+    //
+    //    public Address getAddress() {
+    //        return address;
+    //    }
 
     public Id getId() {
         return id;
