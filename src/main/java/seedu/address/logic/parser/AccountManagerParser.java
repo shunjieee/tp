@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.account.exception.AccountException;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.AccountManager;
 import seedu.address.logic.commands.*;
@@ -35,7 +36,7 @@ public class AccountManagerParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static ArrayList<Object> parseCommand(String userInput) throws ParseException {
+    public static ArrayList<Object> parseCommand(String userInput) throws AccountException, ParseException {
         ArrayList<Object> result = new ArrayList<>();
         isUserLogin = accountManager.getLoginStatus();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -76,7 +77,7 @@ public class AccountManagerParser {
 
             default:
                 logger.finer("User hasn't logged in, cannot parse and execute: " + userInput);
-                throw new ParseException("Please login first.");
+                throw new AccountException("Please login first.");
         }
     }
 

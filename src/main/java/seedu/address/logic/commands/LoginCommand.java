@@ -17,8 +17,8 @@ public class LoginCommand extends Command {
             + PREFIX_USERNAME + "USERNAME "
             + PREFIX_PASSWORD + "PASSWORD \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_USERNAME + "john1234 "
-            + PREFIX_PASSWORD + "qweasd123 ";
+            + PREFIX_USERNAME + " john1234 "
+            + PREFIX_PASSWORD + " qweasd123 ";
 
     private final Account account;
     private AccountManager accountManager;
@@ -40,7 +40,7 @@ public class LoginCommand extends Command {
 
         if (accountToLogin != null) {
             accountManager.login(accountToLogin);
-            return new CommandResult("Account registered successfully.");
+            return new CommandResult("Login successfully.");
         } else {
             throw new CommandException("Login failed. Invalid username or password.");
         }

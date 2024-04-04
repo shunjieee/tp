@@ -16,8 +16,8 @@ public class RegisterCommand extends Command {
             + PREFIX_USERNAME + "USERNAME "
             + PREFIX_PASSWORD + "PASSWORD \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_USERNAME + "john1234 "
-            + PREFIX_PASSWORD + "qweasd123 ";
+            + PREFIX_USERNAME + " john1234 "
+            + PREFIX_PASSWORD + " qweasd123 ";
 
     public static final String MESSAGE_SUCCESS = "New user registered: %1$s";
     private final Account account;
@@ -38,7 +38,7 @@ public class RegisterCommand extends Command {
         String passwordHashed = accountManager.getAccountList().hashPassword(account.getPasswordHash());
         Account accountToRegister = new Account(account.getUsername(), passwordHashed);
 
-        boolean success = accountManager.getAccountList().addAccount(account);
+        boolean success = accountManager.getAccountList().addAccount(accountToRegister);
 
         if (success) {
             return new CommandResult("Account registered successfully.");

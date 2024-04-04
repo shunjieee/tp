@@ -86,6 +86,7 @@ public class AccountManager {
         this.currentAccount = null;
         this.isUserLogin = false;
         clearModelManagerAfterLogOut();
+        mainWindow.fillInnerParts();
     }
 
     /**

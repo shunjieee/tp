@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleUndo() throws CommandException, ParseException {
+    private void handleUndo() throws AccountException, CommandException, ParseException {
         try {
             if (!accountManager.getLoginStatus()) {
                 resultDisplay.setFeedbackToUser("Please login first.");
@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleRedo() throws CommandException, ParseException {
+    private void handleRedo() throws AccountException, CommandException, ParseException {
         try {
             if (!accountManager.getLoginStatus()) {
                 resultDisplay.setFeedbackToUser("Please login first.");
@@ -278,7 +278,6 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
         accountManager.logout();
-        fillInnerParts();
         resultDisplay.setFeedbackToUser("You have logged out.");
     }
 
@@ -310,11 +309,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isToggleDisplay()) {
                 handleToggleDisplay();
             }
-
-
+        } catch (AccountException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser("Please login first.");
+            resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
         return commandResult;

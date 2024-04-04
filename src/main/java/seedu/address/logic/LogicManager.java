@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.account.exception.AccountException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
@@ -50,7 +51,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws AccountException, CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -62,6 +63,12 @@ public class LogicManager implements Logic {
         }
 
         if (isUserLogin) {
+            if (command instanceof LogoutCommand) {
+                AccountManager accountManager = accountManagerParser.getAccountManager();
+                LogoutCommand logoutCommand = (LogoutCommand) command;
+                logoutCommand.setAccountManager(accountManager);
+                commandResult = command.execute(model);
+            }
             command = addressBookParser.parseCommand(commandText);
 
             boolean isSample = model.getUserPrefs().getIsSample();
