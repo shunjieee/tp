@@ -329,7 +329,6 @@ Format: `undo`<br>
 Example:<br>
 1. Delete the person with the id `johndoe41`.<br>
 2. Undo the deletion. The person will reappear.<br><br>
-   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
 
 * **Confirmation of Successful Undo**<br>
 
@@ -337,7 +336,7 @@ Example:<br>
 
   <box type="success">
     GUI upon successful undo command <br><br>
-    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+    <img src="images/ui/undo/1.png" width="452.5"><br>
   </box> 
 
 * **Error Handling Protocols**<br>
@@ -345,7 +344,7 @@ Example:<br>
     1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
        <box type="wrong">
        No undoable command error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/undo/2.png" width="452.5" ><br><br>
        </box>
        </panel>
 
@@ -363,7 +362,6 @@ Example:<br>
 1. Delete the person with the id `johndoe41`.<br>
 2. Undo the deletion. The person will reappear.<br>
 3. Redo the undone deletion. The person will be deleted again.<br><br>
-   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
 
 * **Confirmation of Successful Redo**<br>
 
@@ -371,7 +369,7 @@ Example:<br>
 
   <box type="success">
     GUI upon successful redo command <br><br>
-    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+    <img src="images/ui/redo/1.png" width="452.5" ><br>
   </box> 
 
 * **Error Handling Protocols**<br>
@@ -379,7 +377,7 @@ Example:<br>
     1. No Redoable Command Error: If there is no more undone command that can be redone, an error will be triggered.<br>
        <box type="wrong">
        No redoable command error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/redo/2.png" width="452.5" ><br><br>
        </box>
        </panel>
 
@@ -403,7 +401,7 @@ Example: `register /u johndoe /p 123456`<br>
 
   <box type="success">
     GUI upon successful register command <br><br>
-    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+    <img src="images/ui/register/1.png" width="452.5" ><br>
   </box> 
 
 * **Error Handling Protocols**<br>
@@ -411,12 +409,12 @@ Example: `register /u johndoe /p 123456`<br>
     1. Duplicate username Error: Entry of a non-unique username will trigger an error.<br>
        <box type="wrong">
        Duplicate username error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/register/2.png" width="452.5" ><br><br>
        </box>
     2. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
        <box type="wrong">
        Incomplete fields error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/register/3.png" width="452.5" ><br><br>
        </box>
     3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
        <box type="wrong">
@@ -424,11 +422,11 @@ Example: `register /u johndoe /p 123456`<br>
 
         * Invalid username
 
-       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+       <img src="images/ui/register/4.png" width="452.5"><br><br>
 
         * Invalid password
 
-       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+       <img src="images/ui/register/5.png" width="452.5"><br><br>
        </box>
        </panel>
 
@@ -451,7 +449,7 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
 
   <box type="success">
     GUI upon successful login command <br><br>
-    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+    <img src="images/ui/login/success.png" width="452.5" height="369.5"><br>
   </box> 
 
 * **Error Handling Protocols**<br>
@@ -459,7 +457,7 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
     1. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
        <box type="wrong">
        Incomplete fields error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/login/1.png" width="452.5"><br><br>
        </box>
     2. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.<br>
        <box type="wrong">
@@ -467,21 +465,21 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
 
         * Invalid username
 
-       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+       <img src="images/ui/login/2.png" width="452.5"><br><br>
 
         * Invalid password
 
-       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+       <img src="images/ui/login/3.png" width="452.5"><br><br>
        </box>
     3. Incorrect Username or Password Error: If the username or password is incorrect, an error will be triggered.<br>
        <box type="wrong">
        Incorrect username or password error <br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/login/4.png" width="452.5"><br><br>
        </box>
     4. Already Logged In Error: If the user is already logged in, he cannot log in again.<br>
        <box type="wrong">
        Already logged in error:<br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/login/5.png" width="452.5" ><br><br>
        </box>
      </panel>
 
@@ -496,7 +494,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   <box type="success">
     GUI upon successful logout command <br><br>
-    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+    <img src="images/ui/logout/success.png" width="452.5" height="369.5"><br>
   </box> 
 
 * **Error Handling Protocols**<br>
@@ -504,7 +502,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
     1. Not Logged Error: If the user hasn't logged in, he cannot log out.<br>
        <box type="wrong">
        Not Logged Error:<br><br>
-       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       <img src="images/ui/logout/notloggederror.png" width="452.5" ><br><br>
        </box>
        </panel>
 <!--
