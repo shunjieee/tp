@@ -20,6 +20,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
 
     public static final String MESSAGE_ID_NOT_VALID = "ID is not valid!";
+    public static final String MESSAGE_INVALID_PATH = "Filename is not valid! Remove some non-alphanumeric characters and try again.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

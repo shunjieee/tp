@@ -20,6 +20,10 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 
@@ -91,6 +95,23 @@ public class JsonUtil {
         serializeObjectToJsonFile(filePath, jsonFile);
     }
 
+    /**
+     * Saves the data in the Json object to a CSV format.
+     * Overwrites existing file if it exists, creates a new file if it doesn't.
+     * @param jsonFile cannot be null
+     * @param filePath cannot be null
+     * @throws IOException if there was an error during writing to the file
+     */
+    public static <T> void saveJsonToCsv(T jsonFile, Path filePath) throws IOException {
+        requireNonNull(filePath);
+        requireNonNull(jsonFile);
+
+        String jsonString = toJsonString(jsonFile);
+        JSONObject jsonObject = new JSONObject(jsonString);
+        JSONArray docs = jsonObject.getJSONArray("persons");
+        String csvString = CDL.toString(docs);
+        FileUtil.writeToFile(filePath, csvString);
+    }
 
     /**
      * Converts a given string representation of a JSON data to instance of a class
