@@ -50,13 +50,6 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-
-        boolean isSample = model.getUserPrefs().getIsSample();
-        if (command instanceof AddCommand && isSample) {
-            new ClearCommand().execute(model);
-            model.setUserPrefsIsSample(model.getUserPrefs(), false);
-        }
-
         commandResult = command.execute(model);
 
         try {

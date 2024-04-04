@@ -61,6 +61,13 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // Clear sample data upon first entry
+        boolean isSample = model.getUserPrefs().getIsSample();
+        if (isSample) {
+            new ClearCommand().execute(model);
+            model.setUserPrefsIsSample(model.getUserPrefs(), false);
+        }
+
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
