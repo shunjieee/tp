@@ -17,7 +17,9 @@ public class AccountStorage {
     private final String filePath;
 
     public AccountStorage(String filePath) {
+
         this.filePath = filePath;
+        createParentDirectoryIfNeeded(filePath);
     }
 
     /**
@@ -56,6 +58,14 @@ public class AccountStorage {
                 writer.write(account);
                 writer.newLine();
             }
+        }
+    }
+
+    private void createParentDirectoryIfNeeded(String filePath) {
+        File file = new File(filePath);
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
         }
     }
 }
