@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_TAG_NOT_IN_TAG_LIST;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -13,6 +14,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a person to the address book.
@@ -62,8 +64,14 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        model.addPerson(toAdd);
 
+        for (Tag tag : toAdd.getTags()) {
+            if (!model.hasTag(tag)) {
+                throw new CommandException(String.format(MESSAGE_TAG_NOT_IN_TAG_LIST, tag));
+            }
+        }
+
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

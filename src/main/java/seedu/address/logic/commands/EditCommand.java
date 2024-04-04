@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_TAG_NOT_IN_TAG_LIST;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -97,6 +98,12 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        for (Tag tag : editedPerson.getTags()) {
+            if (!model.hasTag(tag)) {
+                throw new CommandException(String.format(MESSAGE_TAG_NOT_IN_TAG_LIST, tag));
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);

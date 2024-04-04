@@ -3,7 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,23 +26,27 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final TagList tagList;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs, TagList tagList) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook 
+                + ", user prefs " + userPrefs
+                + " and tag list" + tagList);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = userPrefs;
+        this.tagList = tagList;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new TagList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,6 +86,24 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
+
+    // ================ TagList ==============================
+
+    @Override
+    public TagList getTagList() {
+        return tagList;
+    }
+    
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireAllNonNull(tag);
+        return tagList.hasTag(tag);
+    } 
+
+    @Override
+    public void addTag(Tag tag) {
+        tagList.addTag(tag);
+    }    
 
     //=========== AddressBook ================================================================================
 
