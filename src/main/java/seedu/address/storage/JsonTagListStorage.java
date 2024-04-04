@@ -60,8 +60,8 @@ public class JsonTagListStorage implements TagListStorage {
     }
 
     @Override
-    public void saveTagList(TagList TagList) throws IOException {
-        saveTagList(TagList, filePath);
+    public void saveTagList(TagList tagList) throws IOException {
+        saveTagList(tagList, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonTagListStorage implements TagListStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTagList(TagList TagList, Path filePath) throws IOException {
-        requireNonNull(TagList);
+    public void saveTagList(TagList tagList, Path filePath) throws IOException {
+        requireNonNull(tagList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTagList(TagList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTagList(tagList), filePath);
     }
 
 }

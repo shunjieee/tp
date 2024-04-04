@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs, TagList tagList) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook 
+        logger.fine("Initializing with address book: " + addressBook
                 + ", user prefs " + userPrefs
                 + " and tag list" + tagList);
 
@@ -90,17 +90,17 @@ public class ModelManager implements Model {
     public TagList getTagList() {
         return tagList;
     }
-    
+
     @Override
     public boolean hasTag(Tag tag) {
         requireAllNonNull(tag);
         return tagList.hasTag(tag);
-    } 
+    }
 
     @Override
     public void addTag(Tag tag) {
         tagList.addTag(tag);
-    }    
+    }
 
     @Override
     public void deleteTag(Tag tag) {

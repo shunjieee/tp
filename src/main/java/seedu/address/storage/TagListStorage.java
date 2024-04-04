@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.tag.TagList;;
+import seedu.address.model.tag.TagList;
 
 /**
  * Represents a storage for {@link seedu.address.model.tag.TagList}.
@@ -27,9 +27,9 @@ public interface TagListStorage {
 
     /**
      * Saves the given {@link seedu.address.model.TagList} to the storage.
-     * @param TagList cannot be null.
+     * @param tagList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTagList(TagList TagList) throws IOException;
+    void saveTagList(TagList tagList) throws IOException;
 
 }

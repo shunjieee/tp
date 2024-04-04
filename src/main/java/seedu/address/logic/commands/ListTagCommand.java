@@ -7,8 +7,8 @@ import seedu.address.model.Model;
 /**
  * Lists all tags in the tag list to the user.
  */
-public class ListTagCommand extends ListCommand{
-    
+public class ListTagCommand extends ListCommand {
+
     public ListTagCommand() {
         super(null, null);
     }

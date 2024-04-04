@@ -7,8 +7,8 @@ import java.util.List;
  * Represents the list of valid tags for the addressbook.
  */
 public class TagList {
-    
-    public List<Tag> tagList;
+
+    private List<Tag> tagList;
 
     /**
      * Constructs a blank {@code TagList}.

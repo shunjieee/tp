@@ -101,7 +101,7 @@ public class MainApp extends Application {
             initialTagList = tagLisOptional.orElse(new TagList());
 
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() 
+            logger.warning("Data file at " + storage.getAddressBookFilePath()
                     + " and / or " + storage.getTagListFilePath()
                     + " could not be loaded."
                     + " Will be starting with an empty AddressBook and / or tag list.");

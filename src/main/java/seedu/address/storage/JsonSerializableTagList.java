@@ -45,15 +45,15 @@ class JsonSerializableTagList {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TagList toModelType() throws IllegalValueException {
-        TagList TagList = new TagList();
+        TagList tagList = new TagList();
         for (JsonAdaptedTag jsonAdaptedTag : tags) {
             Tag tag = jsonAdaptedTag.toModelType();
-            if (TagList.hasTag(tag)) {
+            if (tagList.hasTag(tag)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
             }
-            TagList.addTag(tag);
+            tagList.addTag(tag);
         }
-        return TagList;
+        return tagList;
     }
 
 }

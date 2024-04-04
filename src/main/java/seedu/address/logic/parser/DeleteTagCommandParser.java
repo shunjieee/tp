@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new DeleteTagCommand object
  */
-public class DeleteTagCommandParser implements Parser<DeleteTagCommand>{
+public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTagCommand
