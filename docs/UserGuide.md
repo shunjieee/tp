@@ -16,6 +16,7 @@
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
+- [Future Integrations](#future-integrations)
 - [Support and Feedback](#support-and-feedback)
 
 ## Welcome Note
@@ -192,7 +193,7 @@ Format: `help`
   </box>
   (The Initial UI before deletion)
   
-  <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
+  <img src="images/ui/delete/beforeDelete.png" width="452.5"><br>
 
   * **Confirmation of Contact Deletion**<br>
   
@@ -545,6 +546,21 @@ Action     | Format
 **Delete** | `- /id (id)`
 **Edit** | `> (id) /name (name) /hp (handphone)`
 **Toggle** | `$`
+
+***
+
+## Future Integrations
+
+[back to top](#table-of-contents)
+
+**In the future, we plan to integrate some of the following features:**
+
+1. **A more rigorous account management system**, which will allow us to manage users as an admin, and assign different 
+    levels of authentication or security.
+2. **A remote database management system**, which links all addressbook instances on different machines to the same
+    addressbook database, which will allow for collaboration and other benefits.
+3. **More open-ended tagging and field options**, allowing for the addressbook to be fully customisable as per the
+    organisation's requirements.
 
 ***
 
