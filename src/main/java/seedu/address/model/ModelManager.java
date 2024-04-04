@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagList;
@@ -26,6 +27,8 @@ public class ModelManager implements Model {
     private final TagList tagList;
     private final FilteredList<Person> filteredPersons;
 
+    private final CommandList commandList;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -37,6 +40,8 @@ public class ModelManager implements Model {
                 + " and tag list" + tagList);
 
         this.addressBook = new AddressBook(addressBook);
+        this.commandList = new CommandList();
+        this.commandList.linkToModel(this);
         this.userPrefs = userPrefs;
         this.tagList = tagList;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -180,6 +185,33 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    //=========== Undo and redo feature ======================================================================
+
+    @Override
+    public void addExecutedCommand(Command command) {
+        commandList.addCommand(command);
+    }
+
+    @Override
+    public boolean canUndoCommand() {
+        return commandList.canUndo();
+    }
+
+    @Override
+    public boolean canRedoCommand() {
+        return commandList.canRedo();
+    }
+
+    @Override
+    public void undoCommand() {
+        commandList.undo();
+    }
+
+    @Override
+    public void redoCommand() {
+        commandList.redo();
     }
 
 }

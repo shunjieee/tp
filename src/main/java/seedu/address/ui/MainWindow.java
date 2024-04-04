@@ -1,17 +1,23 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.account.exception.AccountException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.AccountManager;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private AccountManager accountManager;
+
     private Stage primaryStage;
     private Logic logic;
 
@@ -34,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private boolean isFirstTime = true;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +53,13 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem toggleDisplayMenuItem;
+
+    @FXML
+    private MenuItem editMenuItem;
+
+    @FXML
+    private MenuItem accountMenuItem;
+
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -61,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.accountManager = new AccountManager(logic);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -112,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -124,6 +142,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        if (isFirstTime) {
+            isFirstTime = false;
+            resultDisplay.setFeedbackToUser("Welcome to Hi:Re! Please login to continue.");
+        }
     }
 
     /**
@@ -171,7 +194,92 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleToggleDisplay() {
+        if (!accountManager.getLoginStatus()) {
+            resultDisplay.setFeedbackToUser("Please login first.");
+            return;
+        }
+
         personListPanel.toggleDisplay();
+    }
+
+    @FXML
+    private void handleUndo() throws AccountException, CommandException, ParseException {
+        try {
+            if (!accountManager.getLoginStatus()) {
+                resultDisplay.setFeedbackToUser("Please login first.");
+                return;
+            }
+
+            CommandResult commandResult = logic.execute("undo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "undo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRedo() throws AccountException, CommandException, ParseException {
+        try {
+            if (!accountManager.getLoginStatus()) {
+                resultDisplay.setFeedbackToUser("Please login first.");
+                return;
+            }
+
+            CommandResult commandResult = logic.execute("redo");
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + "redo");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRegister() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterForm.fxml"));
+            RegisterFormController controller = new RegisterFormController(accountManager);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLogin() {
+        try {
+            if (accountManager.getLoginStatus()) {
+                resultDisplay.setFeedbackToUser("You have already logged in.");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
+            LoginFormController controller = new LoginFormController(accountManager, this);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLogout() {
+        if (!accountManager.getLoginStatus()) {
+            resultDisplay.setFeedbackToUser("You have not logged in.");
+            return;
+        }
+        accountManager.logout();
+        fillInnerParts();
+        resultDisplay.setFeedbackToUser("You have logged out.");
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -183,9 +291,16 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
+    private CommandResult executeCommand(String commandText) throws AccountException, CommandException, ParseException {
+        if (commandText.trim().equals("logout")) {
+            handleLogout();
+            return new CommandResult("You have logged out.");
+        }
+
+        CommandResult commandResult = null;
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -201,11 +316,17 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleDisplay();
             }
 
-            return commandResult;
+            if (commandResult.isLogin()) {
+                fillInnerParts();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+        } catch (AccountException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+        return commandResult;
     }
 }

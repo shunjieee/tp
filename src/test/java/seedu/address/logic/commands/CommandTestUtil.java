@@ -18,8 +18,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Id;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -133,4 +136,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Adds two people to {@code model}'s address book for test.
+     */
+    public static void addTwoPeople(Model model) {
+        try {
+            Person firstPerson = new Person(new Name("test"), new Id("1234"), new Phone("12345678"));
+            Person secondPerson = new Person(new Name("test"), new Id("12345"), new Phone("12345678"));
+            new AddCommand(firstPerson).execute(model);
+            new AddCommand(secondPerson).execute(model);
+        } catch (CommandException e) {
+            // In test this branch will not be visited.
+        }
+    }
 }

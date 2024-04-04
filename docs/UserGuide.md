@@ -6,14 +6,66 @@
 
 # Hi:Re User Guide
 
-Hi:Re is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## Table of Contents
 
-<!-- * Table of Contents -->
-<page-nav-print />
+- [Welcome Note](#welcome-note)
+- [Product Information](#product-information)
+- [Quick Start](#quick-start)
+- [Commands](#commands)
+- [Built-In Features](#built-in-features)
+- [FAQ](#faq)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
+- [Support and Feedback](#support-and-feedback)
+
+## Welcome Note
+Greetings HR employees, managers and executives! 
+
+- Tired from **scrolling** through endless rows in **spreadsheet** applications?
+- Worried about **data leak** issues caused by the lack in security of such applications?
+- Frustrated by the **slow input** of cell by cell in such applications?
+- Constrained by company **budgeting** and unable to appeal for a HR application?
+
+*Well, Hi:Re, our one-stop employee profiling application is for you!*
+
+We recommend reading our **[product information](#product-information)** section first to understand what Hi:Re
+can do for you and if it suits your companies' needs! After that, 
+dive into the **[quick start](#quick-start)** section, and we hope you 
+enjoy using Hi:Re as your company's HR employee profiling solution!
+
+
+
+***
+
+## Product Information
+
+[back to top](#table-of-contents)
+
+Hi:Re is a **desktop app for managing employee details,
+optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+
+That means most work is done via *typing* commands on a command line instead of *clicking* with your mouse!
+- **Fast types**, Hi:Re will be your **best assistant** to get your contact management tasks done
+  **faster** than traditional GUI apps.
+- Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master**
+  Hi:Re, that is already **streamlined for HR purposes**!
+
+Breakdown of commands:
+1) Add contacts
+2) Delete contacts
+3) Edit contacts
+4) Find contacts
+5) List contacts
+6) Toggle Display
+7) Undo and redo panel
+8) Register, Login and Logout panel
+9) Export data into .csv file
 
 ***
 
 ## Quick start
+[back to top](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -29,15 +81,18 @@ Hi:Re is a **desktop app for managing contacts, optimized for use via a Command 
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
+1. Register your account and password before you are ready to use Hi:Re!
+
 1. Type the command in the `command box` and press `Enter` to execute it.
 
 1. Refer to the [Commands](#commands) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of built-in features.
+1. Refer to the [Built-In Features](#features) below for details of built-in features.
 
 ***
 
 ## Commands
+[back to top](#table-of-contents)
 
 <box type="info" seamless>
 
@@ -66,28 +121,61 @@ Format: `help`
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
 
-  <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+  <box type="important" seamless>
 
+  * The order of input values is interchangeable and doesn't matter. Feel free to input the details in any sequence as long as all required information is provided.
+
+  * The ID must be unique for each contact. ID cannot duplicate with existing IDs. Attempting to use a duplicate ID will result in an error.
+
+  * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  * The phone number should only contain numbers, and it should be at least 3 digits long.
+
+  * The name should only contain alphanumeric characters and spaces, and should not be blank.
+  
+  </box>
+
+  (The Initial UI before addition)                       
+    <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
+
+  * **Confirmation of Successful Contact Addition**<br>
+
+  Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
   <box type="success">
-    A GUI similar to below should appear upon successful command input.<br><br>
+    GUI upon successful addition command <br><br>
     <img src="images/ui/add/afterAdd.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  <box type="important" seamless>
-    All 3 fields must be present and filled in order as specified.<br>
-    ID is <b>unique</b> (i.e. No duplicates of ID is allowed).
-  </box>
+  * **Error Handling Protocols**<br> 
 
-  <box type="wrong">
-    Duplicate ID.<br><br>
-    <img src="images/ui/add/duplicateId.png" width="452.5" height="369.5"><br><br>
-  </box>
+    1. Duplicate ID Error: Entry of a non-unique ID will trigger an error. 
+       <box type="wrong">
+       Duplicate ID error <br><br>
+       <img src="images/ui/add/duplicateId.png" width="452.5"><br><br>
+       </box>
 
-  <box type="wrong">
-    Insufficient fields.<br><br>
-    <img src="images/ui/add/insufficentFields.png" width="452.5" height="369.5"><br><br>
-  </box>
-
+    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error. 
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/add/insufficientFields.png" width="452.5"><br><br>
+       </box>
+     
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+    
+       * Invalid name
+       
+       <img src="images/ui/add/invalidname.png" width="452.5"><br><br>
+    
+       * Invalid phone number
+       
+       <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
+       
+       * Invalid id
+       
+       <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
+       </box>
 </panel>
 
 <panel header="### Deleting a contact: <code>-</code>" peek>
@@ -97,19 +185,185 @@ Format: `help`
 
   Example: <code>- /id johndoe46</code><br>
 
+  <box type="important" seamless>
+
+* The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
+
+  </box>
+  (The Initial UI before deletion)
+  
   <img src="images/ui/delete/beforeDelete.png" width="452.5" height="369.5"><br>
 
+  * **Confirmation of Contact Deletion**<br>
+  
+  Following the accurate input of the command, if the person with the input id does exist in the address book, a window will pop up asking for your confirmation to delete.
+  Click OK to continue with the deletion. After confirmation, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
   <box type="success">
-    A GUI similar to below should appear upon successful command input.<br><br>
-    <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
+  
+  * Pop-up window for confirmation
+  
+    <img src="images/ui/delete/prompt.png" width="452.5"><br><br>
+
+  * GUI upon successful addition command <br><br>
+  <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  <box type="wrong">
-    Invalid ID.<br><br>
-    <img src="images/ui/delete/invalidId.png" width="452.5" height="369.5"><br><br>
-  </box>
+  * **Error Handling Protocols**<br>
+  
+    1. ID Not Found Error: If there is no such person with the input id in the list, an error will be triggered.
+       <box type="wrong">
+       ID not found error <br><br>
+       <img src="images/ui/delete/idnotfound.png" width="452.5"><br><br>
+       </box>
+    
+    2. Command Cancelled Error: When the confirmation dialog box pops up, if the user chooses to cancel the operation, it can trigger an error.
+       <box type="wrong">
+       Command cancelled error <br><br>
+       <img src="images/ui/delete/deletecancelled.png" width="452.5"><br><br>
+       </box>
+    
+    3. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
+       <box type="wrong">
+       Incomplete field error <br><br>
+       <img src="images/ui/delete/insufficientfield.png" width="452.5"><br><br>
+       </box>
 
+    4. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
+        <box type="wrong">
+        Invalid field error <br><br>
+        <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
+        </box>
 </panel>
+
+
+<panel header="### Editing a contact: <code>+</code>" peek>
+  Edits a person in the address book.<br><br>
+
+Format: <code> > (id) /name (name) /hp (handphone)</code><br>
+
+Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
+
+  <box type="important" seamless>
+
+* The ID must be the first thing typed in. Other than that, the order of the other fields are interchangeable and doesn't matter. Feel free to input the details in any sequence. 
+
+* Fields to be edited are optional, but at least 1 field must be given. ID does not count. ID is used to identify the contact. Any change to the ID should be a deletion of the contact.
+
+* The phone number should only contain numbers, and it should be at least 3 digits long.
+
+* The name should only contain alphanumeric characters and spaces, and should not be blank.
+
+  </box>
+
+(The Initial UI before editing)                       
+<img src="images/ui/edit/beforeEdit.png" width="500" height="250"><br>
+
+* **Confirmation of Successful Contact Editing**<br>
+
+Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
+<box type="success">
+GUI upon successful addition command <br><br>
+<img src="images/ui/edit/afterEdit.png" width="500" height="250"><br><br>
+</box>
+
+* **Error Handling Protocols**<br>
+    1. No ID Error: No ID given will trigger an error.
+       <box type="wrong">
+       No ID error <br><br>
+       <img src="images/ui/edit/editinvalidId.png" width="452.5"><br><br>
+       </box>
+
+    2. Incomplete Fields Error: Failure to complete at least 1 field will trigger an error.
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/edit/editMissingField.png" width="452.5"><br><br>
+       </box>
+
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid name
+
+       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+
+        * Invalid phone number
+
+       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+
+        * Id not found
+
+       <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
+       </box>
+  
+</panel>
+
+<panel header="### Undo" peek>
+
+  Restores the address book to the state before the previous **undoable** command was executed.<br>
+
+  <box type="important" seamless>
+
+  * This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `undo` in the command box will not work. <br><br>
+  * Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+  </box>
+
+  Example:<br>
+  1. Delete the person with the id `johndoe41`.<br>
+  2. Undo the deletion. The person will reappear.<br><br>
+     <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+ * **Confirmation of Successful Undo**<br>
+
+   If there is still any executed command that can be undone, a graphical user interface (GUI) indicative of a successful undo will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful undo command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+  1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
+      <box type="wrong">
+      No undoable command error <br><br>
+      <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+      </box>
+</panel>
+
+<panel header="### Redo" peek>
+
+Reverses the most recently undone command.<br>
+
+  <box type="important" seamless>
+
+* This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+  
+  </box>
+Example:<br>
+1. Delete the person with the id `johndoe41`.<br>
+2. Undo the deletion. The person will reappear.<br>
+3. Redo the undone deletion. The person will be deleted again.<br><br>
+   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+* **Confirmation of Successful Redo**<br>
+
+  If there is still any undone command that can be redone, a graphical user interface (GUI) indicative of a successful redo will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful redo command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. No Redoable Command Error: If there is no more undone command that can be redone, an error will be triggered.<br>
+       <box type="wrong">
+       No redoable command error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+       </panel>
+
 
 <panel header="### Toggle display: <code>$</code>" peek>
   Toggle display to view / hide the addressbook.<br><br>
@@ -129,20 +383,6 @@ Format: `help`
 </panel>
 
 <!--
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -234,7 +474,9 @@ _Details coming soon ..._
 -->
 ***
 
-## Features
+## Built-In Features
+
+[back to top](#table-of-contents)
 
 Features are built-in for the ease of use. They do not require any commands for it to work.
 
@@ -272,23 +514,44 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 ## FAQ
 
+[back to top](#table-of-contents)
+
 <panel header="**Q**: How do I transfer my data to another Computer?">
+
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+</panel>
+<panel header="**Q**: What is Java 11 and where can I download it?">
+
+**A**: Java 11 is the version of the Java Programming Language that our application uses to function. Any version of Java, 11 and above will work. You can download it from
+the [official Java website](https://www.oracle.com/sg/java/).
 </panel>
 
 ***
 
 ## Known issues
 
+[back to top](#table-of-contents)
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ***
 
 ## Command summary
 
+[back to top](#table-of-contents)
+
 Action     | Format
 -----------|---------
 **Add**    | `+ /name (name) /id (id) /hp (handphone)`
 **Delete** | `- /id (id)`
+**Edit** | `> (id) /name (name) /hp (handphone)`
 **Toggle** | `$`
 
+***
+
+## Support and Feedback
+
+[back to top](#table-of-contents)
+
+We are a dedicated team of developers committed to evolving Hi:Re to always be better.
+
+Should you have any enquiries or feedback, do reach out to us at our [website!](https://github.com/AY2324S2-CS2103T-T12-3)

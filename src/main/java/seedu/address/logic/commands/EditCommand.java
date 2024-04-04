@@ -36,7 +36,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "?";
+    public static final String COMMAND_WORD = ">";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the id in the displayed person list. "
@@ -60,6 +60,8 @@ public class EditCommand extends Command {
 
     private final Id id;
     private final EditPersonDescriptor editPersonDescriptor;
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param id of the person in the filtered person list to edit
@@ -81,6 +83,7 @@ public class EditCommand extends Command {
         boolean isPersonExist = false;
         Person personToEdit = new Person(new Name("test"),
                 new Id("test"), new Phone("123"), new HashSet<Tag>());
+  
         for (int i = 0; i < lastShownList.size(); i++) {
             Person currentPerson = lastShownList.get(i);
             if (currentPerson.getId().equals(id)) {
@@ -94,7 +97,7 @@ public class EditCommand extends Command {
         }
         assert !personToEdit.equals(new Person(new Name("test"), new Id("test"), new Phone("123"), new HashSet<>()))
                 : "Should not reach here";
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -108,6 +111,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.addExecutedCommand(this);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -142,6 +146,24 @@ public class EditCommand extends Command {
         EditCommand otherEditCommand = (EditCommand) other;
         return id.equals(otherEditCommand.id)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+    }
+
+    /**
+     * Retrieves the original {@code Person} instance that is targeted for editing.
+     *
+     * @return The {@code Person} instance that was initially marked for editing.
+     */
+    public Person getPersonToEdit() {
+        return personToEdit;
+    }
+
+    /**
+     * Retrieves the modified {@code Person} instance after edits have been applied.
+     *
+     * @return The {@code Person} instance that represents the edited state.
+     */
+    public Person getEditedPerson() {
+        return editedPerson;
     }
 
     @Override
