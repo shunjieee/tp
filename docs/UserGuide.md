@@ -316,6 +316,42 @@ GUI upon successful addition command <br><br>
 
 </panel>
 
+<panel header="### List: <code>ls</code>" peek>
+  List has different functionalities.<br><br>
+
+  Format: <code>ls ARGS</code><br>
+  
+  <code>ARGS</code> = <code>-a</code>: List all contacts in the address book. <br>
+  <code>ARGS</code> = <code>-t</code>: List all tags available. <br>
+  <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
+
+</panel>
+
+<panel header="### Add Tag: <code>tag+</code>" peek>
+  Add tag into a tag list.<br><br>
+
+  Format: <code>tag+ TAG_NAME</code><br>
+
+  <box type="important">
+
+* **MUST** add a tag into a tag list before adding a person.
+  
+  </box>
+
+  </panel>
+
+  <panel header="### Delete Tag: <code>tag-</code>" peek>
+  Delete tag from the tag list.<br><br>
+
+  Format: <code>tag- TAG_NAME</code><br>
+
+  <box type="important">
+  
+  Tag cannot be removed if a person is tagged with the tag-to-be-removed.
+  
+  </box>
+  
+  </panel>
 
 <panel header="### Undo: <code>undo</code> " peek>
 
