@@ -53,4 +53,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     void setStorage(Storage storage);
+
+    void linkAccountManagerToParser(AccountManager accountManager);
 }

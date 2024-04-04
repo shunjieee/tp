@@ -295,13 +295,6 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws AccountException, CommandException, ParseException {
         CommandResult commandResult = null;
         try {
-            boolean isUserLogin = accountManager.getLoginStatus();
-            boolean isCommandHelp = commandText.equals("help");
-            boolean isCommandExit = commandText.equals("exit");
-            if (!isUserLogin && !isCommandHelp && !isCommandExit) {
-                throw new AccountException("Please login first.");
-            }
-
             commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -318,11 +311,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleDisplay();
             }
 
-        } catch (AccountException e) {
-            resultDisplay.setFeedbackToUser(e.getMessage());
+
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser("Please login first.");
             throw e;
         }
         return commandResult;

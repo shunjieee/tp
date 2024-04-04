@@ -13,6 +13,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AccountManagerParser;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -34,6 +35,8 @@ public class LogicManager implements Logic {
     private Model model;
     private Storage storage;
     private final AddressBookParser addressBookParser;
+
+    private AccountManagerParser accountManagerParser = new AccountManagerParser();
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -105,5 +108,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void linkAccountManagerToParser(AccountManager accountManager) {
+        accountManagerParser.setAccountManager(accountManager);
     }
 }

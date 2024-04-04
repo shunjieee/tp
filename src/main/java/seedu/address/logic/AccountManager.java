@@ -60,6 +60,7 @@ public class AccountManager {
         }
         currentAccount = null;
         this.logic = logic;
+        this.logic.linkAccountManagerToParser(this);
     }
 
     /**
