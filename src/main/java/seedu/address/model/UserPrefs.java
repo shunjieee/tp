@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs, ReadAndWriteUserPrefs {
     private boolean isSample = true;
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path tagListFilePath = Paths.get("data" , "taglist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -50,6 +51,10 @@ public class UserPrefs implements ReadOnlyUserPrefs, ReadAndWriteUserPrefs {
 
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
+    }
+
+    public Path getTagListFilePath() {
+        return tagListFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {

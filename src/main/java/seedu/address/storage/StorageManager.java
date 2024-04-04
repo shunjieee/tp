@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tag.TagList;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -18,13 +19,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private TagListStorage tagListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+            TagListStorage tagListStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.tagListStorage = tagListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -71,6 +75,23 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ TagList methods ==============================
+
+    @Override
+    public Path getTagListFilePath() {
+        return tagListStorage.getTagListFilePath();
+    }
+
+    @Override
+    public Optional<TagList> readTagList() throws DataLoadingException {
+        return tagListStorage.readTagList();
+    }
+
+    @Override
+    public void saveTagList(TagList tagList) throws IOException {
+        tagListStorage.saveTagList(tagList);
     }
 
 }

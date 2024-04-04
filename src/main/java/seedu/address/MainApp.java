@@ -21,12 +21,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tag.TagList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTagListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TagListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -59,8 +62,11 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TagListStorage tagListStorage = new JsonTagListStorage(userPrefs.getTagListFilePath());
+
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, tagListStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -81,6 +87,10 @@ public class MainApp extends Application {
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+
+        Optional<TagList> tagListOptional;
+        TagList initialTagList;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -88,13 +98,23 @@ public class MainApp extends Application {
                         + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            tagListOptional = storage.readTagList();
+            if (!tagListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getTagListFilePath());
+            }
+            initialTagList = tagListOptional.orElse(new TagList());
+
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+            logger.warning("Data file at " + storage.getAddressBookFilePath()
+                    + " and / or " + storage.getTagListFilePath()
+                    + " could not be loaded."
+                    + " Will be starting with an empty AddressBook and / or tag list.");
             initialData = new AddressBook();
+            initialTagList = new TagList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialTagList);
     }
 
     private void initLogging(Config config) {
@@ -150,6 +170,7 @@ public class MainApp extends Application {
         logger.info("Using preference file : " + prefsFilePath);
 
         UserPrefs initializedPrefs;
+
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
             if (!prefsOptional.isPresent()) {
