@@ -87,7 +87,6 @@ class JsonAdaptedPerson {
             String encryptedName = FixedAesUtil.encrypt(nameBeforeEncryption);
             String encryptedPhone = FixedAesUtil.encrypt(hpBeforeEncryption);
             String encryptedId = FixedAesUtil.encrypt(idBeforeExcryption);
-            String encryptedTags = FixedAesUtil.encrypt()
             this.name = encryptedName;
             this.phone = encryptedPhone;
             this.id = encryptedId;
