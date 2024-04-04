@@ -1,10 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-//import java.util.HashSet;
+import java.util.HashSet;
 import java.util.List;
-//import java.util.Set;
-//import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +16,7 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -25,9 +25,9 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
-    private final String id;
-    private final String phone;
+    private String name;
+    private String id;
+    private String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -56,9 +56,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
-                             @JsonProperty("phone") String phone
-    //@JsonProperty("email") String email, @JsonProperty("address") String address,
-    // @JsonProperty("tags") List<JsonAdaptedTag> tags
+                             @JsonProperty("phone") String phone,
+        //@JsonProperty("email") String email, @JsonProperty("address") String address,
+        @JsonProperty("tags") List<JsonAdaptedTag> tags
     ) {
         this.name = name;
         this.id = id;
@@ -74,14 +74,25 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
+        String nameBeforeEncryption = source.getName().fullName;
+        String hpBeforeEncryption = source.getPhone().value;
         //email = source.getEmail().value;
         //address = source.getAddress().value;
         id = source.getId().value;
-        //tags.addAll(source.getTags().stream()
-        //        .map(JsonAdaptedTag::new)
-        //        .collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream()
+               .map(JsonAdaptedTag::new)
+               .collect(Collectors.toList()));
+        String idBeforeExcryption = id;
+        try {
+            String encryptedName = FixedAesUtil.encrypt(nameBeforeEncryption);
+            String encryptedPhone = FixedAesUtil.encrypt(hpBeforeEncryption);
+            String encryptedId = FixedAesUtil.encrypt(idBeforeExcryption);
+            this.name = encryptedName;
+            this.phone = encryptedPhone;
+            this.id = encryptedId;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         email = "test";
         address = "test";
 
@@ -93,26 +104,42 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        //final List<Tag> personTags = new ArrayList<>();
-        //for (JsonAdaptedTag tag : tags) {
-        //    personTags.add(tag.toModelType());
-        //}
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            personTags.add(tag.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+
+        String decryptedName = "";
+        try {
+            decryptedName = FixedAesUtil.decrypt(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!Name.isValidName(decryptedName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Name modelName = new Name(decryptedName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+
+        String decryptedPhone = "";
+        try {
+            decryptedPhone = FixedAesUtil.decrypt(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!Phone.isValidPhone(decryptedPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelPhone = new Phone(decryptedPhone);
 
         //if (email == null) {
         //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -134,14 +161,22 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
-        if (!Id.isValidId(id)) {
+
+        String decryptedId = "";
+        try {
+            decryptedId = FixedAesUtil.decrypt(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!Id.isValidId(decryptedId)) {
             throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
         }
-        final Id modelId = new Id(id);
+        final Id modelId = new Id(decryptedId);
 
-        //final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelId, modelPhone);
+        return new Person(modelName, modelId, modelPhone, modelTags);
     }
 
 }

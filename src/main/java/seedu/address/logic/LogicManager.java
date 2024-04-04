@@ -9,8 +9,6 @@ import javafx.collections.ObservableList;
 import seedu.address.account.exception.AccountException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.LoginCommand;
@@ -60,6 +58,7 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws AccountException, CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
+
         Command command = (Command) AccountManagerParser.parseCommand(commandText).get(0);
         boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
 
@@ -95,14 +94,6 @@ public class LogicManager implements Logic {
                 commandResult = command.execute(model);
             }
             command = addressBookParser.parseCommand(commandText);
-
-            boolean isSample = model.getUserPrefs().getIsSample();
-            System.out.println("\n" + isSample + "\n");
-            if (command instanceof AddCommand && isSample) {
-                new ClearCommand().execute(model);
-                model.setUserPrefsIsSample(model.getUserPrefs(), false);
-            }
-
             commandResult = command.execute(model);
 
             try {
@@ -113,6 +104,7 @@ public class LogicManager implements Logic {
             } catch (IOException ioe) {
                 throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
             }
+
         } else {
             AccountManager accountManager = accountManagerParser.getAccountManager();
             if (command instanceof LoginCommand) {
