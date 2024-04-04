@@ -20,7 +20,7 @@ public class LogoutCommand extends Command {
 
         accountManager.logout();
 
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false, false);
     }
 
 

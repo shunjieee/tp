@@ -309,6 +309,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isToggleDisplay()) {
                 handleToggleDisplay();
             }
+
+            if (commandResult.isLogin() || commandResult.isLogout()) {
+                fillInnerParts();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
         } catch (AccountException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
         } catch (CommandException | ParseException e) {

@@ -76,7 +76,6 @@ public class AccountManager {
         Username username = account.getUsername();
         updateModelManagerForUser(username.getUsername());
         isUserLogin = true;
-        mainWindow.fillInnerParts();
     }
 
     /**

@@ -14,8 +14,8 @@ public class LoginCommand extends Command {
     public static final String COMMAND_WORD = "login";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Logs in the user. "
             + "Parameters: "
-            + PREFIX_USERNAME + "USERNAME "
-            + PREFIX_PASSWORD + "PASSWORD \n"
+            + PREFIX_USERNAME + " USERNAME "
+            + PREFIX_PASSWORD + " PASSWORD \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_USERNAME + " john1234 "
             + PREFIX_PASSWORD + " qweasd123 ";
@@ -40,7 +40,7 @@ public class LoginCommand extends Command {
 
         if (accountToLogin != null) {
             accountManager.login(accountToLogin);
-            return new CommandResult("Login successfully.");
+            return new CommandResult("Login successfully.", false, false, false, true, false);
         } else {
             throw new CommandException("Login failed. Invalid username or password.");
         }

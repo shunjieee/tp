@@ -13,8 +13,8 @@ public class RegisterCommand extends Command {
     public static final String COMMAND_WORD = "register";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Registers a new user. "
             + "Parameters: "
-            + PREFIX_USERNAME + "USERNAME "
-            + PREFIX_PASSWORD + "PASSWORD \n"
+            + PREFIX_USERNAME + " USERNAME "
+            + PREFIX_PASSWORD + " PASSWORD \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_USERNAME + " john1234 "
             + PREFIX_PASSWORD + " qweasd123 ";

@@ -37,6 +37,7 @@ public class AccountManagerParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public static ArrayList<Object> parseCommand(String userInput) throws AccountException, ParseException {
+        isUserLogin = accountManager.getLoginStatus();
         ArrayList<Object> result = new ArrayList<>();
         isUserLogin = accountManager.getLoginStatus();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -77,7 +78,13 @@ public class AccountManagerParser {
 
             default:
                 logger.finer("User hasn't logged in, cannot parse and execute: " + userInput);
-                throw new AccountException("Please login first.");
+                if (isUserLogin) {
+                    result.add(null);
+                    result.add(isUserLogin);
+                    return result;
+                } else {
+                    throw new AccountException("Please login first.");
+                }
         }
     }
 

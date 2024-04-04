@@ -53,7 +53,6 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws AccountException, CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
         Command command = (Command)AccountManagerParser.parseCommand(commandText).get(0);
         boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
