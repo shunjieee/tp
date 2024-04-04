@@ -478,6 +478,34 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
        Incorrect username or password error <br><br>
        <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
        </box>
+    4. Already Logged In Error: If the user is already logged in, he cannot log in again.<br>
+       <box type="wrong">
+       Already logged in error:<br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+     </panel>
+
+<panel header="### Logout: <code>logout</code> " peek>
+
+After you end accessing your addressbook, log out to protect the data. <br><br>
+Format: `logout`<br><br>
+
+**Confirmation of Successful Logout**<br>
+
+If the user Logouts successfully, a graphical user interface (GUI) indicative of a successful logout will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful logout command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Not Logged Error: If the user hasn't logged in, he cannot log out.<br>
+       <box type="wrong">
+       Not Logged Error:<br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
        </panel>
 <!--
 
