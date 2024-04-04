@@ -16,13 +16,13 @@ import seedu.address.storage.JsonCSVAddressBookStorage;
 
 /**
  * Exports the address book as a JSON file
- */ 
+ */
 public class ExportCommand extends Command {
 
 	public static final String COMMAND_WORD = "@";
 
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book to a JSON file, created in the same directory as the program. "
-			+ "\".csv\" prefix is added automatically and does not need to be typed. " 
+			+ "\".csv\" prefix is added automatically and does not need to be typed. "
 			+ "\nParameters: "
 			+ PREFIX_PATH + "FILEPATH "
 			+ "\nExample: " + COMMAND_WORD + " "
@@ -34,7 +34,7 @@ public class ExportCommand extends Command {
 	private final Path exportTo;
 
 	/**
-	 * Creates an ExportCommand 
+	 * Creates an ExportCommand
 	 */
 	public ExportCommand(Path filePath) {
 		requireNonNull(filePath);
