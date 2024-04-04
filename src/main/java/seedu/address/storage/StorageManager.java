@@ -90,8 +90,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTagList(TagList TagList) throws IOException {
-        tagListStorage.saveTagList(TagList);
+    public void saveTagList(TagList tagList) throws IOException {
+        tagListStorage.saveTagList(tagList);
     }
 
 }

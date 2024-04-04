@@ -42,6 +42,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, TagListSt
     Optional<TagList> readTagList() throws DataLoadingException;
 
     @Override
-    void saveTagList(TagList TagList) throws IOException;
+    void saveTagList(TagList tagList) throws IOException;
 
 }

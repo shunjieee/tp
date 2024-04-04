@@ -88,7 +88,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
 
-        Optional<TagList> tagLisOptional;
+        Optional<TagList> tagListOptional;
         TagList initialTagList;
 
         try {
@@ -99,11 +99,11 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
-            tagLisOptional = storage.readTagList();
-            if (!tagLisOptional.isPresent()) {
+            tagListOptional = storage.readTagList();
+            if (!tagListOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getTagListFilePath());
             }
-            initialTagList = tagLisOptional.orElse(new TagList());
+            initialTagList = tagListOptional.orElse(new TagList());
 
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath()

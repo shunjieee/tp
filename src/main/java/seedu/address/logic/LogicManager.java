@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws AccountException, CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
-      
+
         Command command = (Command) AccountManagerParser.parseCommand(commandText).get(0);
         boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
 
@@ -104,7 +104,7 @@ public class LogicManager implements Logic {
             } catch (IOException ioe) {
                 throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
             }
-          
+
         } else {
             AccountManager accountManager = accountManagerParser.getAccountManager();
             if (command instanceof LoginCommand) {

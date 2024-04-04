@@ -83,7 +83,7 @@ public class EditCommand extends Command {
         boolean isPersonExist = false;
         Person personToEdit = new Person(new Name("test"),
                 new Id("test"), new Phone("123"), new HashSet<Tag>());
-  
+
         for (int i = 0; i < lastShownList.size(); i++) {
             Person currentPerson = lastShownList.get(i);
             if (currentPerson.getId().equals(id)) {
