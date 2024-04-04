@@ -89,7 +89,7 @@ public class AddressBookParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
-    
+
         case ToggleDisplayCommand.COMMAND_WORD:
             return new ToggleDisplayCommand();
 
