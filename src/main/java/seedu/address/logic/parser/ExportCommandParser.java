@@ -26,7 +26,7 @@ public class ExportCommandParser implements Parser<ExportCommand> {
 		}
 		Path path = ParserUtil.parsePath(argMultimap.getValue(PREFIX_PATH).get() + ".csv");
 		return new ExportCommand(path);
-	}	
+	}
 
 	private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
