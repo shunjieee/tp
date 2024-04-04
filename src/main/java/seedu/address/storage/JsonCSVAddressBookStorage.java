@@ -17,13 +17,13 @@ import seedu.address.model.ReadOnlyAddressBook;
 /**
  * A class to access AddressBook data as Json but save it as a CSV
  */
-public class JsonCSVAddressBookStorage implements AddressBookStorage {
+public class JsonCsvAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
 
-    public JsonCSVAddressBookStorage(Path filePath) {
+    public JsonCsvAddressBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
