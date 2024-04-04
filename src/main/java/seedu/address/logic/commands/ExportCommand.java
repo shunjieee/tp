@@ -22,7 +22,8 @@ public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "@";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book to a JSON file, created in the same directory as the program. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD 
+            + ": Exports the address book to a JSON file, created in the same directory as the program. "
             + "\".csv\" prefix is added automatically and does not need to be typed. "
             + "\nParameters: "
             + PREFIX_PATH + "FILEPATH "
