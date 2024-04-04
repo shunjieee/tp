@@ -16,6 +16,11 @@ import java.util.List;
 public class AccountStorage {
     private final String filePath;
 
+    /**
+     * Constructs an AccountStorage with the specified file path.
+     *
+     * @param filePath The file path where the account data is stored.
+     */
     public AccountStorage(String filePath) {
 
         this.filePath = filePath;

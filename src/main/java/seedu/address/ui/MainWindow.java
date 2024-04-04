@@ -278,6 +278,7 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
         accountManager.logout();
+        fillInnerParts();
         resultDisplay.setFeedbackToUser("You have logged out.");
     }
 
@@ -292,6 +293,11 @@ public class MainWindow extends UiPart<Stage> {
      */
 
     private CommandResult executeCommand(String commandText) throws AccountException, CommandException, ParseException {
+        if (commandText.trim().equals("logout")) {
+            handleLogout();
+            return new CommandResult("You have logged out.");
+        }
+
         CommandResult commandResult = null;
         try {
             commandResult = logic.execute(commandText);
@@ -310,7 +316,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleDisplay();
             }
 
-            if (commandResult.isLogin() || commandResult.isLogout()) {
+            if (commandResult.isLogin()) {
                 fillInnerParts();
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }

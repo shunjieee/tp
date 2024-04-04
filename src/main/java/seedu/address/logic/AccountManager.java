@@ -85,7 +85,6 @@ public class AccountManager {
         this.currentAccount = null;
         this.isUserLogin = false;
         clearModelManagerAfterLogOut();
-        mainWindow.fillInnerParts();
     }
 
     /**
@@ -149,7 +148,6 @@ public class AccountManager {
         }
 
         logic.setModel(new ModelManager(initialData, userPrefs));
-        System.out.println("ModelManager updated for user: " + userPrefs.getAddressBookFilePath());
     }
 
     protected UserPrefs loadUserPrefs(UserPrefsStorage storage) {

@@ -9,7 +9,13 @@ import javafx.collections.ObservableList;
 import seedu.address.account.exception.AccountException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.LoginCommand;
+import seedu.address.logic.commands.LogoutCommand;
+import seedu.address.logic.commands.RegisterCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AccountManagerParser;
 import seedu.address.logic.parser.AddressBookParser;
@@ -54,11 +60,23 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws AccountException, CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
-        Command command = (Command)AccountManagerParser.parseCommand(commandText).get(0);
+        Command command = (Command) AccountManagerParser.parseCommand(commandText).get(0);
         boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
 
         if (command instanceof LoginCommand && isUserLogin) {
             throw new CommandException("You are already logged in.");
+        }
+
+        if (command instanceof LogoutCommand && !isUserLogin) {
+            throw new CommandException("You are not logged in.");
+        }
+
+        if (command instanceof LogoutCommand && isUserLogin) {
+            AccountManager accountManager = accountManagerParser.getAccountManager();
+            LogoutCommand logoutrCommand = (LogoutCommand) command;
+            logoutrCommand.setAccountManager(accountManager);
+            commandResult = command.execute(model);
+            return commandResult;
         }
 
         if (isUserLogin) {

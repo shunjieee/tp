@@ -14,7 +14,7 @@ public class ToggleDisplayCommandTest {
 
     @Test
     public void execute_toggleDisplay_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT, false, false, true, false, false);
         assertCommandSuccess(new ToggleDisplayCommand(), model, expectedCommandResult, expectedModel);
     }
 }

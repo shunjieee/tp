@@ -5,7 +5,8 @@ package seedu.address.account.account;
  * Each Password is associated with a hashed password string.
  */
 public class Password {
-    public static final String MESSAGE_CONSTRAINTS = "Passwords should be 6 to 20 characters long and not contain spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Passwords should be 6 to 20 "
+            + "characters long and not contain spaces.";
     private String hashedPassword;
 
     /**
