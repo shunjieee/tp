@@ -71,15 +71,15 @@ public class AddCommand extends Command {
             }
         }
 
-        model.addPerson(toAdd);
-
         // Clear sample data upon first entry
         boolean isSample = model.getUserPrefs().getIsSample();
         if (isSample) {
             new ClearCommand().execute(model);
             model.setUserPrefsIsSample(model.getUserPrefs(), false);
         }
-        
+
+        model.addPerson(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
