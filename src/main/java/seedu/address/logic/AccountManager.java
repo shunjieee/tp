@@ -26,6 +26,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.MainWindow;
 
 /**
  * Manages the current session, including the logged-in account and the associated logic manager.
@@ -39,6 +40,8 @@ public class AccountManager {
     private boolean isUserLogin = false;
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+
+    private MainWindow mainWindow;
 
     /**
      * Constructs an AccountManager.
@@ -73,6 +76,7 @@ public class AccountManager {
         Username username = account.getUsername();
         updateModelManagerForUser(username.getUsername());
         isUserLogin = true;
+        mainWindow.fillInnerParts();
     }
 
     /**
@@ -200,5 +204,13 @@ public class AccountManager {
 
     public boolean getLoginStatus() {
         return isUserLogin;
+    }
+
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+    }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
     }
 }

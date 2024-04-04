@@ -8,10 +8,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AccountManagerParser;
 import seedu.address.logic.parser.AddressBookParser;
@@ -57,24 +54,43 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = (Command)AccountManagerParser.parseCommand(commandText).get(0);
+        boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
 
-        boolean isSample = model.getUserPrefs().getIsSample();
-        System.out.println("\n" + isSample + "\n");
-        if (command instanceof AddCommand && isSample) {
-            new ClearCommand().execute(model);
-            model.setUserPrefsIsSample(model.getUserPrefs(), false);
+        if (command instanceof LoginCommand && isUserLogin) {
+            throw new CommandException("You are already logged in.");
         }
 
-        commandResult = command.execute(model);
+        if (isUserLogin) {
+            command = addressBookParser.parseCommand(commandText);
 
-        try {
-            storage.saveAddressBook(model.getAddressBook());
-            storage.saveUserPrefs(model.getUserPrefs());
-        } catch (AccessDeniedException e) {
-            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
-        } catch (IOException ioe) {
-            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+            boolean isSample = model.getUserPrefs().getIsSample();
+            System.out.println("\n" + isSample + "\n");
+            if (command instanceof AddCommand && isSample) {
+                new ClearCommand().execute(model);
+                model.setUserPrefsIsSample(model.getUserPrefs(), false);
+            }
+
+            commandResult = command.execute(model);
+
+            try {
+                storage.saveAddressBook(model.getAddressBook());
+                storage.saveUserPrefs(model.getUserPrefs());
+            } catch (AccessDeniedException e) {
+                throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+            } catch (IOException ioe) {
+                throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+            }
+        } else {
+            AccountManager accountManager = accountManagerParser.getAccountManager();
+            if (command instanceof LoginCommand) {
+                LoginCommand loginCommand = (LoginCommand) command;
+                loginCommand.setAccountManager(accountManager);
+            } else if (command instanceof RegisterCommand) {
+                RegisterCommand registerCommand = (RegisterCommand) command;
+                registerCommand.setAccountManager(accountManager);
+            }
+            commandResult = command.execute(model);
         }
 
         return commandResult;

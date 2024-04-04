@@ -19,8 +19,8 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
  * Parses user input.
  */
 public class AccountManagerParser {
-    private AccountManager accountManager;
-    private boolean isUserLogin = false;
+    private static AccountManager accountManager;
+    private static boolean isUserLogin = false;
 
     /**
      * Used for initial separation of command word and args.
@@ -35,7 +35,7 @@ public class AccountManagerParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ArrayList<Object> parseCommand(String userInput) throws ParseException {
+    public static ArrayList<Object> parseCommand(String userInput) throws ParseException {
         ArrayList<Object> result = new ArrayList<>();
         isUserLogin = accountManager.getLoginStatus();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -82,6 +82,10 @@ public class AccountManagerParser {
 
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
+    }
+
+    public AccountManager getAccountManager() {
+        return accountManager;
     }
 }
 
