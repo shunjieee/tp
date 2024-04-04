@@ -30,6 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
+
             + PREFIX_NAME + "John Doe "
             + PREFIX_ID + "johndoe41 "
             + PREFIX_PHONE + "98765432 "
