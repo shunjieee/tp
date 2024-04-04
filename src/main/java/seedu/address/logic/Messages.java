@@ -22,6 +22,9 @@ public class Messages {
     public static final String MESSAGE_TAG_NOT_IN_TAG_LIST = "%1$s tag not in tag list!";
 
     public static final String MESSAGE_ID_NOT_VALID = "ID is not valid!";
+    public static final String MESSAGE_INVALID_PATH =
+        "Filename is not valid! Remove some non-alphanumeric characters and try again.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
