@@ -13,4 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("/tag ");
 
+    public static final Prefix PREFIX_USERNAME = new Prefix("/u");
+    public static final Prefix PREFIX_PASSWORD = new Prefix("/p");
+
 }

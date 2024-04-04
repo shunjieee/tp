@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagList;
@@ -119,4 +120,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if the model has previous address book states to restore.
+     */
+    boolean canUndoCommand();
+
+    /**
+     * Returns true if the model has undone address book states to restore.
+     */
+    boolean canRedoCommand();
+
+    /**
+     * Restores the model's address book to its previous state.
+     */
+    void undoCommand();
+
+    /**
+     * Restores the model's address book to its previously undone state.
+     */
+    void redoCommand();
+
+    /**
+     * Adds the specified command to the command history list.
+     * This method is intended to track commands that have been executed,
+     * allowing for potential undo or redo actions.
+     *
+     * @param command The command that has been executed and is to be added to the history.
+     */
+    void addExecutedCommand(Command command);
 }

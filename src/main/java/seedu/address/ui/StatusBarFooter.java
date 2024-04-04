@@ -22,7 +22,16 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        String filePath = Paths.get(".").resolve(saveLocation).toString();
+        if (!filePath.equals("./data/addressbook.json")) {
+            String[] parts = filePath.split("/");
+            String filename = parts[parts.length - 1];
+            String username = filename.replace("AddressBook.json", "");
+            String statusText = "User " + username + " has logged in";
+            saveLocationStatus.setText(statusText);
+        } else {
+            String statusText = "No user currently logged in";
+            saveLocationStatus.setText(statusText);
+        }
     }
-
 }

@@ -32,6 +32,7 @@ public class DeleteCommand extends Command {
 
     private final Id targetId;
 
+    private Person personToDelete;
     private Prompt confirmationBox;
 
     /**
@@ -85,7 +86,7 @@ public class DeleteCommand extends Command {
                 }
                 assert isConfirmed;
 
-                Person personToDelete = person;
+                personToDelete = person;
                 model.deletePerson(personToDelete);
                 isAnyRecordDeleted = true;
                 deletedInformation = Messages.format(personToDelete);
@@ -97,7 +98,18 @@ public class DeleteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ID_NOT_FOUND, this.targetId.toString()));
         }
 
+        model.addExecutedCommand(this);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedInformation));
+    }
+
+    /**
+     * Retrieves the {@code Person} object that is to be deleted from the address book.
+     * This method allows access to the person specified at the creation of this command.
+     *
+     * @return The {@code Person} object set to be deleted by this command.
+     */
+    public Person getPersonToDelete() {
+        return personToDelete;
     }
 
     @Override

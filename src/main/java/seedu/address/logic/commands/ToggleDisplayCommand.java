@@ -13,6 +13,6 @@ public class ToggleDisplayCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT, false, false, true);
+        return new CommandResult(MESSAGE_TOGGLE_ACKNOWLEDGEMENT, false, false, true, false, false);
     }
 }

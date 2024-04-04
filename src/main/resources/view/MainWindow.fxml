@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Hi:Re" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -33,6 +33,19 @@
           </Menu>
           <Menu mnemonicParsing="false" text="View">
             <MenuItem fx:id="toggleDisplayMenuItem" mnemonicParsing="false" onAction="#handleToggleDisplay" text="Toggle Display" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="undoMenuItem" mnemonicParsing="false" onAction="#handleUndo" text="Undo"/>
+              <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#handleRedo" text="Redo"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Account">
+            <items>
+              <MenuItem fx:id="RegisterMenuItem" mnemonicParsing="false" onAction="#handleRegister" text="Register"/>
+              <MenuItem fx:id="LoginMenuItem" mnemonicParsing="false" onAction="#handleLogin" text="Login"/>
+                <MenuItem fx:id="LogoutMenuItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout"/>
+            </items>
           </Menu>
         </MenuBar>
 
