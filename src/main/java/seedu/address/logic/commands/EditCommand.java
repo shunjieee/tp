@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_TAG_NOT_IN_TAG_LIST;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -8,12 +9,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-//import java.util.Collections;
-//import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-//import java.util.Set;
+import java.util.Set;
 
 //import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -28,6 +29,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 //import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -79,7 +81,9 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         boolean isPersonExist = false;
-        personToEdit = new Person(new Name("test"), new Id("test"), new Phone("123"));
+        Person personToEdit = new Person(new Name("test"),
+                new Id("test"), new Phone("123"), new HashSet<Tag>());
+
         for (int i = 0; i < lastShownList.size(); i++) {
             Person currentPerson = lastShownList.get(i);
             if (currentPerson.getId().equals(id)) {
@@ -91,12 +95,18 @@ public class EditCommand extends Command {
         if (!isPersonExist) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID);
         }
-        assert !personToEdit.equals(new Person(new Name("test"), new Id("test"), new Phone("123")))
+        assert !personToEdit.equals(new Person(new Name("test"), new Id("test"), new Phone("123"), new HashSet<>()))
                 : "Should not reach here";
         editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        for (Tag tag : editedPerson.getTags()) {
+            if (!model.hasTag(tag)) {
+                throw new CommandException(String.format(MESSAGE_TAG_NOT_IN_TAG_LIST, tag));
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -116,10 +126,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         //Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         //Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        //Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Id updatedId = editPersonDescriptor.getId().orElse(personToEdit.getId());
 
-        return new Person(updatedName, updatedId, updatedPhone);
+        return new Person(updatedName, updatedId, updatedPhone, updatedTags);
     }
 
     @Override
@@ -173,7 +183,7 @@ public class EditCommand extends Command {
         private Phone phone;
         //private Email email;
         //private Address address;
-        //private Set<Tag> tags;
+        private Set<Tag> tags;
         private Id id;
 
         public EditPersonDescriptor() {}
@@ -187,7 +197,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             //setEmail(toCopy.email);
             //setAddress(toCopy.address);
-            //setTags(toCopy.tags);
+            setTags(toCopy.tags);
             setId(toCopy.id);
         }
 
@@ -215,39 +225,38 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        /*
-        public void setEmail(Email email) {
-            this.email = email;
+        // public void setEmail(Email email) {
+        //     this.email = email;
+        // }
+
+        // public Optional<Email> getEmail() {
+        //     return Optional.ofNullable(email);
+        // }
+
+        // public void setAddress(Address address) {
+        //     this.address = address;
+        // }
+
+        // public Optional<Address> getAddress() {
+        //     return Optional.ofNullable(address);
+        // }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-        */
-        //        /**
-        //         * Sets {@code tags} to this object's {@code tags}.
-        //         * A defensive copy of {@code tags} is used internally.
-        //         */
-        //public void setTags(Set<Tag> tags) {
-        //    this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        //}
-
-        //  /**
-        //  * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-        //  * if modification is attempted.
-        //  * Returns {@code Optional#empty()} if {@code tags} is null.
-        //  */
-        //public Optional<Set<Tag>> getTags() {
-        //    return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        //}
 
         public void setId(Id id) {
             this.id = id;

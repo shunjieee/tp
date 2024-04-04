@@ -1,17 +1,20 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_TAG_NOT_IN_TAG_LIST;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a person to the address book.
@@ -20,15 +23,18 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "+";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "
             + PREFIX_PHONE + "PHONE "
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
+
             + PREFIX_NAME + "John Doe "
             + PREFIX_ID + "johndoe41 "
-            + PREFIX_PHONE + "98765432 ";
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_TAG + "Finance";
 
     //+ PREFIX_EMAIL + "EMAIL "
     //+ PREFIX_ADDRESS + "ADDRESS "
@@ -59,6 +65,20 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        for (Tag tag : toAdd.getTags()) {
+            if (!model.hasTag(tag)) {
+                throw new CommandException(String.format(MESSAGE_TAG_NOT_IN_TAG_LIST, tag));
+            }
+        }
+
+        // Clear sample data upon first entry
+        boolean isSample = model.getUserPrefs().getIsSample();
+        if (isSample) {
+            new ClearCommand().execute(model);
+            model.setUserPrefsIsSample(model.getUserPrefs(), false);
+        }
+
         model.addPerson(toAdd);
         model.addExecutedCommand(this);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));

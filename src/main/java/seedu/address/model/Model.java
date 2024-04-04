@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagList;
 
 /**
  * The API of the Model component.
@@ -14,6 +16,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    //=========== UserPrefs ==================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -34,6 +38,37 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //=========== TagList ================================================================================
+
+    /**
+     * Returns the instance of tag list.
+     */
+    TagList getTagList();
+
+    /**
+     * Returns true if a tag exists in the tag list.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Adds the given person.
+     * {@code Tag} must not already exist in the tag list.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the tag list.
+     */
+    void deleteTag(Tag tag);
+
+    /**
+     * List the tags in the tag list.
+     */
+    String listTags();
+
+    //=========== AddressBook ================================================================================
 
     /**
      * Returns the user prefs' address book file path.

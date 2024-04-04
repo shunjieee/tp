@@ -12,7 +12,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -140,9 +143,12 @@ public class CommandTestUtil {
      * Adds two people to {@code model}'s address book for test.
      */
     public static void addTwoPeople(Model model) {
+        Set<Tag> testTag = new HashSet<>();
+        testTag.add(new Tag("test"));
+
         try {
-            Person firstPerson = new Person(new Name("test"), new Id("1234"), new Phone("12345678"));
-            Person secondPerson = new Person(new Name("test"), new Id("12345"), new Phone("12345678"));
+            Person firstPerson = new Person(new Name("test"), new Id("1234"), new Phone("12345678"), testTag);
+            Person secondPerson = new Person(new Name("test"), new Id("12345"), new Phone("12345678"), testTag);
             new AddCommand(firstPerson).execute(model);
             new AddCommand(secondPerson).execute(model);
         } catch (CommandException e) {
