@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
@@ -24,6 +25,9 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         if (args.equals(" -a")) {
             return new ListCommand(PREDICATE_SHOW_ALL_PERSONS, "the addressbook");
+
+        } else if (args.equals(" -t")) {
+            return new ListTagCommand();
 
         } else {
             String trimmedArgs = args.trim();

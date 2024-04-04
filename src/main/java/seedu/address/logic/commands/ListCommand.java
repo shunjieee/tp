@@ -19,7 +19,8 @@ public class ListCommand extends Command {
             + "the specified keywords (case-insensitive).\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie\n"
-            + "`ls -a` list all persons in the contacts.";
+            + "`ls -a` list all persons in the contacts.\n"
+            + "`ls -t` list all tags in the tag list";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 

@@ -38,4 +38,24 @@ public class TagList {
     public void addTag(Tag tag) {
         tagList.add(tag);
     }
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the tag list.
+     */
+    public void deleteTag(Tag tag) {
+        tagList.remove(tag);
+    }
+
+    /**
+     * List the tags in the tag list.
+     */
+    public String listTags() {
+        StringBuilder sb = new StringBuilder();
+        for (Tag tag : tagList) {
+            sb.append(tag.tagName);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

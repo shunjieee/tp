@@ -40,12 +40,33 @@ public interface Model {
 
     //=========== TagList ================================================================================
 
+    /**
+     * Returns the instance of tag list.
+     */
     TagList getTagList();
 
+    /**
+     * Returns true if a tag exists in the tag list.
+     */
     boolean hasTag(Tag tag);
 
+    /**
+     * Adds the given person.
+     * {@code Tag} must not already exist in the tag list.
+     */
     void addTag(Tag tag);
 
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the tag list.
+     */
+    void deleteTag(Tag tag);
+
+    /**
+     * List the tags in the tag list.
+     */
+    String listTags();
+    
     //=========== AddressBook ================================================================================
 
     /**
