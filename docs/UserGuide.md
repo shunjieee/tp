@@ -298,24 +298,42 @@ GUI upon successful addition command <br><br>
   
 </panel>
 
-<panel header="### Undo" peek>
+<panel header="### Toggle display: <code>$</code>" peek>
+  Toggle display to view / hide the addressbook.<br><br>
 
-  Restores the address book to the state before the previous **undoable** command was executed.<br>
+  Format: <code>$</code><br>
 
-  <box type="important" seamless>
-
-  * This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `undo` in the command box will not work. <br><br>
-  * Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+  <box type="definition">
+    Viewing addressbook.<br><br>
+    <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
   </box>
 
-  Example:<br>
-  1. Delete the person with the id `johndoe41`.<br>
-  2. Undo the deletion. The person will reappear.<br><br>
-     <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  <box type="definition" theme="info">
+    Hiding addressbook.<br><br>
+    <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
+  </box>
 
- * **Confirmation of Successful Undo**<br>
+</panel>
 
-   If there is still any executed command that can be undone, a graphical user interface (GUI) indicative of a successful undo will be displayed, as illustrated below.<br>
+
+<panel header="### Undo: <code>undo</code> " peek>
+
+Restores the address book to the state before the previous **undoable** command was executed.<br>
+Format: `undo`<br>
+<box type="important" seamless>
+
+* This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
+* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+  </box>
+
+Example:<br>
+1. Delete the person with the id `johndoe41`.<br>
+2. Undo the deletion. The person will reappear.<br><br>
+   <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+
+* **Confirmation of Successful Undo**<br>
+
+  If there is still any executed command that can be undone, a graphical user interface (GUI) indicative of a successful undo will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful undo command <br><br>
@@ -324,21 +342,22 @@ GUI upon successful addition command <br><br>
 
 * **Error Handling Protocols**<br>
 
-  1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
-      <box type="wrong">
-      No undoable command error <br><br>
-      <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
-      </box>
-</panel>
+    1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
+       <box type="wrong">
+       No undoable command error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+       </panel>
 
-<panel header="### Redo" peek>
+<panel header="### Redo: <code>redo</code>" peek>
 
 Reverses the most recently undone command.<br>
+Format: `redo`<br>
 
   <box type="important" seamless>
 
-* This command can only be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
-  
+* This command can also be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+
   </box>
 Example:<br>
 1. Delete the person with the id `johndoe41`.<br>
@@ -364,24 +383,102 @@ Example:<br>
        </box>
        </panel>
 
+<panel header="### Register: <code>register</code> " peek>
 
-<panel header="### Toggle display: <code>$</code>" peek>
-  Toggle display to view / hide the addressbook.<br><br>
+Register an account first to have your own address book!<br><br>
+Format: `register /u (username) /p (password)`<br><br>
+Example: `register /u johndoe /p 123456`<br>
 
-  Format: <code>$</code><br>
+  <box type="important" seamless>
 
-  <box type="definition">
-    Viewing addressbook.<br><br>
-    <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
+* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
+* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
+* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
+* Usernames are unique and cannot be duplicated.  <br>
   </box>
 
-  <box type="definition" theme="info">
-    Hiding addressbook.<br><br>
-    <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
+**Confirmation of Successful Registration**<br>
+
+  If the user registers successfully, a graphical user interface (GUI) indicative of a successful registration will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful register command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Duplicate username Error: Entry of a non-unique username will trigger an error.<br>
+       <box type="wrong">
+       Duplicate username error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid username
+
+       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+
+        * Invalid password
+
+       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+       </box>
+       </panel>
+
+<panel header="### Login: <code>login</code> " peek>
+
+Login to access your addressbook. <br><br>
+Format: `login /u (username) /p (password)`<br><br>
+Example: `login /u johndoe /p 123456`<br>
+
+  <box type="important" seamless>
+
+* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
+* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
+* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
   </box>
 
-</panel>
+**Confirmation of Successful Login**<br>
 
+If the user Logins successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful login command <br><br>
+    <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+    2. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.<br>
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid username
+
+       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+
+        * Invalid password
+
+       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+       </box>
+    3. Incorrect Username or Password Error: If the username or password is incorrect, an error will be triggered.<br>
+       <box type="wrong">
+       Incorrect username or password error <br><br>
+       <img src="images/ui/delete/placeholder.png" width="452.5" height="369.5"><br><br>
+       </box>
+       </panel>
 <!--
 
 ### Listing all persons : `list`
