@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleUndo() throws CommandException, ParseException {
+    private void handleUndo() throws AccountException, CommandException, ParseException {
         try {
             if (!accountManager.getLoginStatus()) {
                 resultDisplay.setFeedbackToUser("Please login first.");
@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleRedo() throws CommandException, ParseException {
+    private void handleRedo() throws AccountException, CommandException, ParseException {
         try {
             if (!accountManager.getLoginStatus()) {
                 resultDisplay.setFeedbackToUser("Please login first.");
@@ -293,15 +293,13 @@ public class MainWindow extends UiPart<Stage> {
      */
 
     private CommandResult executeCommand(String commandText) throws AccountException, CommandException, ParseException {
+        if (commandText.trim().equals("logout")) {
+            handleLogout();
+            return new CommandResult("You have logged out.");
+        }
+
         CommandResult commandResult = null;
         try {
-            boolean isUserLogin = accountManager.getLoginStatus();
-            boolean isCommandHelp = commandText.equals("help");
-            boolean isCommandExit = commandText.equals("exit");
-            if (!isUserLogin && !isCommandHelp && !isCommandExit) {
-                throw new AccountException("Please login first.");
-            }
-
             commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -318,6 +316,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleDisplay();
             }
 
+            if (commandResult.isLogin()) {
+                fillInnerParts();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
         } catch (AccountException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
         } catch (CommandException | ParseException e) {

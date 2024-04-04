@@ -26,6 +26,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.MainWindow;
 
 /**
  * Manages the current session, including the logged-in account and the associated logic manager.
@@ -40,13 +41,15 @@ public class AccountManager {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
+    private MainWindow mainWindow;
+
     /**
      * Constructs an AccountManager.
      * It loads the accounts from a file and stores them in an AccountList.
      * If the file cannot be read, an empty AccountList is created.
      */
     public AccountManager(Logic logic) {
-        AccountStorage accountStorage = new AccountStorage("accounts.txt");
+        AccountStorage accountStorage = new AccountStorage("data/accounts.txt");
         try {
             List<String> accountListInString = accountStorage.load();
             List<Account> accountListInAccount = accountParser.parseToAccount(accountListInString);
@@ -60,6 +63,7 @@ public class AccountManager {
         }
         currentAccount = null;
         this.logic = logic;
+        this.logic.linkAccountManagerToParser(this);
     }
 
     /**
@@ -144,7 +148,6 @@ public class AccountManager {
         }
 
         logic.setModel(new ModelManager(initialData, userPrefs));
-        System.out.println("ModelManager updated for user: " + userPrefs.getAddressBookFilePath());
     }
 
     protected UserPrefs loadUserPrefs(UserPrefsStorage storage) {
@@ -199,5 +202,13 @@ public class AccountManager {
 
     public boolean getLoginStatus() {
         return isUserLogin;
+    }
+
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+    }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
     }
 }

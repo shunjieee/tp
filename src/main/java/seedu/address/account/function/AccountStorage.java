@@ -16,8 +16,15 @@ import java.util.List;
 public class AccountStorage {
     private final String filePath;
 
+    /**
+     * Constructs an AccountStorage with the specified file path.
+     *
+     * @param filePath The file path where the account data is stored.
+     */
     public AccountStorage(String filePath) {
+
         this.filePath = filePath;
+        createParentDirectoryIfNeeded(filePath);
     }
 
     /**
@@ -56,6 +63,14 @@ public class AccountStorage {
                 writer.write(account);
                 writer.newLine();
             }
+        }
+    }
+
+    private void createParentDirectoryIfNeeded(String filePath) {
+        File file = new File(filePath);
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
         }
     }
 }

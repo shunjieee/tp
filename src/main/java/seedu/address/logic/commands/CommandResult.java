@@ -21,15 +21,20 @@ public class CommandResult {
 
     /** The application should toggle the display. */
     private final boolean toggleDisplay;
+    private final boolean isLogin;
+    private final boolean isLogout;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleDisplay) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean toggleDisplay, boolean isLogin, boolean isLogout) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.toggleDisplay = toggleDisplay;
+        this.isLogin = isLogin;
+        this.isLogout = isLogout;
     }
 
     /**
@@ -37,7 +42,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -54,6 +60,14 @@ public class CommandResult {
 
     public boolean isToggleDisplay() {
         return toggleDisplay;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public boolean isLogout() {
+        return isLogout;
     }
 
     @Override

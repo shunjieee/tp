@@ -5,6 +5,7 @@ package seedu.address.account.account;
  * Each Username is associated with a username string.
  */
 public class Username {
+    public static final String MESSAGE_CONSTRAINTS = "Usernames should be alphanumeric and between 4 to 10 characters";
     private String username;
 
     /**
@@ -36,7 +37,7 @@ public class Username {
      * @param username The username string to be checked.
      * @return True if the username is valid, false otherwise.
      */
-    private boolean isValidUsername(String username) {
+    public static boolean isValidUsername(String username) {
         return username != null && username.matches("[a-zA-Z0-9]{4,10}");
     }
 
