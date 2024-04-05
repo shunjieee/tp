@@ -86,6 +86,14 @@ public class LogicManager implements Logic {
             return commandResult;
         }
 
+        if (command instanceof RegisterCommand && isUserLogin) {
+            AccountManager accountManager = accountManagerParser.getAccountManager();
+            RegisterCommand registerCommand = (RegisterCommand) command;
+            registerCommand.setAccountManager(accountManager);
+            commandResult = command.execute(model);
+            return commandResult;
+        }
+
         if (isUserLogin) {
             if (command instanceof LogoutCommand) {
                 AccountManager accountManager = accountManagerParser.getAccountManager();
