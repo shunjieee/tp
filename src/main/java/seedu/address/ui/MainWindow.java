@@ -241,41 +241,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleRegister() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterForm.fxml"));
-            RegisterFormController controller = new RegisterFormController(accountManager);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleLogin() {
-        try {
-            if (accountManager.getLoginStatus()) {
-                resultDisplay.setFeedbackToUser("You have already logged in.");
-                return;
-            }
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
-            LoginFormController controller = new LoginFormController(accountManager, this);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     private void handleLogout() {
         if (!accountManager.getLoginStatus()) {
             resultDisplay.setFeedbackToUser("You have not logged in.");

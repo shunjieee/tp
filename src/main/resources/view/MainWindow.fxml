@@ -42,8 +42,6 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Account">
             <items>
-              <MenuItem fx:id="RegisterMenuItem" mnemonicParsing="false" onAction="#handleRegister" text="Register"/>
-              <MenuItem fx:id="LoginMenuItem" mnemonicParsing="false" onAction="#handleLogin" text="Login"/>
                 <MenuItem fx:id="LogoutMenuItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout"/>
             </items>
           </Menu>
