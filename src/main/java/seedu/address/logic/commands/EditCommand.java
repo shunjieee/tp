@@ -81,7 +81,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         boolean isPersonExist = false;
-        Person personToEdit = new Person(new Name("test"),
+        personToEdit = new Person(new Name("test"),
                 new Id("test"), new Phone("123"), new HashSet<Tag>());
 
         for (int i = 0; i < lastShownList.size(); i++) {
