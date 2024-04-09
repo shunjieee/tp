@@ -12,17 +12,17 @@
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
-  1) [Registering an Account](#registering-an-account-coderegistercode)
-  2) [Login into Account](#login-into-account-codelogincode)
-  2) [Logout from Account](#logout-from-account-codelogoutcode)
-  2) [Adding a Contact](#adding-a-contact-codecode)
-  2) [Deleting a Contact](#deleting-a-contact-code-code)
-  3) [Editing a Contact](#editing-a-contact-codecode)
-  4) [Toggling the display](#toggling-the-display-codecode)
-  5) [Finding Contacts by Name](#finding-contacts-by-name-codecode)
-  5) [Listing all matching information](#listing-all-matching-information-codelscode)
-  6) [Undoing a Command](#undoing-a-command-codeundocode)
-  7) [Redoing a Command](#redoing-a-command-coderedocode)
+  1) [Registering an Account](#registering-an-account-register)
+  2) [Login into Account](#login-into-account-login)
+  2) [Logout from Account](#logout-from-account-logout)
+  2) [Adding a Contact](#adding-a-contact-)
+  2) [Deleting a Contact](#deleting-a-contact--)
+  3) [Editing a Contact](#editing-a-contact-)
+  4) [Toggling the display](#toggling-the-display-)
+  5) [Finding Contacts by Name](#finding-contacts-by-name-)
+  5) [Listing all matching information](#listing-all-matching-information-ls)
+  6) [Undoing a Command](#undoing-a-command-undo)
+  7) [Redoing a Command](#redoing-a-command-redo)
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -141,7 +141,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 -->
 
-### Registering an Account: <code>register</code>
+### Registering an Account: `register`
 [back to top](#table-of-contents)
 
 Register an account first to have your own address book!<br><br>
@@ -190,7 +190,7 @@ If the user registers successfully, a graphical user interface (GUI) indicative 
        <img src="images/ui/register/5.png" width="452.5"><br><br>
        </box>
 
-### Login into Account: <code>login</code>
+### Login into Account: `login`
 [back to top](#table-of-contents)
 
 Login to access your addressbook. <br><br>
@@ -243,7 +243,7 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
        <img src="images/ui/login/5.png" width="452.5" ><br><br>
        </box>
 
-### Logout from Account: <code>logout</code>
+### Logout from Account: `logout`
 [back to top](#table-of-contents)
 
 After you end accessing your addressbook, log out to protect the data. <br><br>
@@ -267,7 +267,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
        </box>
 
        
-### Adding a contact: <code>+</code>
+### Adding a contact: `+`
 [back to top](#table-of-contents)
 
   Adds a person to the address book.<br><br>
@@ -333,7 +333,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
        <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
        </box>
 
-### Deleting a contact: <code>-</code>
+### Deleting a contact: `-`
 [back to top](#table-of-contents)
 
   Deletes a person with his specified ID.<br><br>
@@ -391,7 +391,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
         <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
         </box>
 
-### Editing a contact: <code>+</code>
+### Editing a contact: `>`
 [back to top](#table-of-contents)
 
 Edits a person in the address book.<br><br>
@@ -458,7 +458,7 @@ GUI upon successful addition command <br><br>
        </box>
 
 
-### Toggling the display: <code>$</code>
+### Toggling the display: `$`
 [back to top](#table-of-contents)
 
 Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
@@ -475,7 +475,7 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
     <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
   </box>
 
-### Finding Contacts by Name: <code>?</code>
+### Finding Contacts by Name: `?`
 [back to top](#table-of-contents)
 
 Finds all contacts in the Hi:Re app that has names matching the words entered.
@@ -495,7 +495,7 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
 
   </box>
 
-### Listing all matching information: <code>ls</code>
+### Listing all matching information: `ls`
 [back to top](#table-of-contents)
 
   List has different functionalities.<br><br>
@@ -507,7 +507,7 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
   <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
 
 
-### Add Tag: <code>tag+</code>
+### Add Tag: `tag+`
 [back to top](#table-of-contents)
 
   Add tag into a tag list.<br><br>
@@ -521,7 +521,7 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
   </box>
 
 
-### Delete Tag: <code>tag-</code>
+### Delete Tag: `tag-`
 [back to top](#table-of-contents)
 
   Delete tag from the tag list.<br><br>
@@ -535,7 +535,7 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
   </box>
 
 
-### Undoing a Command: <code>undo</code>
+### Undoing a Command: `undo`
 [back to top](#table-of-contents)
 
 Restores the address book to the state before the previous **undoable** command was executed.<br>
@@ -567,7 +567,7 @@ Example:<br>
        <img src="images/ui/undo/2.png" width="452.5" ><br><br>
        </box>
 
-### Redoing a Command: <code>redo</code>
+### Redoing a Command: `redo`
 [back to top](#table-of-contents)
 
 Reverses the most recently undone command.<br>
