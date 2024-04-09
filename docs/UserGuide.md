@@ -480,10 +480,10 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
 
 Finds all contacts in the Hi:Re app that has names matching the words entered.
 
-Format: <code> > ? (name) </code><br>
+Format: <code> ? (name) </code><br>
 
-Example: <code> > ? jo </code>
-         <code> > ? jo a </code><br>
+Example: <code> ? jo </code>
+         <code> ? jo a </code><br>
 
 <box type="important" seamless>
 
