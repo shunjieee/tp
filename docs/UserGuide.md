@@ -12,6 +12,17 @@
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
+  1) [Registering an Account](#registering-an-account-register)
+  2) [Login into Account](#login-into-account-login)
+  2) [Logout from Account](#logout-from-account-logout)
+  2) [Adding a Contact](#adding-a-contact)
+  2) [Deleting a Contact](#deleting-a-contact)
+  3) [Editing a Contact](#editing-a-contact)
+  4) [Toggling the display](#toggling-the-display)
+  5) [Finding Contacts by Name](#finding-contacts-by-name)
+  5) [Listing all matching information](#listing-all-matching-information-ls)
+  6) [Undoing a Command](#undoing-a-command-undo)
+  7) [Redoing a Command](#redoing-a-command-redo)
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -25,7 +36,7 @@ Greetings HR employees, managers and executives!
 - Tired from **scrolling** through endless rows in **spreadsheet** applications?
 - Worried about **data leak** issues caused by the lack in security of such applications?
 - Frustrated by the **slow input** of cell by cell in such applications?
-- Constrained by company **budgeting** and unable to appeal for a HR application?
+- Need an economically viable HR application?
 
 *Well, Hi:Re, our one-stop employee profiling application is for you!*
 
@@ -52,16 +63,29 @@ That means most work is done via *typing* commands on a command line instead of 
 - Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master**
   Hi:Re, that is already **streamlined for HR purposes**!
 
+<box type="info" seamless> 
+
+**IMPORTANT: In Hi:Re, we adopt a system where contacts are identified by their email id(company email) without the
+company email domain.** <br> 
+
+*John is identified by his email id, john123 without the domain, @123company.com*
+
+Hence, we allow duplicate names and handphone numbers.
+Contacts are also labelled with one mandatory tag and optional additional tags.
+</box>
+
+
 Breakdown of commands:
-1) Add contacts
-2) Delete contacts
-3) Edit contacts
-4) Find contacts
-5) List contacts
-6) Toggle Display
-7) Undo and redo panel
-8) Register, Login and Logout panel
-9) Export data into .csv file
+1) Register, Login and Logout: Data Management
+2) Adding a Contact 
+3) Deleting a Contact 
+4) Edit a Contact 
+5) Toggling the Display 
+6) Find Contacts by name 
+7) Listing all matching information 
+8) Undoing a Command
+9) Redoing a Command 
+10) Export data into .csv file
 
 ***
 
@@ -82,9 +106,11 @@ Breakdown of commands:
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
-1. Register your account and password before you are ready to use Hi:Re!
+1. Type commands in the `command box` and press `Enter` to execute it, but first...
 
-1. Type the command in the `command box` and press `Enter` to execute it.
+1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
+
+1. [Log into](#login-into-account-codelogincode) your newly registered account with the correct username and password!
 
 1. Refer to the [Commands](#commands) below for details of each command.
 
@@ -115,7 +141,135 @@ Shows a message explaning how to access the help page.
 Format: `help`
 -->
 
-<panel header="### Adding a contact: <code>+</code>" peek>
+### Registering an Account: `register`
+[back to top](#table-of-contents)
+
+Register an account first to have your own address book!<br><br>
+Format: `register /u (username) /p (password)`<br><br>
+Example: `register /u johndoe /p 123456`<br>
+
+  <box type="important" seamless>
+
+* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
+* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
+* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
+* Usernames are unique and cannot be duplicated.  <br>
+  </box>
+
+**Confirmation of Successful Registration**<br>
+
+If the user registers successfully, a graphical user interface (GUI) indicative of a successful registration will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful register command <br><br>
+    <img src="images/ui/register/1.png" width="452.5" ><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Duplicate username Error: Entry of a non-unique username will trigger an error.<br>
+       <box type="wrong">
+       Duplicate username error <br><br>
+       <img src="images/ui/register/2.png" width="452.5" ><br><br>
+       </box>
+    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/register/3.png" width="452.5" ><br><br>
+       </box>
+    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid username
+
+       <img src="images/ui/register/4.png" width="452.5"><br><br>
+
+        * Invalid password
+
+       <img src="images/ui/register/5.png" width="452.5"><br><br>
+       </box>
+
+### Login into Account: `login`
+[back to top](#table-of-contents)
+
+Login to access your addressbook. <br><br>
+Format: `login /u (username) /p (password)`<br><br>
+Example: `login /u johndoe /p 123456`<br>
+
+  <box type="important" seamless>
+
+* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
+* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
+* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
+  </box>
+
+**Confirmation of Successful Login**<br>
+
+If the user Logins successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful login command <br><br>
+    <img src="images/ui/login/success.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
+       <box type="wrong">
+       Incomplete fields error <br><br>
+       <img src="images/ui/login/1.png" width="452.5"><br><br>
+       </box>
+    2. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.<br>
+       <box type="wrong">
+       Invalid fields error <br><br>
+
+        * Invalid username
+
+       <img src="images/ui/login/2.png" width="452.5"><br><br>
+
+        * Invalid password
+
+       <img src="images/ui/login/3.png" width="452.5"><br><br>
+       </box>
+    3. Incorrect Username or Password Error: If the username or password is incorrect, an error will be triggered.<br>
+       <box type="wrong">
+       Incorrect username or password error <br><br>
+       <img src="images/ui/login/4.png" width="452.5"><br><br>
+       </box>
+    4. Already Logged In Error: If the user is already logged in, he cannot log in again.<br>
+       <box type="wrong">
+       Already logged in error:<br><br>
+       <img src="images/ui/login/5.png" width="452.5" ><br><br>
+       </box>
+
+### Logout from Account: `logout`
+[back to top](#table-of-contents)
+
+After you end accessing your addressbook, log out to protect the data. <br><br>
+Format: `logout`<br><br>
+
+**Confirmation of Successful Logout**<br>
+
+If the user Logouts successfully, a graphical user interface (GUI) indicative of a successful logout will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful logout command <br><br>
+    <img src="images/ui/logout/success.png" width="452.5" height="369.5"><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+
+    1. Not Logged Error: If the user hasn't logged in, he cannot log out.<br>
+       <box type="wrong">
+       Not Logged Error:<br><br>
+       <img src="images/ui/logout/notloggederror.png" width="452.5" ><br><br>
+       </box>
+
+       
+### Adding a contact: `+`
+[back to top](#table-of-contents)
+
   Adds a person to the address book.<br><br>
 
   Format: <code>+ /name (name) /id (id) /hp (handphone)</code><br>
@@ -131,6 +285,7 @@ Format: `help`
   * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
   * The phone number should only contain numbers, and it should be at least 3 digits long.
+  * Only one phone number is allowed. Refer to future integrations for more info. 
 
   * The name should only contain alphanumeric characters and spaces, and should not be blank.
   
@@ -177,9 +332,10 @@ Format: `help`
        
        <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
        </box>
-</panel>
 
-<panel header="### Deleting a contact: <code>-</code>" peek>
+### Deleting a contact: `-`
+[back to top](#table-of-contents)
+
   Deletes a person with his specified ID.<br><br>
 
   Format: <code>- /id (id)</code><br>
@@ -234,11 +390,11 @@ Format: `help`
         Invalid field error <br><br>
         <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
         </box>
-</panel>
 
+### Editing a contact: `>`
+[back to top](#table-of-contents)
 
-<panel header="### Editing a contact: <code>+</code>" peek>
-  Edits a person in the address book.<br><br>
+Edits a person in the address book.<br><br>
 
 Format: <code> > (id) /name (name) /hp (handphone)</code><br>
 
@@ -248,11 +404,15 @@ Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
 * The ID must be the first thing typed in. Other than that, the order of the other fields are interchangeable and doesn't matter. Feel free to input the details in any sequence. 
 
-* Fields to be edited are optional, but at least 1 field must be given. ID does not count. ID is used to identify the contact. Any change to the ID should be a deletion of the contact.
+* Fields to be edited are optional, but at least 1 field must be given. ID does not count. ID is used to identify the contact.
 
 * The phone number should only contain numbers, and it should be at least 3 digits long.
 
 * The name should only contain alphanumeric characters and spaces, and should not be blank.
+
+* If the fields match the current contact's fields exactly, the edit will still go through and not give a duplicate person error message. This is due to our unique identifier id.
+
+* Should you wish to edit the id of the person, please delete the contact and re-add the contact with the correct id. 
 
   </box>
 
@@ -296,27 +456,48 @@ GUI upon successful addition command <br><br>
 
        <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
        </box>
-  
-</panel>
 
-<panel header="### Toggle display: <code>$</code>" peek>
-  Toggle display to view / hide the addressbook.<br><br>
+
+### Toggling the display: `$`
+[back to top](#table-of-contents)
+
+Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
 
   Format: <code>$</code><br>
 
   <box type="definition">
-    Viewing addressbook.<br><br>
+    Viewing contacts.<br><br>
     <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
   </box>
 
   <box type="definition" theme="info">
-    Hiding addressbook.<br><br>
+    Hiding contacts.<br><br>
     <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
   </box>
 
-</panel>
+### Finding Contacts by Name: `?`
+[back to top](#table-of-contents)
 
-<panel header="### List: <code>ls</code>" peek>
+Finds all contacts in the Hi:Re app that has names matching the words entered.
+
+Format: <code> ? (name) </code><br>
+
+Example: <code> ? jo </code>
+         <code> ? jo a </code><br>
+
+<box type="important" seamless>
+
+* All names consist of alphanumeric characters, hence any non-alphanumeric characters used will result in no contacts found.
+* All names that contain the words entered will be matched. E.g `? jo` will give John if John exists in the contacts 
+list.
+* More than one word can be entered, separated by spaces. All names that match **any** of the words will be matched.
+E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
+
+  </box>
+
+### Listing all matching information: `ls`
+[back to top](#table-of-contents)
+
   List has different functionalities.<br><br>
 
   Format: <code>ls ARGS</code><br>
@@ -325,9 +506,10 @@ GUI upon successful addition command <br><br>
   <code>ARGS</code> = <code>-t</code>: List all tags available. <br>
   <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
 
-</panel>
 
-<panel header="### Add Tag: <code>tag+</code>" peek>
+### Add Tag: `tag+`
+[back to top](#table-of-contents)
+
   Add tag into a tag list.<br><br>
 
   Format: <code>tag+ TAG_NAME</code><br>
@@ -338,9 +520,10 @@ GUI upon successful addition command <br><br>
   
   </box>
 
-  </panel>
 
-  <panel header="### Delete Tag: <code>tag-</code>" peek>
+### Delete Tag: `tag-`
+[back to top](#table-of-contents)
+
   Delete tag from the tag list.<br><br>
 
   Format: <code>tag- TAG_NAME</code><br>
@@ -350,10 +533,10 @@ GUI upon successful addition command <br><br>
   Tag cannot be removed if a person is tagged with the tag-to-be-removed.
   
   </box>
-  
-  </panel>
 
-<panel header="### Undo: <code>undo</code> " peek>
+
+### Undoing a Command: `undo`
+[back to top](#table-of-contents)
 
 Restores the address book to the state before the previous **undoable** command was executed.<br>
 Format: `undo`<br>
@@ -383,9 +566,9 @@ Example:<br>
        No undoable command error <br><br>
        <img src="images/ui/undo/2.png" width="452.5" ><br><br>
        </box>
-       </panel>
 
-<panel header="### Redo: <code>redo</code>" peek>
+### Redoing a Command: `redo`
+[back to top](#table-of-contents)
 
 Reverses the most recently undone command.<br>
 Format: `redo`<br>
@@ -416,132 +599,9 @@ Example:<br>
        No redoable command error <br><br>
        <img src="images/ui/redo/2.png" width="452.5" ><br><br>
        </box>
-       </panel>
 
-<panel header="### Register: <code>register</code> " peek>
 
-Register an account first to have your own address book!<br><br>
-Format: `register /u (username) /p (password)`<br><br>
-Example: `register /u johndoe /p 123456`<br>
 
-  <box type="important" seamless>
-
-* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
-* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
-* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
-* Usernames are unique and cannot be duplicated.  <br>
-  </box>
-
-**Confirmation of Successful Registration**<br>
-
-  If the user registers successfully, a graphical user interface (GUI) indicative of a successful registration will be displayed, as illustrated below.<br>
-
-  <box type="success">
-    GUI upon successful register command <br><br>
-    <img src="images/ui/register/1.png" width="452.5" ><br>
-  </box> 
-
-* **Error Handling Protocols**<br>
-
-    1. Duplicate username Error: Entry of a non-unique username will trigger an error.<br>
-       <box type="wrong">
-       Duplicate username error <br><br>
-       <img src="images/ui/register/2.png" width="452.5" ><br><br>
-       </box>
-    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
-       <box type="wrong">
-       Incomplete fields error <br><br>
-       <img src="images/ui/register/3.png" width="452.5" ><br><br>
-       </box>
-    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
-       <box type="wrong">
-       Invalid fields error <br><br>
-
-        * Invalid username
-
-       <img src="images/ui/register/4.png" width="452.5"><br><br>
-
-        * Invalid password
-
-       <img src="images/ui/register/5.png" width="452.5"><br><br>
-       </box>
-       </panel>
-
-<panel header="### Login: <code>login</code> " peek>
-
-Login to access your addressbook. <br><br>
-Format: `login /u (username) /p (password)`<br><br>
-Example: `login /u johndoe /p 123456`<br>
-
-  <box type="important" seamless>
-
-* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
-* A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
-* A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
-  </box>
-
-**Confirmation of Successful Login**<br>
-
-If the user Logins successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
-
-  <box type="success">
-    GUI upon successful login command <br><br>
-    <img src="images/ui/login/success.png" width="452.5" height="369.5"><br>
-  </box> 
-
-* **Error Handling Protocols**<br>
-
-    1. Incomplete Fields Error: Failure to complete all required fields will trigger an error.<br>
-       <box type="wrong">
-       Incomplete fields error <br><br>
-       <img src="images/ui/login/1.png" width="452.5"><br><br>
-       </box>
-    2. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.<br>
-       <box type="wrong">
-       Invalid fields error <br><br>
-
-        * Invalid username
-
-       <img src="images/ui/login/2.png" width="452.5"><br><br>
-
-        * Invalid password
-
-       <img src="images/ui/login/3.png" width="452.5"><br><br>
-       </box>
-    3. Incorrect Username or Password Error: If the username or password is incorrect, an error will be triggered.<br>
-       <box type="wrong">
-       Incorrect username or password error <br><br>
-       <img src="images/ui/login/4.png" width="452.5"><br><br>
-       </box>
-    4. Already Logged In Error: If the user is already logged in, he cannot log in again.<br>
-       <box type="wrong">
-       Already logged in error:<br><br>
-       <img src="images/ui/login/5.png" width="452.5" ><br><br>
-       </box>
-     </panel>
-
-<panel header="### Logout: <code>logout</code> " peek>
-
-After you end accessing your addressbook, log out to protect the data. <br><br>
-Format: `logout`<br><br>
-
-**Confirmation of Successful Logout**<br>
-
-If the user Logouts successfully, a graphical user interface (GUI) indicative of a successful logout will be displayed, as illustrated below.<br>
-
-  <box type="success">
-    GUI upon successful logout command <br><br>
-    <img src="images/ui/logout/success.png" width="452.5" height="369.5"><br>
-  </box> 
-
-* **Error Handling Protocols**<br>
-
-    1. Not Logged Error: If the user hasn't logged in, he cannot log out.<br>
-       <box type="wrong">
-       Not Logged Error:<br><br>
-       <img src="images/ui/logout/notloggederror.png" width="452.5" ><br><br>
-       </box>
-       </panel>
 <!--
 
 ### Listing all persons : `list`
@@ -640,7 +700,7 @@ _Details coming soon ..._
 
 Features are built-in for the ease of use. They do not require any commands for it to work.
 
-<panel header="### Sort" peek>
+### Sort
   The addressbook is sorted in alphabetical order every time a new contact is added / deleted.<br><br>
 
   <box type="definition">
@@ -652,10 +712,9 @@ Features are built-in for the ease of use. They do not require any commands for 
     After.<br><br>
     <img src="images/ui/sort/afterSort.png" width="452.5" height="369.5"><br><br>
   </box>
-   
-</panel>
 
-<panel header="### Delete sample data" peek>
+
+### Delete sample data
   Sample data is deleted when you add the first contact into the addressbook.<br><br>
 
   <box type="definition">
@@ -667,10 +726,9 @@ Features are built-in for the ease of use. They do not require any commands for 
     After.<br><br>
     <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
   </box>
-   
-</panel>
 
-<panel header="### Information security" peek>
+
+### Information security
   We try our best to protect the private information in your addressbook.<br><br>
 
   1. **Password Hashing**<br>
@@ -685,7 +743,6 @@ Features are built-in for the ease of use. They do not require any commands for 
            This means that if the source code of application is compromised, the data can be decrypted. <br>
            However, we are working on a more secure solution for future versions of the application.
      </box>
-</panel>
 
 ***
 
@@ -695,7 +752,7 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 <panel header="**Q**: How do I transfer my data to another Computer?">
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hi:Re home folder.
 </panel>
 <panel header="**Q**: What is Java 11 and where can I download it?">
 
@@ -733,10 +790,11 @@ Action     | Format
 
 1. **A more rigorous account management system**, which will allow us to manage users as an admin, and assign different 
     levels of authentication or security.
-2. **A remote database management system**, which links all addressbook instances on different machines to the same
-    addressbook database, which will allow for collaboration and other benefits.
-3. **More open-ended tagging and field options**, allowing for the addressbook to be fully customisable as per the
+2. **A remote database management system**, which links all Hi:Re instances on different machines to the same
+    Hi:Re database, which will allow for collaboration and other benefits.
+3. **More open-ended tagging and field options**, allowing for Hi:Re to be fully customisable as per the
     organisation's requirements.
+4. **Multiple phone numbers**, allowing for contacts to add in both their office and personal phone numbers.
 
 ***
 
