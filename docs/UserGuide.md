@@ -12,17 +12,18 @@
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
+  - [Disclaimer for Account Features(Register, Login, Logout)](#disclaimer-for-account-features-register-login-logout)  
   1) [Registering an Account](#registering-an-account-register)
   2) [Login into Account](#login-into-account-login)
-  2) [Logout from Account](#logout-from-account-logout)
-  2) [Adding a Contact](#adding-a-contact)
-  2) [Deleting a Contact](#deleting-a-contact)
-  3) [Editing a Contact](#editing-a-contact)
-  4) [Toggling the display](#toggling-the-display)
-  5) [Finding Contacts by Name](#finding-contacts-by-name)
-  5) [Listing all matching information](#listing-all-matching-information-ls)
-  6) [Undoing a Command](#undoing-a-command-undo)
-  7) [Redoing a Command](#redoing-a-command-redo)
+  3) [Logout from Account](#logout-from-account-logout)
+  4) [Adding a Contact](#adding-a-contact)
+  5) [Deleting a Contact](#deleting-a-contact)
+  6) [Editing a Contact](#editing-a-contact)
+  7) [Toggling the display](#toggling-the-display)
+  8) [Finding Contacts by Name](#finding-contacts-by-name)
+  9) [Listing all matching information](#listing-all-matching-information-ls)
+  10) [Undoing a Command](#undoing-a-command-undo)
+  11) [Redoing a Command](#redoing-a-command-redo)
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -140,6 +141,19 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 -->
+
+### Disclaimer for Account Features (Register, Login, Logout)
+
+[back to top](#table-of-contents)
+
+While our Account Features seem to say that our product is a multi-user product, 
+we would like to clarify that our intended purpose is a **single user product**.
+
+Companies often form partnerships and share resources. 
+
+Therefore, HR employees may be **required to use multiple address books** to effectively manage employees from different companies. 
+
+To **safeguard the information of each company**, the use of multiple address books locked behind different user accounts and passwords **is essential**.
 
 ### Registering an Account: `register`
 [back to top](#table-of-contents)
@@ -285,9 +299,12 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
   * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
   * The phone number should only contain numbers, and it should be at least 3 digits long.
+
   * Only one phone number is allowed. Refer to future integrations for more info. 
 
-  * The name should only contain alphanumeric characters and spaces, and should not be blank.
+  * Names up to 76 characters will be shown on the contact list, after that ... will represent the rest of the characters.
+
+  * The name should only contain alphanumeric characters and spaces, and should not be blank. S/O and hyphened names(E.g Rui-En) are not supported in our current product.
   
   </box>
 
