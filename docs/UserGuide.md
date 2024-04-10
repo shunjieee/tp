@@ -302,7 +302,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   * Only one phone number is allowed. Refer to future integrations for more info. 
 
-  * Names up to 76 characters will be shown on the contact list, after that ... will represent the rest of the characters.
+  * Fields that are long will have the text wrapped appropriately.
 
   * The name should only contain alphanumeric characters and spaces, and should not be blank. S/O and hyphened names(E.g Rui-En) are not supported in our current product.
   
