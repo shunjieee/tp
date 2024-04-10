@@ -3,15 +3,12 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.account.account.Account;
 import seedu.address.account.account.AccountList;
 import seedu.address.account.account.Username;
-import seedu.address.account.function.AccountParser;
-import seedu.address.account.function.AccountStorage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.StringUtil;
@@ -34,8 +31,7 @@ import seedu.address.ui.MainWindow;
  * Manages the current session, including the logged-in account and the associated logic manager.
  */
 public class AccountManager {
-    private AccountList accountList;
-    private AccountParser accountParser = new AccountParser();
+    private AccountList accountList = new AccountList();
     private Account currentAccount;
     private Logic logic;
 
@@ -51,21 +47,14 @@ public class AccountManager {
      * If the file cannot be read, an empty AccountList is created.
      */
     public AccountManager(Logic logic) {
-        AccountStorage accountStorage = new AccountStorage("data/accounts.txt");
         try {
-            List<String> accountListInString = accountStorage.load();
-            List<Account> accountListInAccount = accountParser.parseToAccount(accountListInString);
-            this.accountList = new AccountList();
-            for (Account account : accountListInAccount) {
-                this.accountList.addAccount(account);
-            }
+            accountList.loadFromFile();
         } catch (IOException e) {
             e.printStackTrace();
             this.accountList = new AccountList();
         }
         currentAccount = null;
         this.logic = logic;
-        this.logic.linkAccountManagerToParser(this);
     }
 
     /**

@@ -33,7 +33,7 @@ public class AccountStorage {
      * @return A list of account data strings loaded from the file.
      * @throws IOException If an I/O error occurs.
      */
-    public List<String> load() throws IOException {
+    public List<String> loadFromFile() throws IOException {
         List<String> accounts = new ArrayList<>();
         File file = new File(filePath);
 
@@ -57,7 +57,7 @@ public class AccountStorage {
      * @param accounts The list of account data strings to be saved to the file.
      * @throws IOException If an I/O error occurs.
      */
-    public void save(List<String> accounts) throws IOException {
+    public void saveToFile(List<String> accounts) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (String account : accounts) {
                 writer.write(account);

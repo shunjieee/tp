@@ -1,5 +1,6 @@
 package seedu.address.account.account;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -37,7 +38,7 @@ public class AccountList {
             return false;
         }
         accounts.put(account.getUsername(), account);
-        save();
+        saveToFile();
         return true;
     }
 
@@ -64,7 +65,7 @@ public class AccountList {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return bytesToHex(encodedHash);
+            return transformBytesToHex(encodedHash);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +77,7 @@ public class AccountList {
      * @param hash The byte array to be converted.
      * @return The hexadecimal string.
      */
-    private static String bytesToHex(byte[] hash) {
+    private static String transformBytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {
             String hex = Integer.toHexString(0xff & b);
@@ -94,13 +95,30 @@ public class AccountList {
      * then saves this string representation to the accountStorage.
      * If an exception occurs during this process, it is caught and its stack trace is printed.
      */
-    public void save() {
+    public void saveToFile() {
         try {
             ArrayList<Account> accountArrayList = new ArrayList<>(accounts.values());
             List<String> accountStringList = accountParser.parseToString(accountArrayList);
-            accountStorage.save(accountStringList);
+            accountStorage.saveToFile(accountStringList);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads the accounts from the storage file.
+     * It first reads the account strings from the accountStorage,
+     * then parses these strings to Account objects using the accountParser.
+     * The Account objects are then stored in the accounts map.
+     * If an exception occurs during this process, it is thrown.
+     *
+     * @throws IOException if an error occurs during reading from the file.
+     */
+    public void loadFromFile() throws IOException {
+        List<String> accountStringList = accountStorage.loadFromFile();
+        List<Account> accountList = accountParser.parseToAccount(accountStringList);
+        for (Account account : accountList) {
+            accounts.put(account.getUsername(), account);
         }
     }
 }
