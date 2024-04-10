@@ -27,7 +27,7 @@ public class AccountStorageTest {
 
         // Test AccountStorage.load()
         AccountStorage accountStorage = new AccountStorage(TEST_FILE_PATH);
-        List<String> accounts = accountStorage.load();
+        List<String> accounts = accountStorage.loadFromFile();
 
         // Verify results
         assertEquals(1, accounts.size());
@@ -45,7 +45,7 @@ public class AccountStorageTest {
 
         // Test AccountStorage.save()
         AccountStorage accountStorage = new AccountStorage(TEST_FILE_PATH);
-        accountStorage.save(accounts);
+        accountStorage.saveToFile(accounts);
 
         // Verify that the data was written to the file correctly
         try (BufferedReader reader = new BufferedReader(new FileReader(TEST_FILE_PATH))) {
