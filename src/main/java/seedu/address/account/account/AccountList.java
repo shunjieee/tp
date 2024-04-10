@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import seedu.address.account.function.AccountParser;
@@ -15,9 +16,10 @@ import seedu.address.account.function.AccountStorage;
  * Each AccountList is associated with a map that stores accounts with their usernames as keys.
  */
 public class AccountList {
+    private static final String filePath = "data/accounts.txt";
     private Map<Username, Account> accounts;
     private AccountParser accountParser = new AccountParser();
-    private AccountStorage accountStorage = new AccountStorage("data/accounts.txt");
+    private AccountStorage accountStorage = new AccountStorage(filePath);
 
     /**
      * Constructs an AccountList instance with an empty map of accounts.
@@ -43,8 +45,8 @@ public class AccountList {
      * Attempts to authenticate a user with the provided username and password.
      * Returns the Account object if authentication is successful, or null otherwise.
      */
-    public Account authenticate(String username, String passwordHash) {
-        Account account = accounts.get(new Username(username));
+    public Account authenticate(Username username, Password passwordHash) {
+        Account account = accounts.get(username);
         if (account != null && account.getPasswordHash().equals(passwordHash)) {
             return account;
         }
@@ -58,7 +60,7 @@ public class AccountList {
      * @return The hashed password.
      * @throws RuntimeException if the SHA-256 algorithm is not found.
      */
-    public String hashPassword(String password) {
+    public static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -74,7 +76,7 @@ public class AccountList {
      * @param hash The byte array to be converted.
      * @return The hexadecimal string.
      */
-    private String bytesToHex(byte[] hash) {
+    private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {
             String hex = Integer.toHexString(0xff & b);
@@ -94,7 +96,9 @@ public class AccountList {
      */
     public void save() {
         try {
-            accountStorage.save(accountParser.parseToString(new ArrayList<>(accounts.values())));
+            ArrayList<Account> accountArrayList = new ArrayList<>(accounts.values());
+            List<String> accountStringList = accountParser.parseToString(accountArrayList);
+            accountStorage.save(accountStringList);
         } catch (Exception e) {
             e.printStackTrace();
         }
