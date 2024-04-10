@@ -12,6 +12,7 @@ import seedu.address.account.account.Username;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.AccountManagerParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -32,6 +33,7 @@ import seedu.address.ui.MainWindow;
  */
 public class AccountManager {
     private AccountList accountList = new AccountList();
+    private AccountManagerParser accountManagerParser = new AccountManagerParser();
     private Account currentAccount;
     private Logic logic;
 
@@ -55,6 +57,7 @@ public class AccountManager {
         }
         currentAccount = null;
         this.logic = logic;
+        this.logic.linkAccountManagerToParser(this);
     }
 
     /**
