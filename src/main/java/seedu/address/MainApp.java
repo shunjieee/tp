@@ -53,7 +53,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Hi:Re ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -95,7 +95,7 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample Hi:Re list.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
@@ -109,7 +109,7 @@ public class MainApp extends Application {
             logger.warning("Data file at " + storage.getAddressBookFilePath()
                     + " and / or " + storage.getTagListFilePath()
                     + " could not be loaded."
-                    + " Will be starting with an empty AddressBook and / or tag list.");
+                    + " Will be starting with an empty Hi:Re list and / or tag list.");
             initialData = new AddressBook();
             initialTagList = new TagList();
         }
@@ -187,7 +187,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warning("Failed to save config file : " + prefsFilePath);
         }
 
         return initializedPrefs;
@@ -195,13 +195,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Hi:Re " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Hi:Re ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
