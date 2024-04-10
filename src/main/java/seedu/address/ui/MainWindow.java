@@ -74,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.accountManager = new AccountManager(logic);
+        this.accountManager = logic.getAccountManager();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());

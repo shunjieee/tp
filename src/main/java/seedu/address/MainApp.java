@@ -43,7 +43,6 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected AccountManager accountManager;
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -74,7 +73,6 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        accountManager = new AccountManager(logic);
     }
 
     /**
