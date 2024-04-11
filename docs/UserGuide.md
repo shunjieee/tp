@@ -129,6 +129,9 @@ Breakdown of commands:
 * Words in `()` are the parameters to be supplied by the user.<br>
   e.g. in `- /id (id)`, `(id)` is a parameter which can be used as `- /id johndoe69`.
 
+* Words in `[...]` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) [/tag (more tags)..]`, the second `/tag` parameter may be excluded, or repeated as many times as one wants
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
