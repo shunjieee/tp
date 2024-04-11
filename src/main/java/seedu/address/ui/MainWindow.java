@@ -1,13 +1,9 @@
 package seedu.address.ui;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -131,6 +127,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     public void fillInnerParts() {
+        if (!isFirstTime) {
+            personListPanel.toggleDisplay();
+        }
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -233,41 +233,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException e) {
             logger.info("An error occurred while executing command: " + "redo");
             resultDisplay.setFeedbackToUser(e.getMessage());
-        }
-    }
-
-    @FXML
-    private void handleRegister() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterForm.fxml"));
-            RegisterFormController controller = new RegisterFormController(accountManager);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleLogin() {
-        try {
-            if (accountManager.getLoginStatus()) {
-                resultDisplay.setFeedbackToUser("You have already logged in.");
-                return;
-            }
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
-            LoginFormController controller = new LoginFormController(accountManager, this);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

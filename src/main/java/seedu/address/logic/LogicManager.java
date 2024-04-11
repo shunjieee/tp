@@ -86,6 +86,14 @@ public class LogicManager implements Logic {
             return commandResult;
         }
 
+        if (command instanceof RegisterCommand && isUserLogin) {
+            AccountManager accountManager = accountManagerParser.getAccountManager();
+            RegisterCommand registerCommand = (RegisterCommand) command;
+            registerCommand.setAccountManager(accountManager);
+            commandResult = command.execute(model);
+            return commandResult;
+        }
+
         if (isUserLogin) {
             if (command instanceof LogoutCommand) {
                 AccountManager accountManager = accountManagerParser.getAccountManager();
@@ -99,6 +107,7 @@ public class LogicManager implements Logic {
             try {
                 storage.saveAddressBook(model.getAddressBook());
                 storage.saveUserPrefs(model.getUserPrefs());
+                storage.saveTagList(model.getTagList());
             } catch (AccessDeniedException e) {
                 throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
             } catch (IOException ioe) {
