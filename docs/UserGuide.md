@@ -604,15 +604,15 @@ Example:<br>
 ### Exporting data: `export`
 [back to top](#table-of-contents)
 
-Exports all data currently saved in the app in comma delimited format.<br>
+Exports all application data to a comma delimited file in the same directory the app is in.<br>
 
-Format: `export /file (filepath)`<br>
+Format: `export /filename (filename)`<br>
 
 Example: <code> export /file contacts </code><br>
 
   <box type="important" seamless>
 
-* Note that you need not add the `.csv` file extension to the filepath argument when executing this command - the application will do this for you. Hence, typing `export /file contacts` will export the data to `contacts.csv`.
+* Note that you need not add the `.csv` file extension to the filename argument when executing this command - the application will do this for you. Hence, typing `export /filename contacts` will export the data to `contacts.csv`.
   
 * The filename should follow standard filename conventions on whatever system you are using. (e.g. no special characters)
 
