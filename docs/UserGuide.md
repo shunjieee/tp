@@ -26,6 +26,7 @@
   1) [Listing all matching information](#listing-all-matching-information-ls)
   1) [Undoing a Command](#undoing-a-command-undo)
   1) [Redoing a Command](#redoing-a-command-redo)
+  1) [Exporting a Command](#exporting-data)
   1) [Link to User Guide](#link-to-our-user-guide-help)
 
 - [Built-In Features](#built-in-features)
