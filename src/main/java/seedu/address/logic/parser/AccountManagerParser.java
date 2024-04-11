@@ -83,10 +83,20 @@ public class AccountManagerParser {
         }
     }
 
+    /**
+     * Sets the account manager for the parser.
+     *
+     * @param accountManager the account manager to be set
+     */
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
     }
 
+    /**
+     * Gets the account manager for the parser.
+     *
+     * @return the account manager
+     */
     public AccountManager getAccountManager() {
         return accountManager;
     }
