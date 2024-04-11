@@ -23,6 +23,11 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
-        return new DeleteTagCommand(new Tag(trimmedArgs));
+
+        try {
+            return new DeleteTagCommand(new Tag(trimmedArgs));
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 }

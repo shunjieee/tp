@@ -20,7 +20,8 @@ public class DeleteTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove a tag from the tag list.\n"
             + "Format: tag- TAG\n"
-            + "Example: tag- Human Resource";
+            + "Example: tag- Finance\n"
+            + "NOTE: Tags are case-sensitive.";
 
     public static final String MESSAGE_SUCCESS = "Tag removed: %1$s";
 
