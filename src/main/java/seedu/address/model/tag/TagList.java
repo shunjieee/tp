@@ -18,6 +18,21 @@ public class TagList {
     }
 
     /**
+     * Constructs a {@code TagList} with pre-filled tags
+     */
+    public static TagList getSampleTagList() {
+        TagList sample = new TagList();
+        sample.addTag(new Tag("HR"));
+        sample.addTag(new Tag("operations"));
+        sample.addTag(new Tag("finance"));
+        sample.addTag(new Tag("marketing"));
+        sample.addTag(new Tag("IT"));
+        sample.addTag(new Tag("sales"));
+        sample.addTag(new Tag("RnD"));
+        return sample;
+    }
+
+    /**
      * Returns the tag list.
      */
     public List<Tag> getTagList() {

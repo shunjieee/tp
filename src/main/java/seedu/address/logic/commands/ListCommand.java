@@ -43,11 +43,10 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        if (predicate.equals(PREDICATE_SHOW_ALL_PERSONS)) {
-            String feedbackToUser = MESSAGE_SUCCESS + " in " + keywords + ".";
-            String expected = "Listed all persons in the addressbook.";
-            assert feedbackToUser != expected : "Logic / Message error";
-        }
+        String feedbackToUser = MESSAGE_SUCCESS + " in " + keywords + ".";
+        String expected = "Listed all persons";
+        assert feedbackToUser.contains(expected) : "Logic / Message error";
+
         return new CommandResult(MESSAGE_SUCCESS + " in " + keywords + ".");
     }
 }
