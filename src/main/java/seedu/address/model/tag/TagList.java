@@ -71,6 +71,11 @@ public class TagList {
             sb.append(tag.tagName);
             sb.append("\n");
         }
-        return sb.toString();
+
+        if (sb.toString().isEmpty()) {
+            return "No tags found.";
+        } else {
+            return sb.toString();
+        }
     }
 }
