@@ -20,7 +20,7 @@ import seedu.address.storage.JsonCsvAddressBookStorage;
  */
 public class ExportCommand extends Command {
 
-    public static final String COMMAND_WORD = "export";
+    public static final String COMMAND_WORD = "@";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Exports the address book to a CSV file, created in the same directory as the program. "

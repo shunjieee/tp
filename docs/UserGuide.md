@@ -23,7 +23,7 @@
   5) [Listing all matching information](#listing-all-matching-information-ls)
   6) [Undoing a Command](#undoing-a-command-undo)
   7) [Redoing a Command](#redoing-a-command-redo)
-  8) [Exporting a Command](#exporting-data-export)
+  8) [Exporting a Command](#exporting-data)
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -601,18 +601,18 @@ Example:<br>
        <img src="images/ui/redo/2.png" width="452.5" ><br><br>
        </box>
 
-### Exporting data: `export`
+### Exporting data: `@`
 [back to top](#table-of-contents)
 
 Exports all application data to a comma delimited file in the same directory the app is in.<br>
 
-Format: `export /filename (filename)`<br>
+Format: `@ /filename (filename)`<br>
 
 Example: <code> export /file contacts </code><br>
 
   <box type="important" seamless>
 
-* Note that you need not add the `.csv` file extension to the filename argument when executing this command - the application will do this for you. Hence, typing `export /filename contacts` will export the data to `contacts.csv`.
+* Note that you need not add the `.csv` file extension to the filename argument when executing this command - the application will do this for you. Hence, typing `@ /filename contacts` will export the data to `contacts.csv`.
   
 * The filename should follow standard filename conventions on whatever system you are using. (e.g. no special characters)
 
