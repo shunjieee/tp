@@ -39,7 +39,6 @@ public class AccountManager {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private MainWindow mainWindow;
 
     /**
      * Constructs an AccountManager.
@@ -75,8 +74,8 @@ public class AccountManager {
      */
     public void logout() {
         this.currentAccount = null;
-        this.isUserLogin = false;
         clearModelManagerAfterLogOut();
+        this.isUserLogin = false;
     }
 
     /**
@@ -95,7 +94,6 @@ public class AccountManager {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(
                 Paths.get("data", username + "addressbook.json"));
         JsonTagListStorage tagListStorage = new JsonTagListStorage(Paths.get("data", "taglist.json"));
-
         Storage storage = new StorageManager(addressBookStorage, userPrefsStorage, tagListStorage);
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
@@ -220,7 +218,6 @@ public class AccountManager {
                     + " Using default preferences.");
             initializedPrefs = new UserPrefs();
         }
-
         return initializedPrefs;
     }
 
@@ -228,11 +225,4 @@ public class AccountManager {
         return isUserLogin;
     }
 
-    public void setMainWindow(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
-    }
-
-    public MainWindow getMainWindow() {
-        return mainWindow;
-    }
 }

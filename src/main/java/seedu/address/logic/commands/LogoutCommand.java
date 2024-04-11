@@ -51,6 +51,6 @@ public class LogoutCommand extends Command {
         }
 
         accountManager.logout();
-        return new CommandResult(MESSAGE_LOGOUT_SUCCESS, false, true, false, false, true);
+        return new CommandResult(MESSAGE_LOGOUT_SUCCESS, false, false, false, false, true);
     }
 }
