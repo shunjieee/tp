@@ -130,6 +130,9 @@ Breakdown of commands:
 * Words in `()` are the parameters to be supplied by the user.<br>
   e.g. in `- /id (id)`, `(id)` is a parameter which can be used as `- /id johndoe69`.
 
+* Words in `[...]` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) [/tag (more tags)..]`, the second `/tag` parameter may be excluded, or repeated as many times as one wants
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
@@ -287,9 +290,10 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   Adds a person to the address book.<br><br>
 
-  Format: <code>+ /name (name) /id (id) /hp (handphone)</code><br>
+  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) [/tag (more tags)...] </code><br>
 
-  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
+  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance</code><br>
+        <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance /tag Sales</code><br>
 
   <box type="important" seamless>
 
@@ -306,7 +310,10 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
   * Fields that are long will have the text wrapped appropriately.
 
   * The name should only contain alphanumeric characters and spaces, and should not be blank. S/O and hyphened names(E.g Rui-En) are not supported in our current product.
-  
+
+  * All tags for a person **MUST** already exist in a tag list. You can add tags to a tag list with the [add tag](#add-tag-tag) command.
+
+  * A person **MUST** have at least one tag, but can have more than one tag (like in the example)
   </box>
 
   (The Initial UI before addition)                       
@@ -414,7 +421,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
 Edits a person in the address book.<br><br>
 
-Format: <code> > (id) /name (name) /hp (handphone)</code><br>
+Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) [/tag (more tags)...]</code><br>
 
 Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
@@ -431,6 +438,8 @@ Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 * If the fields match the current contact's fields exactly, the edit will still go through and not give a duplicate person error message. This is due to our unique identifier id.
 
 * Should you wish to edit the id of the person, please delete the contact and re-add the contact with the correct id. 
+
+* When editing tags, the existing tags of the person will be removed (i.e adding of tags is not cumulative.)
 
   </box>
 
@@ -493,6 +502,12 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
     <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
   </box>
 
+  <box type="important" seamless>
+
+* Note that when the contacts panel is hidden, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+
+  </box>
+
 ### Finding Contacts by Name: `?`
 [back to top](#table-of-contents)
 
@@ -524,6 +539,11 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
   <code>ARGS</code> = <code>-t</code>: List all tags available. <br>
   <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
 
+<box type="important" seamless>
+
+* `ls TAG_NAME` will return entries with any tags that have `TAG_NAME` as a substring. For example, `ls fin` might return entries with the tags `fin`, `Finance`, `CorporateFinance`, etc.
+
+</box>
 
 ### Add Tag: `tag+`
 [back to top](#table-of-contents)
@@ -561,7 +581,8 @@ Format: `undo`<br>
 <box type="important" seamless>
 
 * This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
-* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
+* All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
 
 Example:<br>
@@ -773,6 +794,7 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 ### Delete sample data
   Sample data is deleted when you add the first contact into the addressbook.<br><br>
+  
 
   <box type="definition">
     Before.<br><br>
@@ -784,6 +806,9 @@ Features are built-in for the ease of use. They do not require any commands for 
     <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
   </box>
 
+  <box type="important" seamless>
+It is important that you do **NOT** perform any operations other than adding contacts upon the sample data as there is no guarantee that this feature will work properly afterwards. 
+</box>
 
 ### Information security
   We try our best to protect the private information in your addressbook.<br><br>
@@ -791,15 +816,6 @@ Features are built-in for the ease of use. They do not require any commands for 
   1. **Password Hashing**<br>
      We use the SHA-256 hashing algorithm to hash the passwords.<br>
      Passwords are hashed before being stored in the database.  This means that even if the database is compromised, the passwords are not easily retrievable.<br>
-  
-  2. **Data Encryption**<br>
-     We use the Advanced Encryption Standard (AES) to encrypt the data in the addressbook. <br>
-     Data in the addressbook is encrypted before being stored in the database. This means that even if the user accesses the database directly, the data is unreadable.<br>
-     <box type="important" seamless>
-           Due to the technical limitations of the application, the encryption key is stored in the application itself for now. <br>
-           This means that if the source code of application is compromised, the data can be decrypted. <br>
-           However, we are working on a more secure solution for future versions of the application.
-     </box>
 
 ***
 
@@ -822,10 +838,10 @@ the [official Java website](https://www.oracle.com/sg/java/).
 ## Known issues
 
 [back to top](#table-of-contents)
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
+1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that users add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again. 
 ***
-
+1. When the contacts panel is hidden by `$`, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
 ## Command summary
 
 [back to top](#table-of-contents)

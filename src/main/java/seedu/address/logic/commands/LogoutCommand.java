@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.AccountManager;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -18,7 +19,8 @@ public class LogoutCommand extends Command {
     /**
      * The message shown to the user after successful logout.
      */
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "You have logged out.";
+    public static final String MESSAGE_LOGOUT_SUCCESS = "You have logged out.";
+    public static final String MESSAGE_NOT_LOGGED_IN = "You are not logged in.";
 
     /**
      * The account manager that handles the logout process.
@@ -41,11 +43,14 @@ public class LogoutCommand extends Command {
      * @return A CommandResult representing the result of the logout operation.
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(accountManager);
+        boolean isUserLogin = accountManager.getLoginStatus();
+        if (!isUserLogin) {
+            throw new CommandException(MESSAGE_NOT_LOGGED_IN);
+        }
 
         accountManager.logout();
-
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false, true);
+        return new CommandResult(MESSAGE_LOGOUT_SUCCESS, false, false, false, false, true);
     }
 }

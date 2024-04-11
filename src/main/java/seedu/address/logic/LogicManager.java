@@ -11,9 +11,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.LogoutCommand;
-import seedu.address.logic.commands.RegisterCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AccountManagerParser;
 import seedu.address.logic.parser.AddressBookParser;
@@ -38,7 +35,8 @@ public class LogicManager implements Logic {
     private Storage storage;
     private final AddressBookParser addressBookParser;
 
-    private AccountManagerParser accountManagerParser = new AccountManagerParser();
+    private final AccountManagerParser accountManagerParser = new AccountManagerParser();
+    private final AccountManager accountManager;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -47,6 +45,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        accountManager = new AccountManager(this);
     }
 
     @Override
@@ -59,48 +58,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
 
-        Command command = (Command) AccountManagerParser.parseCommand(commandText).get(0);
-        boolean isUserLogin = (boolean) AccountManagerParser.parseCommand(commandText).get(1);
+        Command command = AccountManagerParser.parseCommand(commandText);
 
-        if (command instanceof LoginCommand && isUserLogin) {
-            throw new CommandException("You are already logged in.");
-        }
-
-        if (command instanceof LogoutCommand && !isUserLogin) {
-            throw new CommandException("You are not logged in.");
-        }
-
-        if (command instanceof LogoutCommand && isUserLogin) {
-            AccountManager accountManager = accountManagerParser.getAccountManager();
-            LogoutCommand logoutrCommand = (LogoutCommand) command;
-            logoutrCommand.setAccountManager(accountManager);
+        if (command != null) {
             commandResult = command.execute(model);
-            return commandResult;
-        }
-
-        if (command instanceof RegisterCommand && isUserLogin) {
-            AccountManager accountManager = accountManagerParser.getAccountManager();
-            RegisterCommand registerCommand = (RegisterCommand) command;
-            registerCommand.setAccountManager(accountManager);
-            commandResult = command.execute(model);
-            return commandResult;
-        }
-
-        if (command instanceof RegisterCommand && isUserLogin) {
-            AccountManager accountManager = accountManagerParser.getAccountManager();
-            RegisterCommand registerCommand = (RegisterCommand) command;
-            registerCommand.setAccountManager(accountManager);
-            commandResult = command.execute(model);
-            return commandResult;
-        }
-
-        if (isUserLogin) {
-            if (command instanceof LogoutCommand) {
-                AccountManager accountManager = accountManagerParser.getAccountManager();
-                LogoutCommand logoutCommand = (LogoutCommand) command;
-                logoutCommand.setAccountManager(accountManager);
-                commandResult = command.execute(model);
-            }
+        } else {
             command = addressBookParser.parseCommand(commandText);
             commandResult = command.execute(model);
 
@@ -113,19 +75,7 @@ public class LogicManager implements Logic {
             } catch (IOException ioe) {
                 throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
             }
-
-        } else {
-            AccountManager accountManager = accountManagerParser.getAccountManager();
-            if (command instanceof LoginCommand) {
-                LoginCommand loginCommand = (LoginCommand) command;
-                loginCommand.setAccountManager(accountManager);
-            } else if (command instanceof RegisterCommand) {
-                RegisterCommand registerCommand = (RegisterCommand) command;
-                registerCommand.setAccountManager(accountManager);
-            }
-            commandResult = command.execute(model);
         }
-
         return commandResult;
     }
 
@@ -162,5 +112,10 @@ public class LogicManager implements Logic {
     @Override
     public void linkAccountManagerToParser(AccountManager accountManager) {
         accountManagerParser.setAccountManager(accountManager);
+    }
+
+    @Override
+    public AccountManager getAccountManager() {
+        return accountManagerParser.getAccountManager();
     }
 }
