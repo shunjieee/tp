@@ -784,15 +784,6 @@ It is important that you do **NOT** perform any operations other than adding con
   1. **Password Hashing**<br>
      We use the SHA-256 hashing algorithm to hash the passwords.<br>
      Passwords are hashed before being stored in the database.  This means that even if the database is compromised, the passwords are not easily retrievable.<br>
-  
-  2. **Data Encryption**<br>
-     We use the Advanced Encryption Standard (AES) to encrypt the data in the addressbook. <br>
-     Data in the addressbook is encrypted before being stored in the database. This means that even if the user accesses the database directly, the data is unreadable.<br>
-     <box type="important" seamless>
-           Due to the technical limitations of the application, the encryption key is stored in the application itself for now. <br>
-           This means that if the source code of application is compromised, the data can be decrypted. <br>
-           However, we are working on a more secure solution for future versions of the application.
-     </box>
 
 ***
 
