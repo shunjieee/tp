@@ -23,6 +23,11 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
-        return new AddTagCommand(new Tag(trimmedArgs));
+
+        try {
+            return new AddTagCommand(new Tag(trimmedArgs));
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 }

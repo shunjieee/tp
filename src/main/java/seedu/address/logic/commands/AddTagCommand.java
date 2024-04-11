@@ -15,7 +15,8 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a tag to the tag list.\n"
             + "Format: tag+ TAG\n"
-            + "Example: tag+ Human Resource";
+            + "Example: tag+ Finance\n"
+            + "NOTE: Tags are case-sensitive.";
 
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
 
