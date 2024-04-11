@@ -30,6 +30,9 @@ public class RegisterCommand extends Command {
             + PREFIX_USERNAME + " john1234 "
             + PREFIX_PASSWORD + " qweasd123 ";
 
+    public static final String MESSAGE_REGISTER_SUCCESS = "Account registered successfully.";
+    public static final String MESSAGE_REGISTER_FAILURE = "Account registration failed. Username already exists.";
+
     /**
      * The account to be registered.
      */
@@ -69,15 +72,12 @@ public class RegisterCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(accountManager);
 
-        String passwordHashed = accountManager.getAccountList().hashPassword(account.getPasswordHash());
-        Account accountToRegister = new Account(account.getUsername(), passwordHashed);
+        boolean isAddSuccessful = accountManager.getAccountList().addAccount(account);
 
-        boolean success = accountManager.getAccountList().addAccount(accountToRegister);
-
-        if (success) {
-            return new CommandResult("Account registered successfully.");
+        if (isAddSuccessful) {
+            return new CommandResult(MESSAGE_REGISTER_SUCCESS);
         } else {
-            throw new CommandException("Account registration failed. Username already exists.");
+            throw new CommandException(MESSAGE_REGISTER_FAILURE);
         }
     }
 }

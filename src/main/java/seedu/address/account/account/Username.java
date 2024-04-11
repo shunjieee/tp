@@ -6,18 +6,14 @@ package seedu.address.account.account;
  */
 public class Username {
     public static final String MESSAGE_CONSTRAINTS = "Usernames should be alphanumeric and between 4 to 10 characters";
-    private String username;
+    private final String username;
 
     /**
      * Constructs a Username instance with the specified username.
      *
      * @param username The username string.
-     * @throws IllegalArgumentException If the username is invalid.
      */
     public Username(String username) {
-        if (!isValidUsername(username)) {
-            throw new IllegalArgumentException("Invalid username");
-        }
         this.username = username;
     }
 
@@ -37,8 +33,11 @@ public class Username {
      * @param username The username string to be checked.
      * @return True if the username is valid, false otherwise.
      */
-    public static boolean isValidUsername(String username) {
-        return username != null && username.matches("[a-zA-Z0-9]{4,10}");
+    public static boolean checkValidity(String username) {
+        boolean isNotNull = (username != null);
+        boolean isLengthValid = (username != null) && (username.length() >= 4 && username.length() <= 10);
+        boolean isAlphanumeric = (username != null) && username.matches("[a-zA-Z0-9]+");
+        return isNotNull && isLengthValid && isAlphanumeric;
     }
 
     @Override

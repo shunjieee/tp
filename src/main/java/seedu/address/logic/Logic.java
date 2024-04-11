@@ -56,4 +56,6 @@ public interface Logic {
     void setStorage(Storage storage);
 
     void linkAccountManagerToParser(AccountManager accountManager);
+
+    AccountManager getAccountManager();
 }

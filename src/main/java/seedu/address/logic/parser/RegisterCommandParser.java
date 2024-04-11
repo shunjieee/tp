@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import java.util.stream.Stream;
 
 import seedu.address.account.account.Account;
+import seedu.address.account.account.AccountList;
+import seedu.address.account.account.Password;
 import seedu.address.account.account.Username;
 import seedu.address.logic.commands.RegisterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,8 +33,9 @@ public class RegisterCommandParser {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_USERNAME, PREFIX_PASSWORD);
         Username username = ParserUtil.parseUsername(argMultimap.getValue(PREFIX_USERNAME).get());
         String password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
+        Password passwordHash = new Password(AccountList.hashPassword(password));
 
-        Account account = new Account(username, password);
+        Account account = new Account(username, passwordHash);
 
         return new RegisterCommand(account);
     }

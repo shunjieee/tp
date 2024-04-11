@@ -13,7 +13,6 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.AccountManager;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
@@ -43,7 +42,6 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected AccountManager accountManager;
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -74,7 +72,6 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        accountManager = new AccountManager(logic);
     }
 
     /**

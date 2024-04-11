@@ -154,7 +154,7 @@ public class ParserUtil {
     public static Username parseUsername(String username) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
-        if (!Username.isValidUsername(trimmedUsername)) {
+        if (!Username.checkValidity(trimmedUsername)) {
             throw new ParseException(Username.MESSAGE_CONSTRAINTS);
         }
         return new Username(trimmedUsername);
@@ -169,7 +169,7 @@ public class ParserUtil {
     public static String parsePassword(String password) throws ParseException {
         requireNonNull(password);
         String trimmedPassword = password.trim();
-        if (!Password.isValidPassword(trimmedPassword)) {
+        if (!Password.checkValidity(trimmedPassword)) {
             throw new ParseException(Password.MESSAGE_CONSTRAINTS);
         }
         return trimmedPassword;
