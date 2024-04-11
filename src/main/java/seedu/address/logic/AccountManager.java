@@ -25,7 +25,6 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.MainWindow;
 
 /**
  * Manages the current session, including the logged-in account and the associated logic manager.
