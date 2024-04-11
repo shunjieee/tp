@@ -217,10 +217,6 @@ public class MainWindow extends UiPart<Stage> {
         executeCommand("logout");
     }
 
-    private boolean checkIsLogoutCommand(String commandText) {
-        return commandText.trim().equals("logout");
-    }
-
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
