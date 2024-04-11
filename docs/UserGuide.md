@@ -507,6 +507,11 @@ E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
   <code>ARGS</code> = <code>-t</code>: List all tags available. <br>
   <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
 
+<box type="important" seamless>
+
+* `ls TAG_NAME` will return entries with any tags that have `TAG_NAME` as a substring. For example, `ls fin` might return entries with the tags `fin`, `Finance`, `CorporateFinance`, etc.
+
+</box>
 
 ### Add Tag: `tag+`
 [back to top](#table-of-contents)
@@ -544,7 +549,8 @@ Format: `undo`<br>
 <box type="important" seamless>
 
 * This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
-* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
+* All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
 
 Example:<br>
@@ -756,6 +762,7 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 ### Delete sample data
   Sample data is deleted when you add the first contact into the addressbook.<br><br>
+  
 
   <box type="definition">
     Before.<br><br>
@@ -767,6 +774,9 @@ Features are built-in for the ease of use. They do not require any commands for 
     <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
   </box>
 
+  <box type="important" seamless>
+It is important that you do **NOT** perform any operations other than adding contacts upon the sample data as there is no guarantee that this feature will work properly afterwards. 
+</box>
 
 ### Information security
   We try our best to protect the private information in your addressbook.<br><br>
@@ -805,7 +815,8 @@ the [official Java website](https://www.oracle.com/sg/java/).
 ## Known issues
 
 [back to top](#table-of-contents)
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that users add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again. 
 
 ***
 
