@@ -472,7 +472,7 @@ GUI upon successful addition command <br><br>
 ### Toggling the display: `$`
 [back to top](#table-of-contents)
 
-Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
+Toggles the display to view / hide the contacts panel of Hi:Re. This allows users to maintain a cleaner and less-cluttered application workspace, especially if there are many contacts.<br><br>
 
   Format: <code>$</code><br>
 
