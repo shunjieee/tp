@@ -14,6 +14,7 @@
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
+
   1) [Registering an Account](#registering-an-account-register)
   1) [Login into Account](#login-into-account-login)
   1) [Logout from Account](#logout-from-account-logout)
@@ -26,6 +27,7 @@
   1) [Undoing a Command](#undoing-a-command-undo)
   1) [Redoing a Command](#redoing-a-command-redo)
   1) [Link to User Guide](#link-to-our-user-guide-help)
+
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -146,6 +148,9 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 
 * Words in `()` are the parameters to be supplied by the user.<br>
   e.g. for `- /id (id)`, `(id)` is the parameter to be supplied by the user. The user will input a similar command into the command box: `- /id johndoe69`.
+
+* Words in `[...]` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) [/tag (more tags)..]`, the second `/tag` parameter may be excluded, or repeated as many times as one wants
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -308,9 +313,10 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   Adds a person to the address book.<br><br>
 
-  Format: <code>+ /name (name) /id (id) /hp (handphone)</code><br>
+  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) [/tag (more tags)...] </code><br>
 
-  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
+  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance</code><br>
+        <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance /tag Sales</code><br>
 
   <box type="important" seamless>
 
@@ -324,6 +330,10 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
   * Only one phone number is allowed. Refer to future integrations for more info. 
 
   * The name should only contain alphanumeric characters and spaces, and should not be blank.
+
+  * All tags for a person **MUST** already exist in a tag list. You can add tags to a tag list with the [add tag](#add-tag-tag) command.
+
+  * A person **MUST** have at least one tag, but can have more than one tag (like in the example)
   
   </box>
 
@@ -449,7 +459,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
 Edits a person in the address book.<br><br>
 
-Format: <code> > (id) /name (name) /hp (handphone)</code><br>
+Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) [/tag (more tags)...]</code><br>
 
 Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
@@ -466,6 +476,8 @@ Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 * If the fields match the current contact's fields exactly, the edit will still go through and not give a duplicate person error message. This is due to our unique identifier id.
 
 * Should you wish to edit the id of the person, please delete the contact and re-add the contact with the correct id. 
+
+* When editing tags, the existing tags of the person will be removed (i.e adding of tags is not cumulative.)
 
   </box>
 
@@ -534,7 +546,13 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
     <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
   </box>
 
-<div style="text-align: right;">
+  <box type="important" seamless>
+
+* Note that when the contacts panel is hidden, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+
+  </box>
+  
+  <div style="text-align: right;">
   <a href=#table-of-contents>
     back to top
     </a>
@@ -702,7 +720,8 @@ Format: `undo`<br>
 <box type="important" seamless>
 
 * This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
-* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
+* All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
 
 Example:<br>
@@ -774,6 +793,55 @@ Example:<br>
 
 ---
 
+### Exporting data: `@`
+[back to top](#table-of-contents)
+
+Exports all application data to a comma delimited file in the same directory the app is in.<br>
+
+Format: `@ /filename (filename)`<br>
+
+Example: <code> export /file contacts </code><br>
+
+  <box type="important" seamless>
+
+* Note that you need not add the `.csv` file extension to the filename argument when executing this command - the application will do this for you. Hence, typing `@ /filename contacts` will export the data to `contacts.csv`.
+  
+* The filename should follow standard filename conventions on whatever system you are using. (e.g. no special characters)
+
+* If a CSV file already exists with the given filename, the command will **not** execute and an error will be thrown.
+
+  </box>
+
+* **Confirmation of Successful Export**<br>
+
+   Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful export will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful export command <br><br>
+    <img src="images/ui/export/afterExport.png" width="452.5"><br><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+  1. Invalid Filename Error: If the given filename is invalid given for the current system, an error will be triggered.<br>
+      <box type="wrong">
+      Invalid filename error <br><br>
+      <img src="images/ui/export/invalidName.png" width="452.5"><br><br>
+      </box>
+
+  1. Filename Already Taken Error: If there already exists a CSV file with the given filename in the same directory as the program, an error will be triggered.<br>
+      <box type="wrong">
+      Filename already taken error <br><br>
+      <img src="images/ui/export/alreadyExists.png" width="452.5"><br><br>
+      </box>
+  
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+
 ## Built-In Features
 
 Features are built-in for the ease of use. They do not require any commands for it to work.
@@ -799,10 +867,10 @@ Features are built-in for the ease of use. They do not require any commands for 
 
 ---
 
-
 ### Delete sample data
 
   Sample data is deleted when you add the first contact into the addressbook.<br><br>
+  
 
   <box type="definition">
     Before.<br><br>
@@ -812,6 +880,10 @@ Features are built-in for the ease of use. They do not require any commands for 
   <box type="definition" theme="info">
     After.<br><br>
     <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
+  </box>
+  
+  <box type="important" seamless>
+    It is important that you do **NOT** perform any operations other than adding contacts upon the sample data as there is no guarantee that this feature will work properly afterwards. 
   </box>
 
 <div style="text-align: right;">
@@ -848,15 +920,6 @@ Format: `help`
   1. **Password Hashing**<br>
      We use the SHA-256 hashing algorithm to hash the passwords.<br>
      Passwords are hashed before being stored in the database.  This means that even if the database is compromised, the passwords are not easily retrievable.<br>
-  
-  2. **Data Encryption**<br>
-     We use the Advanced Encryption Standard (AES) to encrypt the data in the addressbook. <br>
-     Data in the addressbook is encrypted before being stored in the database. This means that even if the user accesses the database directly, the data is unreadable.<br>
-     <box type="important" seamless>
-           Due to the technical limitations of the application, the encryption key is stored in the application itself for now. <br>
-           This means that if the source code of application is compromised, the data can be decrypted. <br>
-           However, we are working on a more secure solution for future versions of the application.
-     </box>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -890,14 +953,18 @@ the [official Java website](https://www.oracle.com/sg/java/).
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that users add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again. 
+***
+1. When the contacts panel is hidden by `$`, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
     back to top
     </a>
   </div>
-
----
+  
+ ---
 
 ## Command summary
 

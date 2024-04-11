@@ -74,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.accountManager = new AccountManager(logic);
+        this.accountManager = logic.getAccountManager();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -204,47 +204,17 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleUndo() throws AccountException, CommandException, ParseException {
-        try {
-            if (!accountManager.getLoginStatus()) {
-                resultDisplay.setFeedbackToUser("Please login first.");
-                return;
-            }
-
-            CommandResult commandResult = logic.execute("undo");
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-        } catch (CommandException e) {
-            logger.info("An error occurred while executing command: " + "undo");
-            resultDisplay.setFeedbackToUser(e.getMessage());
-        }
+        executeCommand("undo");
     }
 
     @FXML
     private void handleRedo() throws AccountException, CommandException, ParseException {
-        try {
-            if (!accountManager.getLoginStatus()) {
-                resultDisplay.setFeedbackToUser("Please login first.");
-                return;
-            }
-
-            CommandResult commandResult = logic.execute("redo");
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-        } catch (CommandException e) {
-            logger.info("An error occurred while executing command: " + "redo");
-            resultDisplay.setFeedbackToUser(e.getMessage());
-        }
+        executeCommand("redo");
     }
 
     @FXML
-    private void handleLogout() {
-        if (!accountManager.getLoginStatus()) {
-            resultDisplay.setFeedbackToUser("You have not logged in.");
-            return;
-        }
-        accountManager.logout();
-        fillInnerParts();
-        resultDisplay.setFeedbackToUser("You have logged out.");
+    private void handleLogout() throws AccountException, CommandException, ParseException {
+        executeCommand("logout");
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -258,11 +228,6 @@ public class MainWindow extends UiPart<Stage> {
      */
 
     private CommandResult executeCommand(String commandText) throws AccountException, CommandException, ParseException {
-        if (commandText.trim().equals("logout")) {
-            handleLogout();
-            return new CommandResult("You have logged out.");
-        }
-
         CommandResult commandResult = null;
         try {
             commandResult = logic.execute(commandText);
@@ -281,12 +246,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleDisplay();
             }
 
-            if (commandResult.isLogin()) {
+            if (commandResult.isLogin() | commandResult.isLogout()) {
                 fillInnerParts();
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
         } catch (AccountException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

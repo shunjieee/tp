@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.account.account.Account;
+import seedu.address.account.account.Password;
 import seedu.address.account.account.Username;
 
 /**
@@ -26,7 +27,8 @@ public class AccountParser {
             String passwordHash = parts[1].split(":")[1].trim();
 
             Username usernameObj = new Username(username);
-            Account account = new Account(usernameObj, passwordHash);
+            Password passwordObj = new Password(passwordHash);
+            Account account = new Account(usernameObj, passwordObj);
             accounts.add(account);
         }
 
