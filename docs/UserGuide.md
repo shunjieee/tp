@@ -279,7 +279,7 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
   Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) [/tag (more tags)...] </code><br>
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance</code><br>
-        <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance /tag CorporateFinance</code><br>
+        <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag Finance /tag Sales</code><br>
 
   <box type="important" seamless>
 
@@ -488,7 +488,7 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
 
   <box type="important" seamless>
 
-* Note that when the contacts panel is hidden, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and enetering the command again.
+* Note that when the contacts panel is hidden, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
 
   </box>
 
@@ -825,7 +825,7 @@ the [official Java website](https://www.oracle.com/sg/java/).
 1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that users add a new contact immediately upon first logging into Hi:Re before executing any other commands.
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again. 
 ***
-1. When the contacts panel is hidden by `$`, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and enetering the command again.
+1. When the contacts panel is hidden by `$`, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
 ## Command summary
 
 [back to top](#table-of-contents)
