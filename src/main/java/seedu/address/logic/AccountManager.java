@@ -133,7 +133,7 @@ public class AccountManager {
             if (!tagListOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getTagListFilePath());
             }
-            initialTagList = tagListOptional.orElse(new TagList());
+            initialTagList = tagListOptional.orElse(TagList.getSampleTagList());
 
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath()
@@ -141,7 +141,7 @@ public class AccountManager {
                     + " could not be loaded."
                     + " Will be starting with an empty AddressBook and / or tag list.");
             initialData = new AddressBook();
-            initialTagList = new TagList();
+            initialTagList = TagList.getSampleTagList();
         }
 
         logic.setModel(new ModelManager(initialData, userPrefs, initialTagList));

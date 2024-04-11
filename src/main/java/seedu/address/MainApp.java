@@ -100,7 +100,7 @@ public class MainApp extends Application {
             if (!tagListOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getTagListFilePath());
             }
-            initialTagList = tagListOptional.orElse(new TagList());
+            initialTagList = tagListOptional.orElse(TagList.getSampleTagList());
 
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath()
