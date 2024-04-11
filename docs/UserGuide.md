@@ -15,15 +15,16 @@
   - [Disclaimer for Account Features(Register, Login, Logout)](#disclaimer-for-account-features-register-login-logout)  
   1) [Registering an Account](#registering-an-account-register)
   2) [Login into Account](#login-into-account-login)
-  3) [Logout from Account](#logout-from-account-logout)
-  4) [Adding a Contact](#adding-a-contact)
-  5) [Deleting a Contact](#deleting-a-contact)
-  6) [Editing a Contact](#editing-a-contact)
-  7) [Toggling the display](#toggling-the-display)
-  8) [Finding Contacts by Name](#finding-contacts-by-name)
-  9) [Listing all matching information](#listing-all-matching-information-ls)
-  10) [Undoing a Command](#undoing-a-command-undo)
-  11) [Redoing a Command](#redoing-a-command-redo)
+  2) [Logout from Account](#logout-from-account-logout)
+  2) [Adding a Contact](#adding-a-contact)
+  2) [Deleting a Contact](#deleting-a-contact)
+  3) [Editing a Contact](#editing-a-contact)
+  4) [Toggling the display](#toggling-the-display)
+  5) [Finding Contacts by Name](#finding-contacts-by-name)
+  5) [Listing all matching information](#listing-all-matching-information-ls)
+  6) [Undoing a Command](#undoing-a-command-undo)
+  7) [Redoing a Command](#redoing-a-command-redo)
+  8) [Exporting a Command](#exporting-data)
 - [Built-In Features](#built-in-features)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
@@ -617,7 +618,46 @@ Example:<br>
        <img src="images/ui/redo/2.png" width="452.5" ><br><br>
        </box>
 
+### Exporting data: `@`
+[back to top](#table-of-contents)
 
+Exports all application data to a comma delimited file in the same directory the app is in.<br>
+
+Format: `@ /filename (filename)`<br>
+
+Example: <code> export /file contacts </code><br>
+
+  <box type="important" seamless>
+
+* Note that you need not add the `.csv` file extension to the filename argument when executing this command - the application will do this for you. Hence, typing `@ /filename contacts` will export the data to `contacts.csv`.
+  
+* The filename should follow standard filename conventions on whatever system you are using. (e.g. no special characters)
+
+* If a CSV file already exists with the given filename, the command will **not** execute and an error will be thrown.
+
+  </box>
+
+* **Confirmation of Successful Export**<br>
+
+   Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful export will be displayed, as illustrated below.<br>
+
+  <box type="success">
+    GUI upon successful export command <br><br>
+    <img src="images/ui/export/afterExport.png" width="452.5"><br><br>
+  </box> 
+
+* **Error Handling Protocols**<br>
+  1. Invalid Filename Error: If the given filename is invalid given for the current system, an error will be triggered.<br>
+      <box type="wrong">
+      Invalid filename error <br><br>
+      <img src="images/ui/export/invalidName.png" width="452.5"><br><br>
+      </box>
+
+  1. Filename Already Taken Error: If there already exists a CSV file with the given filename in the same directory as the program, an error will be triggered.<br>
+      <box type="wrong">
+      Filename already taken error <br><br>
+      <img src="images/ui/export/alreadyExists.png" width="452.5"><br><br>
+      </box>
 
 <!--
 
