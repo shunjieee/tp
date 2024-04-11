@@ -21,6 +21,7 @@
   1) [Adding a Contact](#adding-a-contact)
   1) [Deleting a Contact](#deleting-a-contact)
   1) [Editing a Contact](#editing-a-contact)
+  2) [Clearing All Contacts](#clearing-all-contacts-clear)
   1) [Toggling the display](#toggling-the-display)
   1) [Finding Contacts by Name](#finding-contacts-by-name)
   1) [Listing all matching information](#listing-all-matching-information-ls)
@@ -407,14 +408,9 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   * **Confirmation of Contact Deletion**<br>
   
-  Following the accurate input of the command, if the person with the input id does exist in the address book, a window will pop up asking for your confirmation to delete.
-  Click OK to continue with the deletion. After confirmation, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
+  When the deletion is successful, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
 
   <box type="success">
-  
-  * Pop-up window for confirmation
-  
-    <img src="images/ui/delete/prompt.png" width="452.5"><br><br>
 
   * GUI upon successful addition command <br><br>
 
@@ -430,19 +426,13 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
        <img src="images/ui/delete/idnotfound.png" width="452.5"><br><br>
        </box>
     
-    2. Command Cancelled Error: When the confirmation dialog box pops up, if the user chooses to cancel the operation, it can trigger an error.
-       <box type="wrong">
-       Command cancelled error <br><br>
-       <img src="images/ui/delete/deletecancelled.png" width="452.5"><br><br>
-       </box>
-    
-    3. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
+    2. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
        <box type="wrong">
        Incomplete field error <br><br>
        <img src="images/ui/delete/insufficientfield.png" width="452.5"><br><br>
        </box>
 
-    4. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
+    3. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
         <box type="wrong">
         Invalid field error <br><br>
         <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
@@ -530,6 +520,12 @@ GUI upon successful addition command <br><br>
   </div>
 
 ---
+### Clearing all contacts:  `clear`
+[back to top](#table-of-contents)
+
+Clears all contacts from the current address book.<br>
+
+Format: `clear`<br><br>
 
 ### Toggling the display: `$`
 
