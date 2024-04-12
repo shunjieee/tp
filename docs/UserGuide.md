@@ -14,6 +14,7 @@
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
+  - [Disclaimer for Account Features(Register, Login, Logout)](#disclaimer-for-account-features-register-login-logout)
 
   1) [Registering an Account](#registering-an-account-register)
   1) [Login into Account](#login-into-account-login)
@@ -164,6 +165,19 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
   </div>
 
 ---
+
+### Disclaimer for Account Features (Register, Login, Logout)
+
+[back to top](#table-of-contents)
+
+While our Account Features seem to say that our product is a multi-user product, 
+we would like to clarify that our intended purpose is a **single user product**.
+
+Companies often form partnerships and share resources. 
+
+Therefore, HR employees may be **required to use multiple address books** to effectively manage employees from different companies. 
+
+To **safeguard the information of each company**, the use of multiple address books locked behind different user accounts and passwords **is essential**.
 
 ### Registering an Account: `register`
 
@@ -329,14 +343,16 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
   * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
   * The phone number should only contain numbers, and it should be at least 3 digits long.
+
   * Only one phone number is allowed. Refer to future integrations for more info. 
 
-  * The name should only contain alphanumeric characters and spaces, and should not be blank.
+  * Fields that are long will have the text wrapped appropriately.
+
+  * The name should only contain alphanumeric characters and spaces, and should not be blank. S/O and hyphened names(E.g Rui-En) are not supported in our current product.
 
   * All tags for a person **MUST** already exist in a tag list. You can add tags to a tag list with the [add tag](#add-tag-tag) command.
 
   * A person **MUST** have at least one tag, but can have more than one tag (like in the example)
-  
   </box>
 
   (The Initial UI before addition)                       
