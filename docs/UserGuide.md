@@ -825,11 +825,6 @@ You can reverse the most recently undone command.<br><br>
 
 Format: `redo`<br>
 
-  <box type="important" seamless>
-
-* This command can also be used by clicking in the `edit` section of the menu bar.  <br>
-
-  </box>
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
