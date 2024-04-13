@@ -1002,9 +1002,9 @@ the [official Java website](https://www.oracle.com/sg/java/).
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that users add a new contact immediately upon first logging into Hi:Re before executing any other commands.
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again. 
-***
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 1. When the contacts panel is hidden by `$`, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. Thus, if the result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+2. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start. 
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
