@@ -192,15 +192,14 @@ Example: `register /u johndoe /p 123456`<br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
 * Usernames are unique and cannot be duplicated.<br><br>
   </box>
-
-**Confirmation of Successful Registration**<br>
+* **Confirmation of Successful Registration**<br>
 
 If the user registers successfully, a graphical user interface (GUI) indicative of a successful registration will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful register command <br><br>
     <img src="images/ui/register/1.png" width="452.5" ><br>
-  </box> 
+  </box>
 
 * **Error Handling Protocols**<br>
 
@@ -247,10 +246,12 @@ Example: `login /u johndoe /p 123456`<br>
 * A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
   </box>
-
-**Confirmation of Successful Login**<br>
+* **Confirmation of Successful Login**<br>
 
 If the user Logins successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+After you log in successfully, you can see the current addressbook file you are accessing in the status bar at the bottom of the application. 
+Depending on your system, the file path may be displayed differently. But you should at least see the correct username appearing in the status.<br>
+(Before you log in, the status bar should display "No user currently logged in" or "User .\data\addressbook.json has logged in", depending on your system.)
 
   <box type="success">
     GUI upon successful login command <br><br>
@@ -298,9 +299,17 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
 ### Logout from Account: `logout`
 
 After you end accessing your addressbook, log out to protect the data. <br><br>
-Format: `logout`<br><br>
+Format: `logout`<br>
 
-**Confirmation of Successful Logout**<br>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also log out by clicking in the `Account` section of the menu bar.
+
+</div>
+
+* **Confirmation of Successful Logout**<br>
+
 
 If the user Logouts successfully, a graphical user interface (GUI) indicative of a successful logout will be displayed, as illustrated below.<br>
 
@@ -537,17 +546,30 @@ GUI upon successful addition command <br><br>
 
 ---
 ### Clearing all contacts:  `clear`
-[back to top](#table-of-contents)
 
-Clears all contacts from the current address book.<br>
+Clears all contacts from the current address book.<br><br>
 
-Format: `clear`<br><br>
+Format: `clear`<br>
+
+  </box>
+
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
 ### Toggling the display: `$`
 
 Toggles the display to view / hide the contacts panel of Hi:Re. This allows users to maintain a cleaner and less-cluttered application workspace, especially if there are many contacts.<br><br>
 
   Format: <code>$</code><br>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `View` section of the menu bar.
+
+</div>
 
   <box type="definition">
     Viewing contacts.<br><br>
@@ -728,17 +750,23 @@ Example:
 
 ### Undoing a Command: `undo`
 
-Restores the address book to the state before the previous **undoable** command was executed.<br>
+Restores the address book to the state before the previous **undoable** command was executed.<br><br>
+
 Format: `undo`<br>
 <box type="important" seamless>
 
-* This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
 * Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
 * All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
+
+</div>
 
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
+1. Delete the person with the id `johndoe41`.<br><br>
 2. Undo the deletion. The person will reappear.<br><br>
 
 * **Confirmation of Successful Undo**<br>
@@ -768,7 +796,8 @@ Example:<br>
 
 ### Redoing a Command: `redo`
 
-Reverses the most recently undone command.<br>
+Reverses the most recently undone command.<br><br>
+
 Format: `redo`<br>
 
   <box type="important" seamless>
@@ -776,6 +805,12 @@ Format: `redo`<br>
 * This command can also be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
 
   </box>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
+
+</div>
 Example:<br>
 1. Delete the person with the id `johndoe41`.<br>
 2. Undo the deletion. The person will reappear.<br>
