@@ -790,7 +790,7 @@ You can also use this command by clicking in the `Edit` section of the menu bar.
 </div>
 
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br><br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
 2. Undo the deletion. The person will reappear.<br><br>
 
 * **Confirmation of Successful Undo**<br>
@@ -832,8 +832,8 @@ You can also use this command by clicking in the `Edit` section of the menu bar.
 
 </div>
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
-2. Undo the deletion. The person will reappear.<br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
+2. Undo the deletion. The person will reappear.<br><br>
 3. Redo the undone deletion. The person will be deleted again.<br><br>
 
 * **Confirmation of Successful Redo**<br>
