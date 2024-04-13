@@ -34,6 +34,7 @@
 14) [Link to User Guide](#link-to-our-user-guide-help)
 ---
 - [Built-In Features](#built-in-features)
+- [Design Methodology](#design-methodology)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
@@ -958,6 +959,42 @@ Format: `help`
     back to top
     </a>
   </div>
+
+---
+
+## Design Methodology
+
+Our software development team has meticulously crafted this application to provide
+you with a seamless and intuitive user experience.
+At the heart of our design methodology lies a commitment to simplicity, efficiency, and user-centricity.
+
+**Dark Blue UI for Enhanced Comfort**
+
+Our application features a sophisticated dark blue user interface, carefully chosen to promote relaxation and reduce eye
+strain during extended usage sessions. We understand the importance of creating an environment that is both visually
+appealing and gentle on the eyes. By embracing dark blue as our primary color scheme, we aim to enhance your overall
+experience and encourage prolonged engagement with the application.
+
+**Toggle Display Option for Streamlined Navigation**
+
+Navigating through large amounts of contact data can be overwhelming. That's why we've implemented a convenient toggle display
+option, allowing you to effortlessly hide or reveal extensive contact data sets with a simple click. This feature empowers you
+to customize your viewing experience, providing flexibility and control over the information displayed on your screen.
+Whether you're focusing on specific details or seeking a clutter-free interface, our toggle display option ensures seamless
+navigation and enhanced productivity.
+
+**Command-based Data Entry System**
+
+We believe in minimizing unnecessary mouse usage and maximizing efficiency in data entry tasks. Our application boasts
+a streamlined command-based data entry system, designed to simplify the input process and minimize user effort.
+By leveraging intuitive keyboard commands, you can swiftly navigate through fields, input data, and execute commands
+with precision and speed. This approach not only accelerates contact manipulation tasks but also reduces cognitive load, allowing
+you to focus on your workflow without distractions.
+
+**In summary**, our application's design methodology is guided by a dedication to user comfort, efficiency, and accessibility.
+From the calming dark blue UI to the streamlined command-based data entry system, every aspect of our design reflects our
+unwavering commitment to enhancing your productivity and satisfaction.
+
 
 ---
 
