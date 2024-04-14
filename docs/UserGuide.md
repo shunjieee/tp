@@ -198,15 +198,14 @@ Example: `register /u johndoe /p 123456`<br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
 * Usernames are unique and cannot be duplicated.<br><br>
   </box>
- 
-**Confirmation of Successful Registration**<br>
+* **Confirmation of Successful Registration**<br>
 
 If you register successfully, a GUI indicative of a successful registration will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful register command <br><br>
     <img src="images/ui/register/1.png" width="452.5" ><br>
-  </box> 
+  </box>
 
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
@@ -256,10 +255,12 @@ Example: `login /u johndoe /p 123456`<br>
 * A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
   </box>
+* **Confirmation of Successful Login**<br>
 
-**Confirmation of Successful Login**<br>
-
-If you log in successfully, a GUI indicative of a successful login will be displayed, as illustrated below.<br>
+If you login successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+After you log in successfully, you can see the current addressbook file you are accessing in the status bar at the bottom of the application. 
+Depending on your system, the file path may be displayed differently. But you should at least see the correct username appearing in the status.<br>
+(Before you log in, the status bar should display "No user currently logged in" or "User .\data\addressbook.json has logged in", depending on your system.)<br>
 
   <box type="success">
     GUI upon successful login command <br><br>
@@ -310,9 +311,16 @@ If you log in successfully, a GUI indicative of a successful login will be displ
 ### Logout from Account: `logout`
 
 Once done accessing your addressbook, log out to protect your data. <br><br>
-Format: `logout`<br><br>
+Format: `logout`<br>
 
-**Confirmation of Successful Logout**<br>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also log out by clicking in the `Account` section of the menu bar.
+
+</div>
+
+* **Confirmation of Successful Logout**<br>
 
 If you log out successfully, a GUI indicative of a successful logout will be displayed, as illustrated below.<br>
 
@@ -558,11 +566,18 @@ GUI upon successful addition command <br><br>
 ---
 
 ### Clearing all contacts:  `clear`
-[back to top](#table-of-contents)
 
-You can clear all contacts from the current addressbook.<br>
+You can clear all contacts from the current addressbook.<br><br>
 
-Format: `clear`<br><br>
+Format: `clear`<br>
+
+  </box>
+
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
@@ -573,6 +588,12 @@ You can toggle the display to view / hide the contacts panel of Hi:Re.
 This gives you a cleaner and less-cluttered application workspace, especially if there are many contacts.<br><br>
 
   Format: <code>$</code><br>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `View` section of the menu bar.
+
+</div>
 
   <box type="important" seamless>
 
@@ -753,17 +774,23 @@ Example:
 
 ### Undoing a Command: `undo`
 
-You can restore the address book to the state before the previous **undoable** command was executed.<br>
+You can restore the address book to the state before the previous **undoable** command was executed.<br><br>
+
 Format: `undo`<br>
 <box type="important" seamless>
 
-* This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
 * Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
 * All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
+
+</div>
 
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
 2. Undo the deletion. The person will reappear.<br><br>
 
 * **Confirmation of Successful Undo**<br>
@@ -794,17 +821,19 @@ Example:<br>
 
 ### Redoing a Command: `redo`
 
-You can reverse the most recently undone command.<br>
+You can reverse the most recently undone command.<br><br>
+
 Format: `redo`<br>
 
-  <box type="important" seamless>
+<div markdown="block" class="alert alert-primary">
 
-* This command can also be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
 
-  </box>
+</div>
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
-2. Undo the deletion. The person will reappear.<br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
+2. Undo the deletion. The person will reappear.<br><br>
 3. Redo the undone deletion. The person will be deleted again.<br><br>
 
 * **Confirmation of Successful Redo**<br>
@@ -988,6 +1017,7 @@ the [official Java website](https://www.oracle.com/sg/java/).
 1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re before executing any other commands.
 1. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything.
    Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+2. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
