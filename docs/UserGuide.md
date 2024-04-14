@@ -32,7 +32,7 @@
 12) [Redoing a Command](#redoing-a-command-redo)
 13) [Exporting to CSV](#exporting-data)
 14) [Link to User Guide](#link-to-our-user-guide-help)
-15) [Exit the Hi:Re application](#exit-the-hi-re-application-exit)
+15) [Exit the Hi:Re application](#exit-the-application-exit)
 ---
 - [Built-In Features](#built-in-features)
 - [Design Methodology](#design-methodology)
@@ -907,7 +907,7 @@ Format: `help`
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-### Exit the Hi:Re application: `exit`
+### Exit the application: `exit`
 
 Logs the user out of their account, and closes the Hi:Re application window.
 
