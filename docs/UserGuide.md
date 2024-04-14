@@ -15,23 +15,24 @@
 - [Quick Start](#quick-start)
 - [Commands](#commands)
 ---
-1) [Registering an Account](#registering-an-account-register)
-2) [Login into Account](#login-into-account-login)
-3) [Logout from Account](#logout-from-account-logout)
+1) [Registering an Account](#registering-an-account--register)
+2) [Login into Account](#login-into-account--login)
+3) [Logout from Account](#logout-from-account--logout)
 ---
-4) [Adding a Contact](#adding-a-contact)
-5) [Deleting a Contact](#deleting-a-contact)
-6) [Editing a Contact](#editing-a-contact)
-7) [Clearing all Contacts](#clearing-all-contacts-clear)
+4) [Adding a Contact](#adding-a-contact--)
+5) [Deleting a Contact](#deleting-a-contact---)
+6) [Editing a Contact](#editing-a-contact--)
+7) [Clearing all Contacts](#clearing-all-contacts--clear)
 ---
-8) [Toggling the display](#toggling-the-display)
-9) [Finding Contacts by Name](#finding-contacts-by-name)
-10) [Listing all matching information](#listing-all-matching-information-ls)
+8) [Toggling the display](#toggling-the-display--)
+9) [Finding Contacts by Name](#finding-contacts-by-name--)
+10) [Listing all matching information](#listing-all-matching-information--ls)
 ---
-11) [Undoing a Command](#undoing-a-command-undo)
-12) [Redoing a Command](#redoing-a-command-redo)
-13) [Exporting to CSV](#exporting-data)
-14) [Link to User Guide](#link-to-our-user-guide-help)
+11) [Undoing a Command](#undoing-a-command--undo)
+12) [Redoing a Command](#redoing-a-command--redo)
+13) [Exporting to CSV](#exporting-data--)
+14) [Link to User Guide](#link-to-our-user-guide--help)
+15) [Exit the Hi:Re application](#exit-the-hi--re-application--exit)
 ---
 - [Built-In Features](#built-in-features)
 - [Design Methodology](#design-methodology)
@@ -886,6 +887,41 @@ Example: <code> export /file contacts </code><br>
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
+### Link to our User Guide: `help`
+
+Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
+
+Format: `help`
+
+ <box type="success">
+    Pop-up box upon running the command.<br><br>
+    <img src="images/ui/help/1.png" width="452.5"><br><br>
+  </box>
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+### Exit the Hi:Re application: `exit`
+
+Logs the user out of their account, and closes the Hi:Re application window.
+
+Format: `exit`
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Built-In Features
 
 Features are built-in for your ease of use. No commands are required for it to work.
@@ -917,25 +953,6 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
   <box type="definition" theme="info">
     After:<br><br>
     <img src="images/ui/sampledata/after.png" width="452.5" height="350.5"><br><br>
-  </box>
-
-<div style="text-align: right;">
-  <a href=#table-of-contents>
-    back to top
-    </a>
-  </div>
-
----
-
-### Link to our User Guide: `help`
-
-Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
-
-Format: `help`
-
- <box type="success">
-    Pop-up box upon running the command.<br><br>
-    <img src="images/ui/help/1.png" width="452.5"><br><br>
   </box>
 
 <div style="text-align: right;">
