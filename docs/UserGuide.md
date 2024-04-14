@@ -519,7 +519,7 @@ Feel free to input the details in any sequence.
   </box>
 
 (The Initial UI before editing)                       
-<img src="images/ui/edit/beforeEdit.png" width="500" height="250"><br>
+<img src="images/ui/edit/beforeEdit.png" width="500"><br>
 
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
@@ -528,7 +528,7 @@ Feel free to input the details in any sequence.
 Following a valid set of inputs for the command, a GUI indicative of a successful contact addition will be displayed, as illustrated below.
 <box type="success">
 GUI upon successful addition command <br><br>
-<img src="images/ui/edit/afterEdit.png" width="500" height="250"><br><br>
+<img src="images/ui/edit/afterEdit.png" width="500"><br><br>
 </box>
 
 * **Error Handling Protocols**<br>
@@ -1083,12 +1083,26 @@ the [official Java website](https://www.oracle.com/sg/java/).
 
 ## Command summary
 
-Action     | Format
------------|---------
-**Add**    | `+ /name (name) /id (id) /hp (handphone)`
-**Delete** | `- /id (id)`
-**Edit** | `> (id) /name (name) /hp (handphone)`
-**Toggle** | `$`
+Action | Command Format
+---|---
+**Register** an account | `register /u (username) /p (password)`
+**Login** into an account | `login /u (username) /p (password)`
+**Logout** from an account | `logout`
+**Add** a contact | `+ /name (name) /id (id) /hp (handphone) /tag (tag) {/tag (more tags)...}`
+**Delete** a contact | `- /id (id)`
+**Edit** a contact | `> (id) /name (name) /hp (handphone) /tag (tag) {/tag (more tags)...}`
+**Clear** all contacts | `clear`
+**Toggle** display | `$`
+**Find** contacts by name | `? (keyword) {(more keywords)...}`
+**List** all matching information | `ls (args)`
+**Add** a **tag** | `tag+ (tag_name)`
+**Delete** a **tag** | `tag- (tag_name)`
+**Undo** previous command | `undo`
+**Redo** a command | `redo`
+**Export** data | `@`
+Link to user guide | `help`
+**Exit** the application | `exit`
+
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
