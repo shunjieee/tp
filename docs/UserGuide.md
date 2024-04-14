@@ -133,7 +133,7 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
-1. Type commands in the `command box` and press `Enter` to execute it, but first...
+1. Type commands in the `command box` and press the `[Enter]` key to execute it, but first...
 
 1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
 
@@ -162,8 +162,8 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 * Words in `()` are the parameters to be supplied by you, the user.<br>
   e.g. for `- /id (id)`, `(id)` is the parameter to be supplied by you. Input a similar command as follows into the command box: `- /id johndoe69`.
 
-* Words in `[...]` are optional and may be repeated.
-  e.g. in  `> /id (id) /tag (tag) [/tag (more tags)..]`, the second `/tag` parameter may be excluded, or repeated as many times as you want.
+* Words in `{...}` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) {/tag (more tags)..}`, the second `/tag` parameter may be excluded, or repeated as many times as you want.
 
 * When using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to Hi:Re.
 </box>
@@ -343,7 +343,7 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
 
   You can add a contact to the addressbook.<br><br>
 
-  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) [/tag (more tags)...] </code><br>
+  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) {/tag (more tags)...} </code><br>
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance</code><br>
         <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance /tag sales</code><br>
@@ -486,7 +486,7 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
 
 You can edit a contact's details in the addressbook.<br><br>
 
-Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) [/tag (more tags)...]</code><br>
+Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) {/tag (more tags)...}</code><br>
 
 Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
@@ -604,7 +604,7 @@ Thus, if your result of one of these commands is unexpectedly empty, try togglin
 
 You can find all contacts in the addressbook that has names containing the keyword(s) entered.
 
-Format: <code> ? (keyword) [(more keywords)...] </code><br>
+Format: <code> ? (keyword) {(more keywords)...} </code><br>
 
 <box type="important" seamless>
 
@@ -641,7 +641,7 @@ Format: <code>ls (args)</code><br>
 
 <code>(args)</code> = <code>-a</code>: List all contacts in the address book. <br>
 <code>(args)</code> = <code>-t</code>: List all tags available. <br>
-<code>(args)</code> = <code>(tag_name) [(more tag_name)...] </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
+<code>(args)</code> = <code>(tag_name) {(more tag_name)...} </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
 
 <box type="important" seamless>
 
