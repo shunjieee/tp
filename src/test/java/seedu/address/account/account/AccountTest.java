@@ -11,33 +11,13 @@ public class AccountTest {
 
     @Test
     public void testGetUsername() {
-        Account account = new Account(new Username(TEST_USERNAME), TEST_PASSWORD_HASH);
+        Account account = new Account(new Username(TEST_USERNAME), new Password(TEST_PASSWORD_HASH));
         assertEquals(new Username(TEST_USERNAME), account.getUsername());
     }
 
     @Test
     public void testGetPasswordHash() {
-        Account account = new Account(new Username(TEST_USERNAME), TEST_PASSWORD_HASH);
-        assertEquals(TEST_PASSWORD_HASH, account.getPasswordHash());
-    }
-
-    @Test
-    public void testSetPasswordHash() {
-        Account account = new Account(new Username(TEST_USERNAME), TEST_PASSWORD_HASH);
-        account.setPasswordHash(WRONG_PASSWORD_HASH);
-        assertEquals(WRONG_PASSWORD_HASH, account.getPasswordHash());
-    }
-
-    @Test
-    public void testCheckPassword() {
-        Account account = new Account(new Username(TEST_USERNAME), TEST_PASSWORD_HASH);
-        assertEquals(true, account.checkPassword(TEST_PASSWORD_HASH));
-        assertEquals(false, account.checkPassword(WRONG_PASSWORD_HASH));
-    }
-
-    @Test
-    public void testCheckUsername() {
-        Account account = new Account(new Username(TEST_USERNAME), TEST_PASSWORD_HASH);
-        assertEquals(true, account.checkUsername(new Username(TEST_USERNAME)));
+        Account account = new Account(new Username(TEST_USERNAME), new Password(TEST_PASSWORD_HASH));
+        assertEquals(TEST_PASSWORD_HASH, account.getPasswordHash().getHashedPassword());
     }
 }

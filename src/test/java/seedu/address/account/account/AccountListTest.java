@@ -13,16 +13,19 @@ public class AccountListTest {
     @Test
     public void testAddAccount() {
         AccountList accountList = new AccountList();
-        Account account = new Account(new Username(TEST_USERNAME), accountList.hashPassword(TEST_PASSWORD));
+        Account account = new Account(new Username(TEST_USERNAME),
+                new Password(accountList.hashPassword(TEST_PASSWORD)));
         assertTrue(accountList.addAccount(account));
     }
 
     @Test
     public void testAuthenticate() {
         AccountList accountList = new AccountList();
-        Account account = new Account(new Username(TEST_USERNAME), accountList.hashPassword(TEST_PASSWORD));
+        Account account = new Account(new Username(TEST_USERNAME),
+                new Password(accountList.hashPassword(TEST_PASSWORD)));
         accountList.addAccount(account);
-        assertNotNull(accountList.authenticate(TEST_USERNAME, accountList.hashPassword(TEST_PASSWORD)));
+        assertNotNull(accountList.authenticate(new Username(TEST_USERNAME),
+                new Password(accountList.hashPassword(TEST_PASSWORD))));
     }
 
     @Test

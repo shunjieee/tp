@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
 import seedu.address.account.account.Account;
+import seedu.address.account.account.Password;
 import seedu.address.account.account.Username;
 import seedu.address.logic.AccountManager;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,6 +31,10 @@ public class LoginCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_USERNAME + " john1234 "
             + PREFIX_PASSWORD + " qweasd123 ";
+
+    public static final String MESSAGE_LOGIN_SUCCESS = "Login successful.";
+    public static final String MESSAGE_LOGIN_FAILURE = "Login failed. Invalid username or password.";
+    public static final String MESSAGE_ALREADY_LOGGED_IN = "You are already logged in.";
 
     /**
      * The account to be logged in.
@@ -68,16 +73,28 @@ public class LoginCommand extends Command {
      */
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(accountManager);
+        boolean isUserLogin = accountManager.getLoginStatus();
+        if (isUserLogin) {
+            throw new CommandException(MESSAGE_ALREADY_LOGGED_IN);
+        }
 
-        String passwordHashed = accountManager.getAccountList().hashPassword(account.getPasswordHash());
-        Username username = account.getUsername();
-        Account accountToLogin = accountManager.getAccountList().authenticate(username.getUsername(), passwordHashed);
-
+        Account accountToLogin = searchAccountInList();
         if (accountToLogin != null) {
             accountManager.login(accountToLogin);
-            return new CommandResult("Login successfully.", false, false, false, true, false);
+            return new CommandResult(MESSAGE_LOGIN_SUCCESS, false, false, false, true, false);
         } else {
-            throw new CommandException("Login failed. Invalid username or password.");
+            throw new CommandException(MESSAGE_LOGIN_FAILURE);
         }
+    }
+
+    /**
+     * Searches for the account in the account list.
+     *
+     * @return The account if found, null otherwise.
+     */
+    public Account searchAccountInList() {
+        Username username = account.getUsername();
+        Password passwordHash = account.getPasswordHash();
+        return accountManager.getAccountList().authenticate(username, passwordHash);
     }
 }

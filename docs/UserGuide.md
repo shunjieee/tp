@@ -6,29 +6,43 @@
 
 # Hi:Re User Guide
 
+---
+
 ## Table of Contents
 
 - [Welcome Note](#welcome-note)
 - [Product Information](#product-information)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
-  1) [Registering an Account](#registering-an-account-register)
-  2) [Login into Account](#login-into-account-login)
-  2) [Logout from Account](#logout-from-account-logout)
-  2) [Adding a Contact](#adding-a-contact)
-  2) [Deleting a Contact](#deleting-a-contact)
-  3) [Editing a Contact](#editing-a-contact)
-  4) [Toggling the display](#toggling-the-display)
-  5) [Finding Contacts by Name](#finding-contacts-by-name)
-  5) [Listing all matching information](#listing-all-matching-information-ls)
-  6) [Undoing a Command](#undoing-a-command-undo)
-  7) [Redoing a Command](#redoing-a-command-redo)
+---
+1) [Registering an Account](#registering-an-account-register)
+2) [Login into Account](#login-into-account-login)
+3) [Logout from Account](#logout-from-account-logout)
+---
+4) [Adding a Contact](#adding-a-contact)
+5) [Deleting a Contact](#deleting-a-contact)
+6) [Editing a Contact](#editing-a-contact)
+7) [Clearing all Contacts](#clearing-all-contacts-clear)
+---
+8) [Toggling the display](#toggling-the-display)
+9) [Finding Contacts by Name](#finding-contacts-by-name)
+10) [Listing all matching information](#listing-all-matching-information-ls)
+---
+11) [Undoing a Command](#undoing-a-command-undo)
+12) [Redoing a Command](#redoing-a-command-redo)
+13) [Exporting to CSV](#exporting-data)
+14) [Link to User Guide](#link-to-our-user-guide-help)
+15) [Exit the Hi:Re application](#exit-the-application-exit)
+---
 - [Built-In Features](#built-in-features)
+- [Design Methodology](#design-methodology)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
 - [Future Integrations](#future-integrations)
 - [Support and Feedback](#support-and-feedback)
+
+---
 
 ## Welcome Note
 Greetings HR employees, managers and executives! 
@@ -38,26 +52,38 @@ Greetings HR employees, managers and executives!
 - Frustrated by the **slow input** of cell by cell in such applications?
 - Need an economically viable HR application?
 
-*Well, Hi:Re, our one-stop employee profiling application is for you!*
+*Hi:Re, our one-stop employee profiling application is for you!*
+
+#### **User Guide Purpose:** 
+
+This user guide serves to provide potential users like you with the information of Hi:Re, and 
+to help new users onboard quickly and easily with Hi:Re. 
 
 We recommend reading our **[product information](#product-information)** section first to understand what Hi:Re
-can do for you and if it suits your companies' needs! After that, 
-dive into the **[quick start](#quick-start)** section, and we hope you 
+can do for you and if it suits your companies' needs! After that,
+dive into the **[quick start](#quick-start)** section, and we hope you
 enjoy using Hi:Re as your company's HR employee profiling solution!
 
+- Encounter any problems with commands? Our [Command](#commands) section provides step-by-step usage with examples, as well as error troubleshooting!
+- Have any burning questions? Our [FAQ](#faq) and [Known Issues](#known-issues) sections outlines the most common scenarios faced by users like you!
+- Curious about our future plans? Our [Future Integration](#future-integrations) section gives you a glimpse as to what is to come!
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-***
+---
 
 ## Product Information
 
-[back to top](#table-of-contents)
-
-Hi:Re is a **desktop app for managing employee details,
+Hi:Re is a **desktop app for managing your employee details,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-That means most work is done via *typing* commands on a command line instead of *clicking* with your mouse!
+*Meaning:* Most work is done via *typing* commands on a command line instead of *clicking* with your mouse!
+
 - **Fast types**, Hi:Re will be your **best assistant** to get your contact management tasks done
   **faster** than traditional GUI apps.
 - Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master**
@@ -65,34 +91,36 @@ That means most work is done via *typing* commands on a command line instead of 
 
 <box type="info" seamless> 
 
-**IMPORTANT: In Hi:Re, we adopt a system where contacts are identified by their email id(company email) without the
+**IMPORTANT: In Hi:Re, we adopt a system where contacts are identified by their email id(ID for short) without the
 company email domain.** <br> 
 
-*John is identified by his email id, john123 without the domain, @123company.com*
+*John is identified by his ID, john123 without the domain, @123company.com*
 
 Hence, we allow duplicate names and handphone numbers.
 Contacts are also labelled with one mandatory tag and optional additional tags.
 </box>
 
 
-Breakdown of commands:
-1) Register, Login and Logout: Data Management
-2) Adding a Contact 
-3) Deleting a Contact 
-4) Edit a Contact 
-5) Toggling the Display 
-6) Find Contacts by name 
-7) Listing all matching information 
-8) Undoing a Command
-9) Redoing a Command 
-10) Export data into .csv file
+<u>Breakdown of commands</u>:
+1) Account Management: Register, Login and Logout
+2) Data Manipulation: Adding, Deleting, Editing a Contact and Clearing all Contacts
+3) Data Observation: Toggling the Display, Finding Contacts by name, Listing all matching information 
+4) Command Management: Undoing and Redoing a Command 
+5) Data Portability: Exporting to .csv file
+6) Link to our User Guide
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-## Quick start
-[back to top](#table-of-contents)
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## Quick Start
+
+1. Ensure you have `Java 11` or above installed in your Computer.
 
 1. Download the latest `HiRe.jar` from [here](https://github.com/AY2324S2-CS2103T-T12-3/tp/releases).
 
@@ -106,7 +134,7 @@ Breakdown of commands:
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
-1. Type commands in the `command box` and press `Enter` to execute it, but first...
+1. Type commands in the `command box` and press the `[Enter]` key to execute it, but first...
 
 1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
 
@@ -116,54 +144,72 @@ Breakdown of commands:
 
 1. Refer to the [Built-In Features](#features) below for details of built-in features.
 
-***
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Commands
-[back to top](#table-of-contents)
 
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
-* Words in `()` are the parameters to be supplied by the user.<br>
-  e.g. in `- /id (id)`, `(id)` is a parameter which can be used as `- /id johndoe69`.
+* Words in `()` are the parameters to be supplied by you, the user.<br>
+  e.g. for `- /id (id)`, `(id)` is the parameter to be supplied by you. Input a similar command as follows into the command box: `- /id johndoe69`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* Words in `{...}` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) {/tag (more tags)..}`, the second `/tag` parameter may be excluded, or repeated as many times as you want.
+
+* When using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to Hi:Re.
 </box>
 
-<!--
-### Viewing help : `help`
+#### Disclaimer for Account Features (Register, Login, Logout)
 
-Shows a message explaning how to access the help page.
+While our Account Features seem to say that our product is a multi-user product,
+we would like to clarify that our intended purpose is a **single user product**.
 
-![help message](images/helpMessage.png)
+Companies often form partnerships and share resources.
 
-Format: `help`
--->
+Therefore, HR employees like you may be **required to use multiple address books** to effectively manage employees from different companies.
+
+To **safeguard the information of each company**, the use of multiple address books locked behind different user accounts and passwords **is essential**.
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ### Registering an Account: `register`
-[back to top](#table-of-contents)
 
-Register an account first to have your own address book!<br><br>
+Register an account first to have your own addressbook!<br><br>
 Format: `register /u (username) /p (password)`<br><br>
 Example: `register /u johndoe /p 123456`<br>
 
   <box type="important" seamless>
 
-* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
 * A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
-* Usernames are unique and cannot be duplicated.  <br>
+* Usernames are unique and cannot be duplicated.<br><br>
   </box>
+* **Confirmation of Successful Registration**<br>
 
-**Confirmation of Successful Registration**<br>
-
-If the user registers successfully, a graphical user interface (GUI) indicative of a successful registration will be displayed, as illustrated below.<br>
+If you register successfully, a GUI indicative of a successful registration will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful register command <br><br>
     <img src="images/ui/register/1.png" width="452.5" ><br>
-  </box> 
+  </box>
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 * **Error Handling Protocols**<br>
 
@@ -177,6 +223,7 @@ If the user registers successfully, a graphical user interface (GUI) indicative 
        Incomplete fields error <br><br>
        <img src="images/ui/register/3.png" width="452.5" ><br><br>
        </box>
+
     3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
        <box type="wrong">
        Invalid fields error <br><br>
@@ -190,28 +237,39 @@ If the user registers successfully, a graphical user interface (GUI) indicative 
        <img src="images/ui/register/5.png" width="452.5"><br><br>
        </box>
 
-### Login into Account: `login`
-[back to top](#table-of-contents)
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-Login to access your addressbook. <br><br>
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+### Login into Account: `login`
+
+Log in to access your addressbook. <br><br>
 Format: `login /u (username) /p (password)`<br><br>
 Example: `login /u johndoe /p 123456`<br>
 
   <box type="important" seamless>
 
-* This command can also be used by clicking in the `Account` section of the menu bar.  <br><br>
 * A valid password is between 6 and 20 characters long and does not contain spaces. <br><br>
 * A valid username should be alphanumeric and between 4 and 10 characters long. <br><br>
   </box>
+* **Confirmation of Successful Login**<br>
 
-**Confirmation of Successful Login**<br>
-
-If the user Logins successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+If you login successfully, a graphical user interface (GUI) indicative of a successful login will be displayed, as illustrated below.<br>
+After you log in successfully, you can see the current addressbook file you are accessing in the status bar at the bottom of the application. 
+Depending on your system, the file path may be displayed differently. But you should at least see the correct username appearing in the status.<br>
+(Before you log in, the status bar should display "No user currently logged in" or "User .\data\addressbook.json has logged in", depending on your system.)<br>
 
   <box type="success">
     GUI upon successful login command <br><br>
     <img src="images/ui/login/success.png" width="452.5" height="369.5"><br>
   </box> 
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 * **Error Handling Protocols**<br>
 
@@ -243,15 +301,30 @@ If the user Logins successfully, a graphical user interface (GUI) indicative of 
        <img src="images/ui/login/5.png" width="452.5" ><br><br>
        </box>
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ### Logout from Account: `logout`
-[back to top](#table-of-contents)
 
-After you end accessing your addressbook, log out to protect the data. <br><br>
-Format: `logout`<br><br>
+Once done accessing your addressbook, log out to protect your data. <br><br>
+Format: `logout`<br>
 
-**Confirmation of Successful Logout**<br>
+<div markdown="block" class="alert alert-primary">
 
-If the user Logouts successfully, a graphical user interface (GUI) indicative of a successful logout will be displayed, as illustrated below.<br>
+**:bulb: Tip**<br>
+You can also log out by clicking in the `Account` section of the menu bar.
+
+</div>
+
+* **Confirmation of Successful Logout**<br>
+
+If you log out successfully, a GUI indicative of a successful logout will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful logout command <br><br>
@@ -266,37 +339,53 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
        <img src="images/ui/logout/notloggederror.png" width="452.5" ><br><br>
        </box>
 
-       
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ### Adding a contact: `+`
-[back to top](#table-of-contents)
 
-  Adds a person to the address book.<br><br>
+  You can add a contact to the addressbook.<br><br>
 
-  Format: <code>+ /name (name) /id (id) /hp (handphone)</code><br>
+  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) {/tag (more tags)...} </code><br>
 
-  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432</code><br>
+  Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance</code><br>
+        <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance /tag sales</code><br>
 
   <box type="important" seamless>
 
-  * The order of input values is interchangeable and doesn't matter. Feel free to input the details in any sequence as long as all required information is provided.
+  * The order of each prefix and field set is interchangeable. Feel free to input each set of details in any sequence as long as all required information is provided.
 
-  * The ID must be unique for each contact. ID cannot duplicate with existing IDs. Attempting to use a duplicate ID will result in an error.
+  * The name should only contain alphanumeric characters and spaces, and should not be blank. S/O and hyphened names(E.g Rui-En) are not supported in our current product.
+
+  * The ID must be unique for each contact. Attempting to use a duplicate ID will result in an error.
 
   * The ID can include alphabets, numbers, and special characters, but cannot be blank and should not contain whitespaces.
 
   * The phone number should only contain numbers, and it should be at least 3 digits long.
+
   * Only one phone number is allowed. Refer to future integrations for more info. 
 
-  * The name should only contain alphanumeric characters and spaces, and should not be blank.
-  
+  * Excessively long fields will have the text wrapped appropriately.
+
+  * All tags for a contact **MUST** already exist in the tag list. You can add tags to a tag list with the [add tag](#add-tag-tag) command.
+
+  * A person **MUST** have at least one tag, but can have more than one tag (refer to example above)
   </box>
 
   (The Initial UI before addition)                       
     <img src="images/ui/add/beforeAdd.png" width="452.5" height="369.5"><br>
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
   * **Confirmation of Successful Contact Addition**<br>
 
-  Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
+  Following a valid set of inputs for the command, a GUI indicative of a successful contact addition will be displayed, as illustrated below.
   <box type="success">
     GUI upon successful addition command <br><br>
     <img src="images/ui/add/afterAdd.png" width="452.5" height="369.5"><br><br>
@@ -333,10 +422,18 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
        <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
        </box>
 
-### Deleting a contact: `-`
-[back to top](#table-of-contents)
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-  Deletes a person with his specified ID.<br><br>
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+### Deleting a contact: `-`
+
+  You can delete a contact with his/her specified ID.<br><br>
 
   Format: <code>- /id (id)</code><br>
 
@@ -353,75 +450,82 @@ If the user Logouts successfully, a graphical user interface (GUI) indicative of
 
   * **Confirmation of Contact Deletion**<br>
   
-  Following the accurate input of the command, if the person with the input id does exist in the address book, a window will pop up asking for your confirmation to delete.
-  Click OK to continue with the deletion. After confirmation, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
+  When the deletion is successful, a graphical user interface (GUI) indicative of a successful contact deletion will be displayed, as illustrated below.
+
   <box type="success">
-  
-  * Pop-up window for confirmation
-  
-    <img src="images/ui/delete/prompt.png" width="452.5"><br><br>
 
   * GUI upon successful addition command <br><br>
-  <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
+
+    <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
+
   </box>
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
   * **Error Handling Protocols**<br>
   
-    1. ID Not Found Error: If there is no such person with the input id in the list, an error will be triggered.
+    1. ID Not Found Error: If there is no such contact with the input ID in the list, an error will be triggered.
        <box type="wrong">
        ID not found error <br><br>
        <img src="images/ui/delete/idnotfound.png" width="452.5"><br><br>
        </box>
     
-    2. Command Cancelled Error: When the confirmation dialog box pops up, if the user chooses to cancel the operation, it can trigger an error.
-       <box type="wrong">
-       Command cancelled error <br><br>
-       <img src="images/ui/delete/deletecancelled.png" width="452.5"><br><br>
-       </box>
-    
-    3. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
+    2. Incomplete Field Error: Failure to input the required id with the correct prefix will trigger an error.
        <box type="wrong">
        Incomplete field error <br><br>
        <img src="images/ui/delete/insufficientfield.png" width="452.5"><br><br>
        </box>
 
-    4. Invalid Field Error: If the input id violates the requirements, it is invalid and should trigger an error.
+    3. Invalid Field Error: If the input ID violates the requirements, it is invalid and should trigger an error.
         <box type="wrong">
         Invalid field error <br><br>
         <img src="images/ui/delete/invalidid.png" width="452.5"><br><br>
         </box>
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ### Editing a contact: `>`
-[back to top](#table-of-contents)
 
-Edits a person in the address book.<br><br>
+You can edit a contact's details in the addressbook.<br><br>
 
-Format: <code> > (id) /name (name) /hp (handphone)</code><br>
+Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) {/tag (more tags)...}</code><br>
 
 Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
   <box type="important" seamless>
 
-* The ID must be the first thing typed in. Other than that, the order of the other fields are interchangeable and doesn't matter. Feel free to input the details in any sequence. 
+* The ID of the contact without the `/id` prefix must be inputted first. The order of the other prefix and field sets are interchangeable and doesn't matter. 
+Feel free to input the details in any sequence. 
 
-* Fields to be edited are optional, but at least 1 field must be given. ID does not count. ID is used to identify the contact.
+* Fields to be edited are optional, but at least 1 field must be given, excluding ID. ID is used to identify the contact.
 
 * The phone number should only contain numbers, and it should be at least 3 digits long.
 
 * The name should only contain alphanumeric characters and spaces, and should not be blank.
 
-* If the fields match the current contact's fields exactly, the edit will still go through and not give a duplicate person error message. This is due to our unique identifier id.
+* If the fields match the current contact's fields exactly, the edit will still go through and not give a duplicate person error message. This is due to our unique identifier ID.
 
-* Should you wish to edit the id of the person, please delete the contact and re-add the contact with the correct id. 
+* Should you wish to edit the ID of the person, please delete the contact and re-add the contact with the correct ID. 
+
+* When editing tags, the existing tags of the contact will be removed (i.e adding of tags is not cumulative.)
 
   </box>
 
 (The Initial UI before editing)                       
 <img src="images/ui/edit/beforeEdit.png" width="500" height="250"><br>
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 * **Confirmation of Successful Contact Editing**<br>
 
-Following the accurate input of the command, a graphical user interface (GUI) indicative of a successful contact addition will be displayed, as illustrated below.
+Following a valid set of inputs for the command, a GUI indicative of a successful contact addition will be displayed, as illustrated below.
 <box type="success">
 GUI upon successful addition command <br><br>
 <img src="images/ui/edit/afterEdit.png" width="500" height="250"><br><br>
@@ -433,13 +537,11 @@ GUI upon successful addition command <br><br>
        No ID error <br><br>
        <img src="images/ui/edit/editinvalidId.png" width="452.5"><br><br>
        </box>
-
     2. Incomplete Fields Error: Failure to complete at least 1 field will trigger an error.
        <box type="wrong">
        Incomplete fields error <br><br>
        <img src="images/ui/edit/editMissingField.png" width="452.5"><br><br>
        </box>
-
     3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
        <box type="wrong">
        Invalid fields error <br><br>
@@ -457,14 +559,51 @@ GUI upon successful addition command <br><br>
        <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
        </box>
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+
+### Clearing all contacts:  `clear`
+
+You can clear all contacts from the current addressbook.<br><br>
+
+Format: `clear`<br>
+
+  </box>
+
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Toggling the display: `$`
-[back to top](#table-of-contents)
 
-Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
+You can toggle the display to view / hide the contacts panel of Hi:Re. 
+This gives you a cleaner and less-cluttered application workspace, especially if there are many contacts.<br><br>
 
   Format: <code>$</code><br>
+<div markdown="block" class="alert alert-primary">
 
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `View` section of the menu bar.
+
+</div>
+
+  <box type="important" seamless>
+
+* When your contacts panel is hidden, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything. 
+Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+
+  </box>
+  
   <box type="definition">
     Viewing contacts.<br><br>
     <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
@@ -475,84 +614,190 @@ Toggles the display to view / hide the contacts panel of Hi:Re.<br><br>
     <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
   </box>
 
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+
 ### Finding Contacts by Name: `?`
-[back to top](#table-of-contents)
 
-Finds all contacts in the Hi:Re app that has names matching the words entered.
+You can find all contacts in the addressbook that has names containing the keyword(s) entered.
 
-Format: <code> ? (name) </code><br>
-
-Example: <code> ? jo </code>
-         <code> ? jo a </code><br>
+Format: <code> ? (keyword) {(more keywords)...} </code><br>
 
 <box type="important" seamless>
 
 * All names consist of alphanumeric characters, hence any non-alphanumeric characters used will result in no contacts found.
-* All names that contain the words entered will be matched. E.g `? jo` will give John if John exists in the contacts 
-list.
-* More than one word can be entered, separated by spaces. All names that match **any** of the words will be matched.
-E.g `? jo a` will give John and Ali if both of them exists in the contacts list.
-
+* All names that contain the `(keyword)` entered will be matched. E.g `? jo` will give John if John exists in the address book.
+* When more than one `(keyword)` is entered, all names that match **any** of the keywords will be listed. E.g `? jo a` will give John and Ali if both of them exists in the address book.
+* `(keyword)` used to match names are **CASE-INSENSITIVE**.
   </box>
+
+Example:
+  <box type="definition">
+    Finding with one `(keyword)`: <code> ? al </code><br><br>
+    <img src="images/ui/find/1.png" width="452.5" height="360.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    Finding with more than one `(keyword)`: <code> ? al ch </code><br><br>
+    <img src="images/ui/find/2.png" width="452.5" height="360.5"><br><br>
+  </box>
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ### Listing all matching information: `ls`
-[back to top](#table-of-contents)
 
-  List has different functionalities.<br><br>
+You can list all matching information in the addressbook for different purposes.<br><br>
 
-  Format: <code>ls ARGS</code><br>
-  
-  <code>ARGS</code> = <code>-a</code>: List all contacts in the address book. <br>
-  <code>ARGS</code> = <code>-t</code>: List all tags available. <br>
-  <code>ARGS</code> = <code>TAG_NAME</code>: List all contacts with <code>TAG_NAME</code>. <br>
+Format: <code>ls (args)</code><br>
 
+<code>(args)</code> = <code>-a</code>: List all contacts in the address book. <br>
+<code>(args)</code> = <code>-t</code>: List all tags available. <br>
+<code>(args)</code> = <code>(tag_name) {(more tag_name)...} </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
+
+<box type="important" seamless>
+
+* All tags consist of alphanumeric characters, hence any non-alphanumeric characters used will result in no contacts found.<br>
+* When more than one `(tag_name)` is entered, all tags that match **any** of the words will be listed.<br>
+E.g `ls H fin` will list all contacts with tags containing `H` **OR** `fin`.<br>
+* `(tag_name)` used to match tags are **CASE-SENSITIVE**.
+
+  </box>
+Example: 
+
+  <box type="definition">
+    <code>-a</code>: List all contacts in the address book.<br>
+    Command: <code>ls -a</code><br><br>
+    <img src="images/ui/list/image1.png" width="452.5" height="369.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    <code>(args)</code> = <code>-t</code>: List all tags available.<br>
+    Command: <code>ls -t</code><br><br>
+    <img src="images/ui/list/image2.png" width="452.5"><br><br>
+  </box>
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+  <box type="definition">
+    <code>(tag_name)</code>: List all contacts with ONE <code>(tag_name)</code>.<br>
+    Example: <code>ls H</code><br><br>
+    <img src="images/ui/list/image3.png" width="452.5"><br><br>
+  </box>
+
+  <box type="definition" theme="info">
+    <code>(tag_name)</code>: List all contacts with MORE THAN ONE <code>(tag_name)</code>.<br>
+    Example: <code>ls H fin</code><br><br>
+    <img src="images/ui/list/image4.png" width="452.5"><br><br>
+  </box>
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Add Tag: `tag+`
-[back to top](#table-of-contents)
 
-  Add tag into a tag list.<br><br>
+You can add a tag into the tag list.<br><br>
 
-  Format: <code>tag+ TAG_NAME</code><br>
+Format: <code>tag+ (tag_name)</code><br>
 
-  <box type="important">
+<box type="important" seamless>
 
-* **MUST** add a tag into a tag list before adding a person.
+* Default tags: `HR`, `operations`, `finance`, `marketing`, `IT`, `sales` & `RnD`
+* Tags are **CASE-SENSITIVE**.
   
   </box>
 
+Example: 
+
+ <box type="success">
+    Adding the tag <code>CEO</code>: <code>tag+ CEO</code><br><br>
+    <img src="images/ui/tag_plus/1.png" width="452.5"><br><br>
+  </box>
+
+**Error Handling Protocols**<br>
+
+  <box type="wrong">
+    Duplicate tags. <br><br>
+    <img src="images/ui/tag_plus/2.png" width="452.5" ><br><br>
+       </box>
+  
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Delete Tag: `tag-`
-[back to top](#table-of-contents)
 
-  Delete tag from the tag list.<br><br>
+You can delete a tag from the tag list.<br><br>
 
-  Format: <code>tag- TAG_NAME</code><br>
+  Format: <code>tag- (tag_name)</code><br>
 
-  <box type="important">
-  
-  Tag cannot be removed if a person is tagged with the tag-to-be-removed.
-  
+<box type="important" seamless>
+
+* Tag cannot be removed if a contact is tagged with the tag-to-be-removed.
   </box>
 
+Example: 
+
+ <box type="success">
+    Removing the tag <code>HR</code>: <code>tag- HR</code><br><br>
+    <img src="images/ui/tag_minus/1.png" width="452.5"><br><br>
+  </box>
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Undoing a Command: `undo`
-[back to top](#table-of-contents)
 
-Restores the address book to the state before the previous **undoable** command was executed.<br>
+You can restore the address book to the state before the previous **undoable** command was executed.<br><br>
+
 Format: `undo`<br>
 <box type="important" seamless>
 
-* This command can also be used by clicking in the `edit` section of the menu bar.  <br><br>
-* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear).
+* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
+* All other commands (including adding and deleting tags) **CANNOT** be undone.
   </box>
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
+
+</div>
 
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
 2. Undo the deletion. The person will reappear.<br><br>
 
 * **Confirmation of Successful Undo**<br>
 
-  If there is still any executed command that can be undone, a graphical user interface (GUI) indicative of a successful undo will be displayed, as illustrated below.<br>
+  If there is still any executed command that can be undone, a GUI indicative of a successful undo will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful undo command <br><br>
@@ -567,25 +812,35 @@ Example:<br>
        <img src="images/ui/undo/2.png" width="452.5" ><br><br>
        </box>
 
-### Redoing a Command: `redo`
-[back to top](#table-of-contents)
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-Reverses the most recently undone command.<br>
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+### Redoing a Command: `redo`
+
+You can reverse the most recently undone command.<br><br>
+
 Format: `redo`<br>
 
-  <box type="important" seamless>
+<div markdown="block" class="alert alert-primary">
 
-* This command can also be used by clicking in the `edit` section of the menu bar. Typing the command `redo` in the command box will not work. <br>
+**:bulb: Tip**<br>
+You can also use this command by clicking in the `Edit` section of the menu bar.
 
-  </box>
+</div>
 Example:<br>
-1. Delete the person with the id `johndoe41`.<br>
-2. Undo the deletion. The person will reappear.<br>
+1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
+2. Undo the deletion. The person will reappear.<br><br>
 3. Redo the undone deletion. The person will be deleted again.<br><br>
 
 * **Confirmation of Successful Redo**<br>
 
-  If there is still any undone command that can be redone, a graphical user interface (GUI) indicative of a successful redo will be displayed, as illustrated below.<br>
+  If there is still any undone command that can be redone, a GUI indicative of a successful redo will be displayed, as illustrated below.<br>
 
   <box type="success">
     GUI upon successful redo command <br><br>
@@ -600,178 +855,233 @@ Example:<br>
        <img src="images/ui/redo/2.png" width="452.5" ><br><br>
        </box>
 
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-<!--
+### Exporting data: `@`
+[back to top](#table-of-contents)
 
-### Listing all persons : `list`
+You can export the data in the addressbook to a comma delimited file in the same directory Hi:Re is in.<br>
 
-Shows a list of all persons in the address book.
+Format: `@ /filename (filename)`<br>
 
-Format: `list`
+Example: <code> export /file contacts </code><br>
 
-### Editing a person : `edit`
+  <box type="important" seamless>
 
-Edits an existing person in the address book.
+* Note that you need not add the `.csv` file extension to the filename argument when executing this command - Hi:Re will do this for you. Hence, typing `@ /filename contacts` will export the data to `contacts.csv`.
+  
+* The filename should follow standard filename conventions on your system. (e.g. no special characters)
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+* If a CSV file already exists with the given filename, the command will **not** execute and an error will be thrown.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  </box>
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* **Confirmation of Successful Export**<br>
 
-### Locating persons by name: `find`
+   Following a valid set of inputs for the command, a GUI indicative of a successful export will be displayed, as illustrated below.<br>
 
-Finds persons whose names contain any of the given keywords.
+  <box type="success">
+    GUI upon successful export command <br><br>
+    <img src="images/ui/export/afterExport.png" width="452.5"><br><br>
+  </box> 
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* **Error Handling Protocols**<br>
+  1. Invalid Filename Error: If the given filename is invalid given for the current system, an error will be triggered.<br>
+      <box type="wrong">
+      Invalid filename error <br><br>
+      <img src="images/ui/export/invalidName.png" width="452.5"><br><br>
+      </box>
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  1. Filename Already Taken Error: If a CSV file with the given filename already exists in the same directory as the program, an error will be triggered.<br>
+      <box type="wrong">
+      Filename already taken error <br><br>
+      <img src="images/ui/export/alreadyExists.png" width="452.5"><br><br>
+      </box>
+  
+  <div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-### Deleting a person : `delete`
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-Deletes the specified person from the address book.
+### Link to our User Guide: `help`
 
-Format: `delete INDEX`
+Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `help`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+ <box type="success">
+    Pop-up box upon running the command.<br><br>
+    <img src="images/ui/help/1.png" width="452.5"><br><br>
+  </box>
 
-### Clearing all entries : `clear`
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-Clears all entries from the address book.
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-Format: `clear`
+### Exit the application: `exit`
 
-### Exiting the program : `exit`
-
-Exits the program.
+Logs the user out of their account, and closes the Hi:Re application window.
 
 Format: `exit`
 
-### Saving the data
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
--->
-***
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Built-In Features
 
-[back to top](#table-of-contents)
-
-Features are built-in for the ease of use. They do not require any commands for it to work.
+Features are built-in for your ease of use. No commands are required for it to work.
 
 ### Sort
-  The addressbook is sorted in alphabetical order every time a new contact is added / deleted.<br><br>
+  The addressbook is sorted in alphabetical order by name every time you add / edit / delete a new contact.<br>
 
-  <box type="definition">
-    Before.<br><br>
-    <img src="images/ui/sort/beforeSort.png" width="452.5" height="369.5"><br><br>
-  </box>
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
-  <box type="definition" theme="info">
-    After.<br><br>
-    <img src="images/ui/sort/afterSort.png" width="452.5" height="369.5"><br><br>
-  </box>
-
+---
 
 ### Delete sample data
-  Sample data is deleted when you add the first contact into the addressbook.<br><br>
+
+Sample data is deleted when you add the first contact into the addressbook.<br><br>
+  
+<box type="important" seamless>
+  It is important that you do **NOT** perform any operations other than adding contacts upon the sample data as there is no guarantee that this feature will work properly afterwards.
+  </box>
 
   <box type="definition">
-    Before.<br><br>
-    <img src="images/ui/sampledata/before.png" width="452.5" height="369.5"><br><br>
+    Before:<br><br>
+    <img src="images/ui/sampledata/before.png" width="452.5" height="350.5"><br><br>
   </box>
 
   <box type="definition" theme="info">
-    After.<br><br>
-    <img src="images/ui/sampledata/after.png" width="452.5" height="369.5"><br><br>
+    After:<br><br>
+    <img src="images/ui/sampledata/after.png" width="452.5" height="350.5"><br><br>
   </box>
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ### Information security
-  We try our best to protect the private information in your addressbook.<br><br>
+
+  Hi:Re seeks to protect the private information in your addressbook.<br><br>
 
   1. **Password Hashing**<br>
      We use the SHA-256 hashing algorithm to hash the passwords.<br>
-     Passwords are hashed before being stored in the database.  This means that even if the database is compromised, the passwords are not easily retrievable.<br>
-  
-  2. **Data Encryption**<br>
-     We use the Advanced Encryption Standard (AES) to encrypt the data in the addressbook. <br>
-     Data in the addressbook is encrypted before being stored in the database. This means that even if the user accesses the database directly, the data is unreadable.<br>
-     <box type="important" seamless>
-           Due to the technical limitations of the application, the encryption key is stored in the application itself for now. <br>
-           This means that if the source code of application is compromised, the data can be decrypted. <br>
-           However, we are working on a more secure solution for future versions of the application.
-     </box>
+     Passwords are hashed before being stored. Hence, even if the data file is compromised, the passwords are not easily retrievable.<br>
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+
+## Design Methodology
+
+Our software development team has meticulously crafted this application to provide
+you with a seamless and intuitive user experience.
+At the heart of our design methodology lies a commitment to simplicity, efficiency, and user-centricity.
+
+**Dark Blue UI for Enhanced Comfort**
+
+Our application features a sophisticated dark blue user interface, carefully chosen to promote relaxation and reduce eye
+strain during extended usage sessions. We understand the importance of creating an environment that is both visually
+appealing and gentle on the eyes. By embracing dark blue as our primary color scheme, we aim to enhance your overall
+experience and encourage prolonged engagement with the application.
+
+**Toggle Display Option for Streamlined Navigation**
+
+Navigating through large amounts of contact data can be overwhelming. That's why we've implemented a convenient toggle display
+option, allowing you to effortlessly hide or reveal extensive contact data sets with a simple click. This feature empowers you
+to customize your viewing experience, providing flexibility and control over the information displayed on your screen.
+Whether you're focusing on specific details or seeking a clutter-free interface, our toggle display option ensures seamless
+navigation and enhanced productivity.
+
+**Command-based Data Entry System**
+
+We believe in minimizing unnecessary mouse usage and maximizing efficiency in data entry tasks. Our application boasts
+a streamlined command-based data entry system, designed to simplify the input process and minimize user effort.
+By leveraging intuitive keyboard commands, you can swiftly navigate through fields, input data, and execute commands
+with precision and speed. This approach not only accelerates contact manipulation tasks but also reduces cognitive load, allowing
+you to focus on your workflow without distractions.
+
+**In summary**, our application's design methodology is guided by a dedication to user comfort, efficiency, and accessibility.
+From the calming dark blue UI to the streamlined command-based data entry system, every aspect of our design reflects our
+unwavering commitment to enhancing your productivity and satisfaction.
+
+
+---
 
 ## FAQ
 
-[back to top](#table-of-contents)
-
 <panel header="**Q**: How do I transfer my data to another Computer?">
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hi:Re home folder.
+**A**: Install Hi:Re in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hi:Re home folder.
 </panel>
+
 <panel header="**Q**: What is Java 11 and where can I download it?">
 
 **A**: Java 11 is the version of the Java Programming Language that our application uses to function. Any version of Java, 11 and above will work. You can download it from
 the [official Java website](https://www.oracle.com/sg/java/).
 </panel>
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ## Known issues
 
-[back to top](#table-of-contents)
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+1. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything.
+   Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+2. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+  
+ ---
 
 ## Command summary
-
-[back to top](#table-of-contents)
 
 Action     | Format
 -----------|---------
@@ -780,11 +1090,15 @@ Action     | Format
 **Edit** | `> (id) /name (name) /hp (handphone)`
 **Toggle** | `$`
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ## Future Integrations
-
-[back to top](#table-of-contents)
 
 **In the future, we plan to integrate some of the following features:**
 
@@ -796,12 +1110,22 @@ Action     | Format
     organisation's requirements.
 4. **Multiple phone numbers**, allowing for contacts to add in both their office and personal phone numbers.
 
-***
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ## Support and Feedback
-
-[back to top](#table-of-contents)
 
 We are a dedicated team of developers committed to evolving Hi:Re to always be better.
 
 Should you have any enquiries or feedback, do reach out to us at our [website!](https://github.com/AY2324S2-CS2103T-T12-3)
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>

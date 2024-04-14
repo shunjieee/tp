@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#202a44, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #202a44; /* Used in the default.html file */
 }
 
 .label {
@@ -94,6 +94,7 @@
 }
 
 .list-cell {
+    -fx-background-color: derive(#202a44, 20%);
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
@@ -144,7 +145,7 @@
 }
 
 .region_with_background_radius {
-    -fx-background-color: lightgray;
+    -fx-background-color: derive(#202a44, 40%);
     -fx-background-radius: 10;
 }
 
@@ -156,6 +157,10 @@
      -fx-background-color: derive(#202a44, 20%);
      -fx-border-color: derive(#202a44, 10%);
      -fx-border-top-width: 1px;
+}
+
+.person-list-pane {
+     -fx-background-color: derive(#202a44, 20%);
 }
 
 .status-bar {

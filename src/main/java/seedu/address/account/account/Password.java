@@ -34,7 +34,30 @@ public class Password {
      * @param password The password string to be checked.
      * @return True if the password is valid, false otherwise.
      */
-    public static boolean isValidPassword(String password) {
-        return password != null && password.length() >= 6 && password.length() <= 20 && !password.contains(" ");
+    public static boolean checkValidity(String password) {
+        boolean isNotNull = (password != null);
+        boolean isLengthValid = (password != null) && (password.length() >= 6 && password.length() <= 20);
+        boolean isNoSpace = (password != null) && !password.contains(" ");
+        return isNotNull && isLengthValid && isNoSpace;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Password)) {
+            return false;
+        }
+
+        Password otherPassword = (Password) obj;
+        return otherPassword.getHashedPassword().equals(hashedPassword);
+    }
+
+    @Override
+    public String toString() {
+        return hashedPassword;
+    }
+
 }

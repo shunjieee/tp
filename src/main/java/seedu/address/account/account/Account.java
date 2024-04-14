@@ -6,7 +6,7 @@ package seedu.address.account.account;
  */
 public class Account {
     private final Username username;
-    private String passwordHash;
+    private final Password passwordHash;
 
     /**
      * Constructs an Account instance with the specified username and password hash.
@@ -14,7 +14,7 @@ public class Account {
      * @param username The username associated with this account.
      * @param passwordHash The hashed password for this account.
      */
-    public Account(Username username, String passwordHash) {
+    public Account(Username username, Password passwordHash) {
         this.username = username;
         this.passwordHash = passwordHash;
     }
@@ -33,37 +33,8 @@ public class Account {
      *
      * @return The hashed password of this account.
      */
-    public String getPasswordHash() {
+    public Password getPasswordHash() {
         return passwordHash;
-    }
-
-    /**
-     * Sets the hashed password for this account.
-     *
-     * @param passwordHash The new hashed password.
-     */
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    /**
-     * Checks if the provided password hash matches the account's password hash.
-     *
-     * @param passwordHash The password hash to check.
-     * @return True if the provided password hash matches the account's password hash, false otherwise.
-     */
-    public boolean checkPassword(String passwordHash) {
-        return this.passwordHash.equals(passwordHash);
-    }
-
-    /**
-     * Checks if the provided username matches the account's username.
-     *
-     * @param username The username to check.
-     * @return True if the provided username matches the account's username, false otherwise.
-     */
-    public boolean checkUsername(Username username) {
-        return this.username.equals(username);
     }
 
     /**
@@ -73,7 +44,6 @@ public class Account {
      */
     @Override
     public String toString() {
-        return "Username: " + username + " | Password Hashed: "
-                + passwordHash;
+        return "Username: " + username + " | Password Hashed: " + passwordHash;
     }
 }
