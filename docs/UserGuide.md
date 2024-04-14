@@ -32,8 +32,10 @@
 12) [Redoing a Command](#redoing-a-command-redo)
 13) [Exporting to CSV](#exporting-data)
 14) [Link to User Guide](#link-to-our-user-guide-help)
+15) [Exit the Hi:Re application](#exit-the-application-exit)
 ---
 - [Built-In Features](#built-in-features)
+- [Design Methodology](#design-methodology)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
@@ -132,7 +134,7 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 
    <img src="images/ui/startUp.png" width="452.5" height="369.5"><br>
 
-1. Type commands in the `command box` and press `Enter` to execute it, but first...
+1. Type commands in the `command box` and press the `[Enter]` key to execute it, but first...
 
 1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
 
@@ -161,8 +163,8 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 * Words in `()` are the parameters to be supplied by you, the user.<br>
   e.g. for `- /id (id)`, `(id)` is the parameter to be supplied by you. Input a similar command as follows into the command box: `- /id johndoe69`.
 
-* Words in `[...]` are optional and may be repeated.
-  e.g. in  `> /id (id) /tag (tag) [/tag (more tags)..]`, the second `/tag` parameter may be excluded, or repeated as many times as you want.
+* Words in `{...}` are optional and may be repeated.
+  e.g. in  `> /id (id) /tag (tag) {/tag (more tags)..}`, the second `/tag` parameter may be excluded, or repeated as many times as you want.
 
 * When using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to Hi:Re.
 </box>
@@ -350,7 +352,7 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
 
   You can add a contact to the addressbook.<br><br>
 
-  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) [/tag (more tags)...] </code><br>
+  Format: <code>+ /name (name) /id (id) /hp (handphone) /tag (tag) {/tag (more tags)...} </code><br>
 
   Example: <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance</code><br>
         <code>+ /name John Doe /id johndoe41 /hp 98765432 /tag finance /tag sales</code><br>
@@ -493,7 +495,7 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
 
 You can edit a contact's details in the addressbook.<br><br>
 
-Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) [/tag (more tags)...]</code><br>
+Format: <code> > (id) /name (name) /hp (handphone) /tag (tag) {/tag (more tags)...}</code><br>
 
 Example: <code> > johndoe41 /name John Joe /hp 98765432</code><br>
 
@@ -624,7 +626,7 @@ Thus, if your result of one of these commands is unexpectedly empty, try togglin
 
 You can find all contacts in the addressbook that has names containing the keyword(s) entered.
 
-Format: <code> ? (keyword) [(more keywords)...] </code><br>
+Format: <code> ? (keyword) {(more keywords)...} </code><br>
 
 <box type="important" seamless>
 
@@ -661,7 +663,7 @@ Format: <code>ls (args)</code><br>
 
 <code>(args)</code> = <code>-a</code>: List all contacts in the address book. <br>
 <code>(args)</code> = <code>-t</code>: List all tags available. <br>
-<code>(args)</code> = <code>(tag_name) [(more tag_name)...] </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
+<code>(args)</code> = <code>(tag_name) {(more tag_name)...} </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
 
 <box type="important" seamless>
 
@@ -914,6 +916,41 @@ Example: <code> export /file contacts </code><br>
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
+### Link to our User Guide: `help`
+
+Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
+
+Format: `help`
+
+ <box type="success">
+    Pop-up box upon running the command.<br><br>
+    <img src="images/ui/help/1.png" width="452.5"><br><br>
+  </box>
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+### Exit the application: `exit`
+
+Logs the user out of their account, and closes the Hi:Re application window.
+
+Format: `exit`
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Built-In Features
 
 Features are built-in for your ease of use. No commands are required for it to work.
@@ -938,32 +975,13 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
   </box>
 
   <box type="definition">
-    Before.<br><br>
+    Before:<br><br>
     <img src="images/ui/sampledata/before.png" width="452.5" height="350.5"><br><br>
   </box>
 
   <box type="definition" theme="info">
-    After.<br><br>
+    After:<br><br>
     <img src="images/ui/sampledata/after.png" width="452.5" height="350.5"><br><br>
-  </box>
-
-<div style="text-align: right;">
-  <a href=#table-of-contents>
-    back to top
-    </a>
-  </div>
-
----
-
-### Link to our User Guide: `help`
-
-Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
-
-Format: `help`
-
- <box type="success">
-    Pop-up box upon running the command.<br><br>
-    <img src="images/ui/help/1.png" width="452.5"><br><br>
   </box>
 
 <div style="text-align: right;">
@@ -987,6 +1005,42 @@ Format: `help`
     back to top
     </a>
   </div>
+
+---
+
+## Design Methodology
+
+Our software development team has meticulously crafted this application to provide
+you with a seamless and intuitive user experience.
+At the heart of our design methodology lies a commitment to simplicity, efficiency, and user-centricity.
+
+**Dark Blue UI for Enhanced Comfort**
+
+Our application features a sophisticated dark blue user interface, carefully chosen to promote relaxation and reduce eye
+strain during extended usage sessions. We understand the importance of creating an environment that is both visually
+appealing and gentle on the eyes. By embracing dark blue as our primary color scheme, we aim to enhance your overall
+experience and encourage prolonged engagement with the application.
+
+**Toggle Display Option for Streamlined Navigation**
+
+Navigating through large amounts of contact data can be overwhelming. That's why we've implemented a convenient toggle display
+option, allowing you to effortlessly hide or reveal extensive contact data sets with a simple click. This feature empowers you
+to customize your viewing experience, providing flexibility and control over the information displayed on your screen.
+Whether you're focusing on specific details or seeking a clutter-free interface, our toggle display option ensures seamless
+navigation and enhanced productivity.
+
+**Command-based Data Entry System**
+
+We believe in minimizing unnecessary mouse usage and maximizing efficiency in data entry tasks. Our application boasts
+a streamlined command-based data entry system, designed to simplify the input process and minimize user effort.
+By leveraging intuitive keyboard commands, you can swiftly navigate through fields, input data, and execute commands
+with precision and speed. This approach not only accelerates contact manipulation tasks but also reduces cognitive load, allowing
+you to focus on your workflow without distractions.
+
+**In summary**, our application's design methodology is guided by a dedication to user comfort, efficiency, and accessibility.
+From the calming dark blue UI to the streamlined command-based data entry system, every aspect of our design reflects our
+unwavering commitment to enhancing your productivity and satisfaction.
+
 
 ---
 
