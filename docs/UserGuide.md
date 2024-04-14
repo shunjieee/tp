@@ -910,12 +910,12 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
   </box>
 
   <box type="definition">
-    Before.<br><br>
+    Before:<br><br>
     <img src="images/ui/sampledata/before.png" width="452.5" height="350.5"><br><br>
   </box>
 
   <box type="definition" theme="info">
-    After.<br><br>
+    After:<br><br>
     <img src="images/ui/sampledata/after.png" width="452.5" height="350.5"><br><br>
   </box>
 
