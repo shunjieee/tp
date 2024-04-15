@@ -351,8 +351,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new contact and input the contact information
-2. Hi:Re adds the person to the database
-3. Hi:Re shows a message for the successful addition
+1. Hi:Re adds the person to the database
+1. Hi:Re shows a message for the successful addition
 
    Use case ends.
 
@@ -370,10 +370,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a specific person in the database and input the details
-2. Hi:Re prompts the user with a dialog box to confirm deletion
-3. User confirms the deletion
-4. Hi:Re deletes the person
-5. Hi:Re shows a message for the successful deletion
+1. Hi:Re deletes the person
+1. Hi:Re shows a message for the successful deletion
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. The given person does not exist.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC2 - Delete a contact**
+
+**MSS**
+
+1. User requests to delete a specific person in the database and input the details
+1. Hi:Re deletes the person
+1. Hi:Re shows a message for the successful deletion
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. The given person does not exist.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+      
+**Use case: UC3 - Edit a contact**
+
+**MSS**
+
+1. User requests to edit a specific person in the database and input the details
+1. Hi:Re edits the selected fields of the person
+1. Hi:Re shows a message for the successful edit
 
     Use case ends.
 
@@ -385,15 +431,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
   
+* 2a. The given person does not exist.
 
-* 2a. The user chooses to cancel the deletion.
+    * 2a1. Hi:Re shows an error message
 
-    * 2a1. Hi:Re shows a message that the deletion is cancelled
-  
       Use case ends.
 
-
-**Use case: UC3 - Toggle display**
+**Use case: UC4 - Toggle display**
 
 **MSS**
 
@@ -405,6 +449,174 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * (No extensions)
+
+**Use case: UC5 - Clear all contacts**
+
+**MSS**
+
+1. User requests to clear all contacts in the database
+1. Hi:Re clears the database
+1. Hi:Re shows a message for the successful clear
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC6 - Find contacts by name**
+
+**MSS**
+
+1. User requests to find contacts with specific keywords in their name
+1. Hi:Re finds matching contacts
+1. Hi:Re shows a message for the successful search
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC7 - List all contacts**
+
+**MSS**
+
+1. User requests Hi:Re to list all contacts
+1. Hi:Re lists all contacts
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC8 - List all tags**
+
+**MSS**
+
+1. User requests Hi:Re to list all tags
+1. Hi:Re lists all tags
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC9 - List all contacts with specific tags**
+
+**MSS**
+
+1. User requests Hi:Re to list all contacts with specific tags
+1. Hi:Re lists all matching contacts
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC10 - Add tags**
+
+**MSS**
+
+1. User requests Hi:Re to add a tag to the database
+1. Hi:Re adds the tag
+1. Hi:Re shows a message for the successful addition
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given tag name is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC11 - Delete tags**
+
+**MSS**
+
+1. User requests Hi:Re to remove a tag from the database
+1. Hi:Re removes the tag
+1. Hi:Re shows a message for the successful deletion
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given tag name is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. The given tag name is not in the database.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC12 - Undo command**
+
+**MSS**
+
+1. User requests Hi:Re to undo previous commands
+1. Hi:Re undoes last command
+1. Hi:Re shows a message for the successful undo
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no commands to undo.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC13 - Redo command**
+
+**MSS**
+
+1. User requests Hi:Re to redo previous undone command
+1. Hi:Re redoes last undone command
+1. Hi:Re shows a message for the successful redo
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no commands to redo.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC14 - Export data**
+
+**MSS**
+
+1. User requests Hi:Re to export data from database
+1. Hi:Re exports data to CSV file in the same directory as the application.
+1. Hi:Re shows a message for the successful export
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Filename given is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+
 
 ### Non-Functional Requirements
 
