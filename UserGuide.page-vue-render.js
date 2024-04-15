@@ -113,7 +113,7 @@ with(this){return _c('p',[_c('img',{attrs:{"src":"/tp/images/ui/startUp.png","wi
 with(this){return _c('li',[_c('p',[_v("Type commands in the "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("command box")]),_v(" and press the "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("[Enter]")]),_v(" "),_c('em',[_v("(Windows & Linux)")]),_v(" / "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("[return]")]),_v(" "),_c('em',[_v("(macOS)")]),_v(" key to execute it, "),_c('strong',[_v("but first...")])])])}
 },function anonymous(
 ) {
-with(this){return _c('li',[_c('p',[_c('a',{attrs:{"href":"#registering-an-account-coderegistercode"}},[_v("Register")]),_v(" an account before you are ready to use Hi:Re!")])])}
+with(this){return _c('li',[_c('p',[_c('a',{attrs:{"href":"#registering-an-account-register"}},[_v("Register")]),_v(" an account before you are ready to use Hi:Re!")])])}
 },function anonymous(
 ) {
 with(this){return _c('li',[_c('p',[_c('a',{attrs:{"href":"#login-into-account-codelogincode"}},[_v("Log-in to")]),_v(" your newly registered account with the correct username and password!")])])}
@@ -581,6 +581,6 @@ with(this){return _c('p',[_v("If you have any enquiries or feedback, do reach ou
 with(this){return _c('div',{staticStyle:{"text-align":"right"}},[_c('a',{attrs:{"href":"#table-of-contents"}},[_v("\n    back to top\n    ")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 22:54:05 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 22:58:37 GMT+8]")])])])}
 }];
   

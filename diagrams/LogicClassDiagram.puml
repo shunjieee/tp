@@ -21,6 +21,10 @@ package Model {
 Class HiddenModel #FFFFFF
 }
 
+package AccountManager {
+
+}
+
 package Storage {
 }
 
@@ -28,11 +32,14 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" ParserClasses
+LogicManager -right->"2" ParserClasses
+LogicManager -right->"1" AccountManager
 ParserClasses ..> XYZCommand : <<create>>
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
+
+AccountManager -> LogicManager
 
 LogicManager --> Model
 LogicManager --> Storage
