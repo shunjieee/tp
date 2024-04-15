@@ -309,8 +309,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new contact and input the contact information
-2. Hi:Re adds the person to the database
-3. Hi:Re shows a message for the successful addition
+1. Hi:Re adds the person to the database
+1. Hi:Re shows a message for the successful addition
 
    Use case ends.
 
@@ -328,10 +328,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a specific person in the database and input the details
-2. Hi:Re prompts the user with a dialog box to confirm deletion
-3. User confirms the deletion
-4. Hi:Re deletes the person
-5. Hi:Re shows a message for the successful deletion
+1. Hi:Re deletes the person
+1. Hi:Re shows a message for the successful deletion
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. The given person does not exist.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC3 - Edit a contact**
+
+**MSS**
+
+1. User requests to edit a specific person in the database and input the details
+1. Hi:Re edits the selected fields of the person
+1. Hi:Re shows a message for the successful edit
 
     Use case ends.
 
@@ -343,15 +365,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
   
+* 2a. The given person does not exist.
 
-* 2a. The user chooses to cancel the deletion.
+    * 2a1. Hi:Re shows an error message
 
-    * 2a1. Hi:Re shows a message that the deletion is cancelled
-  
       Use case ends.
 
-
-**Use case: UC3 - Toggle display**
+**Use case: UC4 - Toggle display**
 
 **MSS**
 
@@ -363,6 +383,242 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * (No extensions)
+
+**Use case: UC5 - Clear all contacts**
+
+**MSS**
+
+1. User requests to clear all contacts in the database
+1. Hi:Re clears the database
+1. Hi:Re shows a message for the successful clear
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC6 - Find contacts by name**
+
+**MSS**
+
+1. User requests to find contacts with specific keywords in their name
+1. Hi:Re finds matching contacts
+1. Hi:Re shows a message for the successful search
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC7 - List all contacts**
+
+**MSS**
+
+1. User requests Hi:Re to list all contacts
+1. Hi:Re lists all contacts
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC8 - List all tags**
+
+**MSS**
+
+1. User requests Hi:Re to list all tags
+1. Hi:Re lists all tags
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC9 - List all contacts with specific tags**
+
+**MSS**
+
+1. User requests Hi:Re to list all contacts with specific tags
+1. Hi:Re lists all matching contacts
+1. Hi:Re shows a message for the successful listing
+
+    Use case ends.
+
+**Extensions**
+
+* (No extensions)
+
+**Use case: UC10 - Add tags**
+
+**MSS**
+
+1. User requests Hi:Re to add a tag to the database
+1. Hi:Re adds the tag
+1. Hi:Re shows a message for the successful addition
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given tag name is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC11 - Delete tags**
+
+**MSS**
+
+1. User requests Hi:Re to remove a tag from the database
+1. Hi:Re removes the tag
+1. Hi:Re shows a message for the successful deletion
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given tag name is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. The given tag name is not in the database.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC12 - Undo command**
+
+**MSS**
+
+1. User requests Hi:Re to undo previous commands
+1. Hi:Re undoes last command
+1. Hi:Re shows a message for the successful undo
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no commands to undo.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC13 - Redo command**
+
+**MSS**
+
+1. User requests Hi:Re to redo previous undone command
+1. Hi:Re redoes last undone command
+1. Hi:Re shows a message for the successful redo
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no commands to redo.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC14 - Export data**
+
+**MSS**
+
+1. User requests Hi:Re to export data from database
+1. Hi:Re exports data to CSV file in the same directory as the application.
+1. Hi:Re shows a message for the successful export
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Filename given is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC15 - Open guide**
+
+**MSS**
+
+1. User requests Hi:Re for the user guide
+1. Hi:Re opens a window with a copyable link to the user guide
+1. Hi:Re shows a message for the successful opening of the help window
+
+    Use case ends.
+
+**Use case: UC16 - Register user**
+
+**MSS**
+
+1. User attempts to register to Hi:Re 
+1. Hi:Re saves user's username and encrypted password 
+1. Hi:Re shows a message for the successful registration
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Username given is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. Password given is invalid.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC17 - Log into System**
+
+**MSS**
+
+1. User attempts to log into Hi:Re with a given username and password.
+1. Hi:Re logs the user in
+1. Hi:Re shows a message for the successful login
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC18 - Log out of System**
+
+**MSS**
+
+1. User attempts to log out of Hi:Re.
+1. Hi:Re logs the user out
+1. Hi:Re shows a message for the successful logout
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is not logged into the system (and thus cannot be logged out)
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -578,6 +834,95 @@ For manual testing of other commands, run the following commands to add the spec
    Launch Hi:Re and then execute `logout` first.<br><br>
    Expected: Logout fails. Error message will be displayed.
 
+### Undo and Redo
+
+1. Undoing and redoing an add command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, add a contact using the `+` command.
+
+   1. Test case: `undo` <br>
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact.  
+      
+   1. Test case: `undo`, followed by `redo`. <br>
+      Upon `redo`, added contact reappears in the list. Subsequent `ls -a` should show this contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing a delete command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, delete a contact using the `-` command.
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, deleted contact is reappears in the list. Subsequent `ls -a` should show this contact. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, deleted contact disappears from the list. Subsequent `ls -a` should NOT show this contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing an edit command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, edit a contact field using the `>` command.
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, specified field of edited contact reverts. Subsequent `ls -a` should show this reverted contact. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, contact retains edits performed in the preqreuisite stage. Subsequent `ls -a` should show this edited contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing a clear command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, clear all contacts using the `clear` command. 
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, all cleared contacts reappear in the list. Subsequent `ls -a` should show all contacts upon initial prerequisite `ls -a`. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, no contacts should be listed. Subsequent `ls -a` should continue to show an empty list. Message indicating successful redo is printed.
+
+1. No commands to undo / redo
+   1. Preqreuisites: Have had just started the application and logged in without executing any other commands
+   
+   1. Test case: `undo`
+      Expected: No change to the list of contacts observed. Message printed indicating that there are no commands to undo.
+
+   1. Test case: `redo`
+      Expected: No change to the list of contacts observed. Message printed indicating that there are no commands to redo.
+
+1. Chaining `undo`s and `redo`s
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, perform three `+` commands with different `/id` fields, e.g. <br>
+      1. `/name A /id 1 /hp (handphone) /tag (tag)`, followed by
+      1. `/name B /id 2 /hp (handphone) /tag (tag)`, followed by
+      1. `/name C /id 3 /hp (handphone) /tag (tag)`
+
+   1. Test case: Perform `undo` three times.
+      Expected: Upon first undo, third added contact (`C` in the example) is deleted. Upon second undo, second added contact (`B` in the example) is deleted. Upon third undo, first added contact (`A` in the example) is deleted. 
+
+   1. Test case: Perform `undo` three times. Then, perform `redo` three times.
+      Expected: Upon first redo, only first added contact (`A` in the example) is added back. Upon second redo, second added contact (`B` in the example) is added back. Upon third redo, third added contact (`C` in the example) is added back. 
+
+1. Non-`undo`-able commands
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, add a contact using the `+` command.
+
+   1. Test case: Perform a `?` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. 
+   
+   1. Test case: Perform a `ls` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. 
+
+   1. Test case: Perform a `tag+` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Subsequent `ls -t` should still show the tag added with `tag+`.
+
+   1. Test case: Perform a `tag-` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Subsequent `ls -t` should NOT still show the tag added with `tag-`. 
+
+   1. Test case: Export data with `@`, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Exported data, however, should show the contact.
+
+### Export
+
+1. Exporting data
+
+   1. Test case: `@ /filename data`
+      Expected: File with the name `data.csv` should appear in the same directory of the application, containing all of the contacts stored in the app (which can be seen with `ls -a`).
 
 ## **Appendix: Effort**
 
@@ -662,3 +1007,4 @@ In developing Hi:Re, we are proud to have done the following given the constrain
 
   3) For most of the commands that AB3 had and we kept, we upgraded them to fit our new functionality.
      In the process, `Command` and `Parser` files were used as reference for new features that we implemented.
+
