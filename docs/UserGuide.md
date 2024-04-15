@@ -153,14 +153,13 @@ Contacts are also required to be labelled with <u>minimally one</u> mandatory ta
 
 1. Type commands in the `command box` and press the `[Enter]` _(Windows & Linux)_ / `[return]` _(macOS)_ key to execute it, **but first...**
 
-1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
+1. [Register](#registering-an-account-register) an account before you are ready to use Hi:Re!
 
 1. [Log-in to](#login-into-account-codelogincode) your newly registered account with the correct username and password!
 
 1. Refer to the [Commands](#commands) below for the specific details of each command.
 
 1. Refer to the [Built-In Features](#features) below for the details of each built-in feature.
-
 
 <div style="text-align: right;">
   <a href=#table-of-contents>

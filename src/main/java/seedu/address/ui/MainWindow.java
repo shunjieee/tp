@@ -204,17 +204,29 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleUndo() throws AccountException, CommandException, ParseException {
-        executeCommand("undo");
+        try {
+            executeCommand("undo");
+        } catch (AccountException | CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     @FXML
     private void handleRedo() throws AccountException, CommandException, ParseException {
-        executeCommand("redo");
+        try {
+            executeCommand("redo");
+        } catch (AccountException | CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     @FXML
     private void handleLogout() throws AccountException, CommandException, ParseException {
-        executeCommand("logout");
+        try {
+            executeCommand("logout");
+        } catch (AccountException | CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -252,7 +264,6 @@ public class MainWindow extends UiPart<Stage> {
             }
         } catch (AccountException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
