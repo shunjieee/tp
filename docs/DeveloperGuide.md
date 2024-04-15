@@ -389,30 +389,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC2 - Delete a contact**
-
-**MSS**
-
-1. User requests to delete a specific person in the database and input the details
-1. Hi:Re deletes the person
-1. Hi:Re shows a message for the successful deletion
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details are invalid.
-
-    * 1a1. Hi:Re shows an error message
-
-      Use case ends.
-
-* 2a. The given person does not exist.
-
-    * 2a1. Hi:Re shows an error message
-
-      Use case ends.
-      
 **Use case: UC3 - Edit a contact**
 
 **MSS**
