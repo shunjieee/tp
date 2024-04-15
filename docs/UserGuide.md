@@ -54,6 +54,8 @@ Greetings HR employees, managers and executives!
 
 *Hi:Re, our one-stop employee profiling application is for you!*
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 #### **User Guide Purpose:** 
 
 This user guide serves to provide potential users like you with the information of Hi:Re, and 
@@ -107,7 +109,7 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 3) Data Observation: Toggling the Display, Finding Contacts by name, Listing all matching information 
 4) Command Management: Undoing and Redoing a Command 
 5) Data Portability: Exporting to .csv file
-6) Link to our User Guide
+6) Link to our User Guide, Exit Hi:Re
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -399,28 +401,32 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
        <img src="images/ui/add/duplicateId.png" width="452.5"><br><br>
        </box>
 
-    2. Incomplete Fields Error: Failure to complete all required fields will trigger an error. 
-       <box type="wrong">
-       Incomplete fields error <br><br>
-       <img src="images/ui/add/insufficientFields.png" width="452.5"><br><br>
-       </box>
-     
-    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
-       <box type="wrong">
-       Invalid fields error <br><br>
-    
-       * Invalid name
-       
-       <img src="images/ui/add/invalidname.png" width="452.5"><br><br>
-    
-       * Invalid phone number
-       
-       <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
-       
-       * Invalid id
-       
-       <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
-       </box>
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
+2. Incomplete Fields Error: Failure to complete all required fields will trigger an error. 
+   <box type="wrong">
+   Incomplete fields error <br><br>
+   <img src="images/ui/add/insufficientFields.png" width="452.5"><br><br>
+   </box>
+ 
+3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+   <box type="wrong">
+   Invalid fields error <br><br>
+
+   * Invalid name
+   
+   <img src="images/ui/add/invalidname.png" width="452.5"><br><br>
+   </box>
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+   <box type="wrong"> 
+   * Invalid phone number
+   
+   <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
+   
+   * Invalid id
+   
+   <img src="images/ui/add/invalidid.png" width="452.5"><br><br>
+   </box>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -542,22 +548,25 @@ GUI upon successful addition command <br><br>
        Incomplete fields error <br><br>
        <img src="images/ui/edit/editMissingField.png" width="452.5"><br><br>
        </box>
-    3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
-       <box type="wrong">
-       Invalid fields error <br><br>
 
-        * Invalid name
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-       <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
+ 3. Invalid Fields Error: Any input field violating the requirements mentioned above will trigger an error.
+    <box type="wrong">
+    Invalid fields error <br><br>
 
-        * Invalid phone number
+     * Invalid name
 
-       <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+    <img src="images/ui/edit/editInvalidName.png" width="452.5"><br><br>
 
-        * Id not found
+     * Invalid phone number
 
-       <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
-       </box>
+    <img src="images/ui/edit/editInvalidHp.png" width="452.5"><br><br>
+
+     * Id not found
+
+    <img src="images/ui/edit/editidNotFound.png" width="452.5"><br><br>
+    </box>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -587,7 +596,7 @@ Format: `clear`<br>
 ### Toggling the display: `$`
 
 You can toggle the display to view / hide the contacts panel of Hi:Re. 
-This gives you a cleaner and less-cluttered application workspace, especially if there are many contacts.<br><br>
+This gives you a cleaner and less-cluttered application workspace, especially if there are many contacts.<br>
 
   Format: <code>$</code><br>
 <div markdown="block" class="alert alert-primary">
@@ -606,12 +615,12 @@ Thus, if your result of one of these commands is unexpectedly empty, try togglin
   
   <box type="definition">
     Viewing contacts.<br><br>
-    <img src="images/ui/toggle/view.png" width="452.5" height="369.5"><br><br>
+    <img src="images/ui/toggle/view.png" width="452.5" height="320.5"><br><br>
   </box>
 
   <box type="definition" theme="info">
     Hiding contacts.<br><br>
-    <img src="images/ui/toggle/hide.png" width="452.5" height="369.5"><br><br>
+    <img src="images/ui/toggle/hide.png" width="452.5" height="315.5"><br><br>
   </box>
 
   <div style="text-align: right;">
@@ -934,7 +943,6 @@ Format: `help`
   </div>
 
 ---
-<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Exit the application: `exit`
 
@@ -1007,6 +1015,7 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
   </div>
 
 ---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Design Methodology
 
@@ -1041,8 +1050,14 @@ you to focus on your workflow without distractions.
 From the calming dark blue UI to the streamlined command-based data entry system, every aspect of our design reflects our
 unwavering commitment to enhancing your productivity and satisfaction.
 
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
 
 ---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## FAQ
 
@@ -1068,10 +1083,13 @@ the [official Java website](https://www.oracle.com/sg/java/).
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-1. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re before executing any other commands.
-1. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything.
+
+2. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+
+3. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything.
    Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
-2. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
+
+4. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -1080,6 +1098,7 @@ the [official Java website](https://www.oracle.com/sg/java/).
   </div>
   
  ---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Command summary
 
@@ -1111,6 +1130,7 @@ Link to user guide | `help`
   </div>
 
 ---
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Future Integrations
 
