@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Hi:Re Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+Hi:Re is a brownfield project that builds on the Addressbook Level-3 project. Both the product and inspiration are projects
+under the module CS2103T: Software Engineering from the National University of Singapore, offered by the School of Computing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `+ /name Tan Ah Gao /id chihuahua69 /hp 999 /tag finance`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -90,7 +91,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("- id abc123")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
@@ -101,7 +102,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is first passed to an `AccountManagerParser` object which in turn creates a parser that matches the command (e.g., `LoginCommandParser`) and uses it to parse the command.
+1. If the parsing result returned by `AccountManagerParser` is null, the command is then passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,6 +114,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
+* When called upon to parse a user command, the `AccountManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `LoginCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `LoginCommand`) which the `AccountManagerParser` returns back as a `Command` object.
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -124,18 +127,10 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the tag data i.e., all `Tag` objects (which are contained in a `TagList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
-
 
 ### Storage component
 
@@ -144,8 +139,8 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, user preference data and tag list data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `TagListStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -183,99 +178,62 @@ hence any ID changes would mean that the employee needs to be deleted and added 
 
 
 
-### \[Proposed\] Undo/redo feature
+### \[Implemented\] Undo/redo feature
 
-#### Proposed Implementation
+Our undo/redo mechanism is facilitated by a `CommandList` inside the `Model` and an internal pointer to track the current command, offering a command-centric approach, which can be highly efficient and flexible.<br><br>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+**Core Components**
+1. `CommandList`: This list stores all the commands that have been executed. Each command in this list should be capable of reversing its effect (undo) and reapplying its effect (redo).
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+2. `CommandList.currentCommandIndex`: This pointer indicates the current position in the commandList. It helps determine which commands have been executed and which ones have been undone.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Functionalities**
+1. Executing a command:
+   * When a new command is executed, it is added to the end of the commandList.
+   * The current command pointer is moved to this new command's position.
+   * Commands following the current command pointer (if any) are cleared from the list, as the new command creates a new "branch" of history, invalidating the redo history.<br><br>
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+2. Undoing a command:
+   * To undo, check if the pointer is not at the beginning of the list.
+   * The command at the current pointer position knows how to undo itself. It executes its undo method.
+   * The pointer is then decremented, moving backwards in the command list.<br><br>
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+3. Redoing a command:
+   * To redo, check if the pointer is not at the end of the list.
+   * Increment the pointer to move to the next command in the list.
+   * The command at this new pointer position knows how to redo itself and executes its redo method.<br><br>
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+4. Self-contained commands:
+   * Each command object contains all the information necessary to both apply and reverse its effects. When a command is executed, it also prepares for its potential undo by storing any relevant state changes or backups of the data it modifies. Currently our undo/redo only supports the following commands.
+   * Add: Stores a reference to the added person. To undo, it removes this person from the address book. To redo, it simply re-adds the stored person to the address book.
+   * Delete: Stores a reference to the deleted person. To undo, it re-adds this person to the address book using the stored details. To redo, is removes the person again from the address book.
+   * Edit: Stores a reference to the person before edit and another reference to the person after edit. To undo, it removes the person after edit and re-adds the person before edit. To redo, it removes the person before edit and re-adds the person after edit.
+   * Clear: Stores a reference to the address book before clearing. To undo, it restores the address book to the state before clearing. To redo, it clears the address book again.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+Compared with the recommended way that stores the entire address book for each undo/redo, our command-centric approach has the following pros and cons:
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+**Pros:**
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* Reduced Memory Usage: Since only changes are stored rather than the entire application state, this method typically consumes less memory. For instance, the delete command only needs to store the details of the deleted person, not the state of the entire address book.
 
-_{more aspects and alternatives to be added}_
+* Scalability: As operations increase in complexity or frequency, storing individual command effects rather than snapshots of the entire state scales better. This makes the system more efficient and responsive as the volume of data grows.
 
+* Flexibility and Modularity: Commands encapsulate their functionality, making the system more modular. This separation allows for easier updates and modifications to individual commands without affecting the overall system.
+
+* Targeted Undo/Redo: This approach allows for precise control over what gets undone or redone, making the operations more predictable and less prone to errors that can occur when rolling back a full state.
+
+**Cons:**
+
+* Implementation Complexity: Each command must be correctly implemented with its own undo and redo logic. This increases the complexity of each command's implementation and requires careful design to ensure that each command properly and completely reverses its effects.
+
+* Testing Overhead: The need for thorough testing increases as each command has its own undo/redo logic. There's a higher risk of bugs in individual commands, especially in scenarios where commands might interact or affect the results of each other.
+
+* Dependency and State Consistency: Commands must be designed not to rely excessively on the specific state of the application that may be altered by other commands. Ensuring consistency and managing dependencies between commands can be challenging.
+
+* Recovery from Errors: If an error occurs during the execution of an undo or redo operation, recovering and ensuring data integrity can be more complex, as the system must handle partial undos or redos gracefully.
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -710,32 +668,171 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+For manual testing of other commands, run the following commands to add the specified few contacts
+(this is assuming the default tag list given is not edited in any way):
+  1) `+ /name John Doe /id johndoe61 /hp 98765432 /tag finance`
+  2) `+ /name Ali /id ali21 /hp 99795422 /tag sales`
+  3) `+ /name Rose /id rose84 /hp 98631422 /tag RnD`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Adding a person while display is off.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Prerequisites:
+     * Clear all contacts using the `clear` command.
+     * Toggle the display using the `$` command, to turn it off.
+     * Ensure the tag `RnD` exists in the tag list by running `ls -t`
+   
+   1. Test case: `+ /name Rose /id rose84 /hp 98631422 /tag RnD` <br>
+      Expected: Contact is added. Details of added contact shown in message box. Display remains off.
+   2. Test case: `+ /name Rose /id rose84 /tag RnD` <br>
+      Expected: No contact is added. Error details shown in the message box. Display remains off.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Adding a person with S/O or hyphen in the name.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Ensure the tag `RnD` exists in the tag list by running `ls -t`
+
+    1. Test case: `+ /name Rose S/O Dan /id rose84 /hp 98631422 /tag RnD` <br>
+       Expected: No contact is added. Error details shown in the message box.
+    2. Test case: `+ /name Rose-Dan /id rose84 /hp 98631422 /tag RnD` <br>
+       Expected: No contact is added. Error details shown in the message box.
+
+### Editing a contact
+
+1. Editing a person with a tag not in the tag list.
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+    * The following is done with the default tag list.
+
+    1. Test case: `> rose84 /tag ABCDEFG` <br>
+       Expected: Contact is not edited. Error details shown in the message box.
+    2. Test case: `> rose84 /tag Finance` <br>
+       Expected: Contact is not edited. Error details shown in the message box. Tags are **case-sensitive**.    
+
+### Deleting a contact
+
+1. Deleting a person while display is off.
+
+   1. Prerequisites: 
+      * Clear all contacts using the `clear` command. 
+      * Add a few contacts in according to [this section](#adding-a-contact).
+      * Toggle the display using the `$` command, to turn it off.
+
+   1. Test case: `- /id johndoe61`<br>
+      Expected: Contact with the ID johndoe61 will be deleted. Details of the deleted contact shown in the message box. Display remains off. 
+
+   1. Test case: `- /id `<br>
+      Expected: No person is deleted. Error details shown in the message box.
+
+### Clearing the addressbook
+
+1. Clearing the addressbook while display is off.
+
+   1. Prerequisites: 
+   * Clear all contacts using the `clear` command.
+   * Add a few contacts in according to [this section](#adding-a-contact).
+   * Toggle the display using the `$` command, to turn it off.
+   <br><br>
+
+   1. Test case: `clear`<br>
+      Expected: Addressbook will be cleared. Success message will be displayed. Display remains off. 
+
+   1. Test case: `clear this` _(where there are additional inputs after `clear`)_<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding tags
 
-### Saving data
+1. Invalid commands / inputs
 
-1. Dealing with missing/corrupted data files
+   1. Test case: Non-alphanumeric: `tag+ Human Resource`, `tag+ $@Les`<br>
+   Expected: No tags added. Error message will be displayed.
+   
+   2. "Multiple" tags: `tag+ HR, Finance`, `tag+ sales + marketing`<br>
+   Expected: Similar to previous.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. Adding duplicate inputs
+
+   1. Prerequisites:
+   * Add in a new tag, e.g. `tag+ test`
+   <br><br>
+   
+   2. Test case: `tag+ test` _(2nd time)_<br>
+   Expected: No tags added. Error message will be displayed.
+
+   3. Test case: `tag+ Test` _("duplicated" tag)_<br>
+   Expected: Tag will be added. Success message will be displayed.<br>
+   Tags are **case-sensitive**.
+
+### Deleting tags
+
+1. Removing a tag that is in use.
+
+   1. Prerequisites: 
+   * Clear all contacts using the `clear` command.
+   * Add a few contacts in according to [this section](#adding-a-contact).
+   <br><br>
+   
+   2. Test case: `tag- finance`<br>
+   Expected: No tag removed. Error message will be displayed.<br>
+   Tag is still in use by a contact in the addressbook.
+
+### Register an account
+
+1. Invalid inputs.
+   
+   1. Invalid username: `register /u 12 /p abc12345`<br>
+      Expected: No account created. Error message will be displayed.
+
+   2. Invalid password: `register /u test /p 123`<br>
+      Expected: No account created. Error message will be displayed.
+
+2. Invalid command.
+   
+   1. Missing field: `register /u test`<br>
+      Expected: No account created. Error message will be displayed.<br><br>
+
+3. Duplicate username.
+   
+   Test case:<br><br>
+   Execute `register /u test /p abc12345` twice.<br><br>
+   Expected: Only the first command will create an account. Error message will be displayed for the second command.
+
+### Login an account
+
+1. Invalid inputs.
+
+    1. Invalid username: `login /u 12 /p abc12345`<br>
+       Expected: Login fails. Error message will be displayed.
+
+    2. Invalid password: `login /u test /p 123`<br>
+       Expected: Login fails. Error message will be displayed.
+
+2. Invalid command.
+
+    1. Missing field: `login /u test`<br>
+       Expected: Login fails. Error message will be displayed.<br><br>
+
+3. Another user already logged in.
+
+   Test case: 
+   1. Execute `register /u test /p abc12345`.<br>
+   2. Execute `login /u test /p abc12345` twice.<br><br>
+   
+   Expected: Only the first login command will succeed. Error message will be displayed for the second login command.
+
+### Logout an account
+
+1. The user has not logged in.
+
+   Test case: <br><br>
+   Launch Hi:Re and then execute `logout` first.<br><br>
+   Expected: Logout fails. Error message will be displayed.
 
 ### Undo and Redo
 
@@ -826,3 +923,88 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `@ /filename data`
       Expected: File with the name `data.csv` should appear in the same directory of the application, containing all of the contacts stored in the app (which can be seen with `ls -a`).
+
+## **Appendix: Effort**
+
+### Difficulty Level 
+
+In our development of Hi:Re, we give the difficulty rating as **8.5 / 10**.
+
+The reasons for our rating will be expounded on in the following sections. <br>
+
+### Challenges Faced
+<br>
+
+#### 1.Brownfield Project
+
+When we were first introduced to the **software architecture** of Addressbook Level-3(AB3), as well as its **source code**,
+we needed time to **dissect, simplify and understand** how every single section of AB3 worked. This was
+to ensure that we did not dive in immediately and develop tunnel vision for something we would like to implement that
+would cause the software architecture or application to have problems down the road.
+
+**From there, we:**
+
+Engaged in the tutorial provided by the course coordinators to practise adding code to the existing AB3. For most of our team,
+it was the first time that we were adding on to a completed project's work, which gave us confidence and helped us gain
+familiarity with the source code and its various files. Through the tutorial, we were able to have a glimpse into how
+a chain of files and classes worked in tandem to produce the functionality as seen when we ran the application.
+
+#### 2. Target Audience and Implementation
+
+**Understanding AB3 was not a 1 time process, but ongoing**. As we looked back on our initial ideas in our document, we realised 
+that given our time frame for development, we were **unable to implement some features immediately** due to us still getting used
+to working with pre-existing AB3 source code. Having looked at AB3 again now in detail, we had to **ideate for new features**
+that our **target audience would need and want**, as well as **crossing out previous ideas that now are not feasible**.
+
+#### 3. Version Control
+
+For our team, this was the **first time collaborating with others using version control**. We had to familiarise ourselves with
+the standard workflow process, as well as helping to **review and test each other's code** before approving Pull Requests.
+During v1.3's development phase, we encountered **merge conflicts** as features inadvertently affected one another. **Bugs** also
+sprouted out that could not be seen from resolving merge conflicts, and we had to push out more changes to solve these bugs.
+
+#### Learning outcomes for our team
+
+Through the challenges faced, we came out as **more professional, responsible, collaborative and adaptive teammates**. 
+Communication was key in our project, and we are all confident to say that we have emerged stronger from the challenges,
+and have become a **close-knit team that helps one another**.
+
+
+### Effort Required
+     
+We held **weekly meetings** to discuss work updates and plans for the next week, as well as communicated frequently in our channel
+about updates, help needed, suggestions and ideas.
+
+In the process of allocating each feature to a team member to implement, each team member needed to do **documentation, development,
+testing and reviewing other's work**. As aforementioned, it was **difficult to work off an existing code base** and **integrate new features**
+for our target audience in a **seamless and effective manner**. In our discussions itself, we **planned meticulously** as to minimise
+any form of functionality overlap between members so that development would be smooth. In the cases where we had 2 members
+work on a larger feature, they **collaborated to implement the feature in parts**.
+
+Version control mastering also **takes time and effort to get it right every time**. With each week, we helped each other with 
+understanding and getting the workflow right so that our work can follow a smooth and efficient process.
+
+
+### Achievements of Project
+
+In developing Hi:Re, we are proud to have done the following given the constraints and development time frame:
+
+  1) Built features that our target audience (HR department employees and managers) would appreciate, such as the Exporting data Command.
+
+  2) Improved the UI and upgraded AB3's original features to cater to our target audience. (See Design Methodology Section in UG)
+
+  3) Created an advanced tag system feature to optimise contact tag management.
+
+  4) For security and target audience consideration, our Account features serve to allow our target audience to 
+     manage multiple addressbooks should they collaborate with different companies! (Refer to Disclaimer for Account Features in UG under Commands section)
+
+### Code Reuse
+
+  1) In making an advanced tag feature system, we referenced AB3's storage portion to create our own taglist.
+
+  2) With ID becoming our main identifier of contacts, we referenced how AB3 did it for names previously and also
+     continued that development path when we changed the delete feature.
+
+  3) For most of the commands that AB3 had and we kept, we upgraded them to fit our new functionality.
+     In the process, `Command` and `Parser` files were used as reference for new features that we implemented.
+
