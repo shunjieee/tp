@@ -480,3 +480,93 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Undo and Redo
+
+1. Undoing and redoing an add command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, add a contact using the `+` command.
+
+   1. Test case: `undo` <br>
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact.  
+      
+   1. Test case: `undo`, followed by `redo`. <br>
+      Upon `redo`, added contact reappears in the list. Subsequent `ls -a` should show this contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing a delete command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, delete a contact using the `-` command.
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, deleted contact is reappears in the list. Subsequent `ls -a` should show this contact. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, deleted contact disappears from the list. Subsequent `ls -a` should NOT show this contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing an edit command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, edit a contact field using the `>` command.
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, specified field of edited contact reverts. Subsequent `ls -a` should show this reverted contact. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, contact retains edits performed in the preqreuisite stage. Subsequent `ls -a` should show this edited contact. Message indicating successful redo is printed.
+
+1. Undoing and redoing a clear command
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, clear all contacts using the `clear` command. 
+
+   1. Test case: `undo` <br>
+      Expected: Upon `undo`, all cleared contacts reappear in the list. Subsequent `ls -a` should show all contacts upon initial prerequisite `ls -a`. Message indicating successful undo is printed.
+
+   1. Test case: `undo`, followed by `redo` <br>
+      Expected: Upon `redo`, no contacts should be listed. Subsequent `ls -a` should continue to show an empty list. Message indicating successful redo is printed.
+
+1. No commands to undo / redo
+   1. Preqreuisites: Have had just started the application and logged in without executing any other commands
+   
+   1. Test case: `undo`
+      Expected: No change to the list of contacts observed. Message printed indicating that there are no commands to undo.
+
+   1. Test case: `redo`
+      Expected: No change to the list of contacts observed. Message printed indicating that there are no commands to redo.
+
+1. Chaining `undo`s and `redo`s
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, perform three `+` commands with different `/id` fields, e.g. <br>
+      1. `/name A /id 1 /hp (handphone) /tag (tag)`, followed by
+      1. `/name B /id 2 /hp (handphone) /tag (tag)`, followed by
+      1. `/name C /id 3 /hp (handphone) /tag (tag)`
+
+   1. Test case: Perform `undo` three times.
+      Expected: Upon first undo, third added contact (`C` in the example) is deleted. Upon second undo, second added contact (`B` in the example) is deleted. Upon third undo, first added contact (`A` in the example) is deleted. 
+
+   1. Test case: Perform `undo` three times. Then, perform `redo` three times.
+      Expected: Upon first redo, only first added contact (`A` in the example) is added back. Upon second redo, second added contact (`B` in the example) is added back. Upon third redo, third added contact (`C` in the example) is added back. 
+
+1. Non-`undo`-able commands
+
+   1. Prerequisites: List all contacts using the `ls -a` command. Then, add a contact using the `+` command.
+
+   1. Test case: Perform a `?` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. 
+   
+   1. Test case: Perform a `ls` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. 
+
+   1. Test case: Perform a `tag+` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Subsequent `ls -t` should still show the tag added with `tag+`.
+
+   1. Test case: Perform a `tag-` command, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Subsequent `ls -t` should NOT still show the tag added with `tag-`. 
+
+   1. Test case: Export data with `@`, followed by an `undo`.
+      Expected: Added contact disappears from the list. Message indicating successful undo is printed. Subsequent `ls -a` should NOT show this contact. Exported data, however, should show the contact.
+
+### Export
+
+1. Exporting data
+
+   1. Test case: `@ /filename data`
+      Expected: File with the name `data.csv` should appear in the same directory of the application, containing all of the contacts stored in the app (which can be seen with `ls -a`).
