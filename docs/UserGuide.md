@@ -4,11 +4,12 @@
   pageNav: 3
 ---
 
-# Hi:Re User Guide
+# **Hi:Re User Guide** :handshake:
 
 ---
 
-## Table of Contents
+## Table of Contents :book:
+**Introduction**
 
 - [Welcome Note](#welcome-note)
 - [Product Information](#product-information)
@@ -33,15 +34,19 @@
 8) [Toggling the display](#toggling-the-display)
 9) [Finding contacts by name](#finding-contacts-by-name)
 10) [Listing all matching information](#listing-all-matching-information-ls)
+11) [Adding a tag](#adding-a-tag-tag)
+12) [Deleting a tag](#deleting-a-tag-tag)
 ---
 **Advanaced Features**
 
-11) [Undoing a command](#undoing-a-command-undo)
-12) [Redoing a command](#redoing-a-command-redo)
-13) [Exporting as .csv file](#exporting-data)
-14) [Link to user guide](#link-to-our-user-guide-help)
-15) [Exiting Hi:Re](#exit-the-application-exit)
+13) [Undoing a command](#undoing-a-command-undo)
+14) [Redoing a command](#redoing-a-command-redo)
+15) [Exporting as .csv file](#exporting-data)
+16) [Link to user guide](#link-to-our-user-guide-help)
+17) [Exiting Hi:Re](#exit-the-application-exit)
 ---
+**Additional information**
+
 - [Built-In Features](#built-in-features)
 - [Design Methodology](#design-methodology)
 - [FAQ](#faq)
@@ -57,7 +62,7 @@ Greetings HR employees, managers and executives!
 
 - Tired from **scrolling** through endless rows in **spreadsheet** applications?
 - Worried about **data leak** issues caused by the lack in security of such applications?
-- Frustrated by the **slow input** of cell by cell in such applications?
+- Frustrated by the **slow, manual input** of cell by cell in such applications?
 - Need an economically viable HR application?
 
 *Hi:Re, our one-stop employee profiling application is for you!*
@@ -92,22 +97,23 @@ Hi:Re is a **desktop app for managing your employee details,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-*Meaning:* Most work is done via *typing* commands on a command line instead of *clicking* with your mouse!
+*Meaning:* Most work is done via *typing* :white_check_mark: commands on a command line instead of *clicking* :x: with your mouse :computer_mouse:!
 
-- **Fast types**, Hi:Re will be your **best assistant** to get your contact management tasks done
+- **Fast-typers**, Hi:Re will be your **best assistant** to get your contact management tasks done
   **faster** than traditional GUI apps.
-- Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master**
-  Hi:Re, that is already **streamlined for HR purposes**!
+
+- Regardless of your *technical skill* level, our User Guide will **bring you up to speed** and **quickly master** Hi:Re, that is already **streamlined for HR purposes**!
 
 <box type="info" seamless> 
 
-**IMPORTANT: In Hi:Re, we adopt a system where contacts are identified by their email id(ID for short) without the
-company email domain.** <br> 
+**<u>NOTE</u>:exclamation:**
+**In Hi:Re, we adopt a system where contacts are identified by their email identity (ID for short) without the company email domain.** <br> 
+The ID is c**ase-insensitive** and **accepts special characters**, but **NOT whitespaces**.
 
-*John is identified by his ID, john123 without the domain, @123company.com*
+Example: John is identified by his ID, `john123` without the domain, @123company.com
 
-Hence, we allow duplicate names and handphone numbers.
-Contacts are also labelled with one mandatory tag and optional additional tags.
+Hence, we <u>allow duplicate names and handphone numbers</u>.
+Contacts are also required to be labelled with <u>minimally one</u> mandatory tag.
 </box>
 
 
@@ -647,7 +653,7 @@ Thus, if your result of one of these commands is unexpectedly empty, try togglin
 
 ---
 
-### Finding Contacts by Name: `?`
+### Finding contacts by name: `?`
 
 Handling an addressbook with many contacts does not necessasrily mean an increase in difficulty in searching for a specific contact. Using the `?` command, you can find all contacts in the addressbook that has names containing the keyword(s) entered.<br><br>
 Format: <code> ? (keyword) {(more keywords)...} </code><br>
@@ -686,17 +692,17 @@ Example:
 
 ### Listing all matching information: `ls`
 
-You can list all matching information in the addressbook for different purposes.<br><br>
+Similar to the find, `?`, function, you can add filter the contacts by tags! 
 
-Format: <code>ls (args)</code><br>
-
+The `ls` function serves multiple purposes. You can list all matching information in the addressbook, list all tags or filter the contacts by tags.<br><br>
+Format: <code>ls (args)</code><br><br>
 <code>(args)</code> = <code>-a</code>: List all contacts in the address book. <br>
 <code>(args)</code> = <code>-t</code>: List all tags available. <br>
 <code>(args)</code> = <code>(tag_name) {(more tag_name)...} </code>: List all contacts with any <code>(tag_name)</code> specified. <br>
 
 <box type="important" seamless>
 
-* All tags consist of alphanumeric characters, hence any non-alphanumeric characters used will result in no contacts found.<br>
+* All tags consist of **alphanumeric** characters, hence any non-alphanumeric characters used will result in no contacts found.<br>
 * When more than one `(tag_name)` is entered, all tags that match **any** of the words will be listed.<br>
 E.g `ls H fin` will list all contacts with tags containing `H` **OR** `fin`.<br>
 * `(tag_name)` used to match tags are **CASE-SENSITIVE**.
@@ -739,17 +745,18 @@ Example:
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-### Add Tag: `tag+`
+### Adding a tag: `tag+`
 
-You can add a tag into the tag list.<br><br>
-
-Format: <code>tag+ (tag_name)</code><br>
+You can add tags to categorise contacts to your liking! With the `tag+` function, you can customise the contacts of employees with their departments or other relevant information.<br><br>
+Format: <code>tag+ (tag_name)</code><br><br>
 
 <box type="important" seamless>
 
 * Default tags: `HR`, `operations`, `finance`, `marketing`, `IT`, `sales` & `RnD`
+
+* Tags are **MUST** be **alphanumeric**.
+
 * Tags are **CASE-SENSITIVE**.
-  
   </box>
 
 Example: 
@@ -759,10 +766,11 @@ Example:
     <img src="images/ui/tag_plus/1.png" width="452.5"><br><br>
   </box>
 
-**Error Handling Protocols**<br>
+**How to handle error when adding tags?**<br>
+<u>Duplicate tag error</u>: When you add a duplicate tag, the error will be triggered.
 
   <box type="wrong">
-    Duplicate tags. <br><br>
+    Duplicate tag error. <br><br>
     <img src="images/ui/tag_plus/2.png" width="452.5" ><br><br>
        </box>
   
@@ -776,15 +784,14 @@ Example:
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-### Delete Tag: `tag-`
+### Deleting a tag: `tag-`
 
-You can delete a tag from the tag list.<br><br>
-
-  Format: <code>tag- (tag_name)</code><br>
+You can delete an irrelevant tag from the tag list with `tag-` command. This prevents the cluttering of tag list with irrelevant / not-in-use tags.<br><br>
+Format: <code>tag- (tag_name)</code><br><br>
 
 <box type="important" seamless>
 
-* Tag cannot be removed if a contact is tagged with the tag-to-be-removed.
+* A tag cannot be removed if a contact is tagged with the tag-to-be-removed.
   </box>
 
 Example: 
@@ -793,6 +800,14 @@ Example:
     Removing the tag <code>HR</code>: <code>tag- HR</code><br><br>
     <img src="images/ui/tag_minus/1.png" width="452.5"><br><br>
   </box>
+
+**How to handle error when deleting tags?**<br>
+<u>Tag still in use error</u>: When you try to delete a tag that is still in use, the error will be triggered.
+
+  <box type="wrong">
+    Tag still in use error. <br><br>
+    <img src="images/ui/tag_minus/2.png" width="452.5" ><br><br>
+       </box>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -803,15 +818,15 @@ Example:
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-### Undoing a Command: `undo`
+### Undoing a command: `undo`
 
-You can restore the address book to the state before the previous **undoable** command was executed.<br><br>
-
+Did you make a mistake? Fret not, you can undo your previous action / command and restore the address book to the state before the previous **undoable** command was executed.<br><br>
 Format: `undo`<br>
 <box type="important" seamless>
 
-* Undoable commands: those commands that modify the address book’s content (add, delete, edit and clear). 
-* All other commands (including adding and deleting tags) **CANNOT** be undone.
+* **Undoable commands**: those commands that modify the address book’s content ([add](#adding-a-contact), [delete](#deleting-a-contact), [edit](#editing-a-contact) and [clear](#clearing-all-contacts-clear)). 
+
+* All other commands (including adding and deleting tags) **CANNOT** be undone _(as of the latest version)_.
   </box>
 <div markdown="block" class="alert alert-primary">
 
@@ -821,21 +836,21 @@ You can also use this command by clicking in the `Edit` section of the menu bar.
 </div>
 
 Example:<br>
-1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
-2. Undo the deletion. The person will reappear.<br><br>
+1. Delete the person with the ID `johndoe41` using command: `- /id johndoe41`.<br>
+2. `Undo` the deletion. The person will reappear.<br><br>
 
-* **Confirmation of Successful Undo**<br>
+* **Confirmation of successful undo**<br>
 
-  If there is still any executed command that can be undone, a GUI indicative of a successful undo will be displayed, as illustrated below.<br>
+  Upon undo-ing a command successfully, you will see a similar GUI as illustrated below.<br>
 
   <box type="success">
     GUI upon successful undo command <br><br>
     <img src="images/ui/undo/1.png" width="452.5"><br>
   </box> 
 
-* **Error Handling Protocols**<br>
+* **How to handle error when undo-ing a command?**<br>
 
-    1. No Undoable Command Error: If there is no more executed command that can be undone, an error will be triggered.<br>
+    1. No undoable command error: If there is no more executed command that can be undone, and you attempt to run the undo command, the error will be triggered.<br>
        <box type="wrong">
        No undoable command error <br><br>
        <img src="images/ui/undo/2.png" width="452.5" ><br><br>
@@ -850,11 +865,10 @@ Example:<br>
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-### Redoing a Command: `redo`
+### Redoing a command: `redo`
 
-You can reverse the most recently undone command.<br><br>
-
-Format: `redo`<br>
+You can reverse the most recently undone command. This is helpful when you `undo` the command unintentionally.<br><br>
+Format: `redo`<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -862,23 +876,24 @@ Format: `redo`<br>
 You can also use this command by clicking in the `Edit` section of the menu bar.
 
 </div>
+
 Example:<br>
-1. Delete the person with the id `johndoe41` using command: - /id johndoe41.<br><br>
-2. Undo the deletion. The person will reappear.<br><br>
-3. Redo the undone deletion. The person will be deleted again.<br><br>
+1. Delete the person with the ID `johndoe41` using command: `- /id johndoe41`.<br>
+2. `Undo` the deletion. The person will reappear.<br>
+3. `Redo` the undone deletion. The person will be deleted again.<br><br>
 
-* **Confirmation of Successful Redo**<br>
+* **Confirmation of successful redo**<br>
 
-  If there is still any undone command that can be redone, a GUI indicative of a successful redo will be displayed, as illustrated below.<br>
+  Upon undo-ing a command successfully, you will see a similar GUI as illustrated below.<br>
 
   <box type="success">
     GUI upon successful redo command <br><br>
     <img src="images/ui/redo/1.png" width="452.5" ><br>
   </box> 
 
-* **Error Handling Protocols**<br>
+* **How to handle an error when redo-ing a command?**<br>
 
-    1. No Redoable Command Error: If there is no more undone command that can be redone, an error will be triggered.<br>
+    1. No redoable command error: If there is no more undone command that can be redone, and you attempt to run the redo command, the error will be triggered.<br>
        <box type="wrong">
        No redoable command error <br><br>
        <img src="images/ui/redo/2.png" width="452.5" ><br><br>
@@ -894,27 +909,24 @@ Example:<br>
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Exporting data: `@`
-[back to top](#table-of-contents)
 
-You can export the data in the addressbook to a comma delimited file in the same directory Hi:Re is in.<br>
+You can export the data in the addressbook to a comma-separated values (`.csv`) file in the same directory Hi:Re is in. This is especially helpful when you require the data to be used on another platform that supports the widely accepted data file (`.csv` files).<br><br>
+Format: `@ /filename (filename)`<br><br>
+Example: `@ /file contacts`<br>
 
-Format: `@ /filename (filename)`<br>
+<box type="important" seamless>
 
-Example: <code> export /file contacts </code><br>
-
-  <box type="important" seamless>
-
-* Note that you need not add the `.csv` file extension to the filename argument when executing this command - Hi:Re will do this for you. Hence, typing `@ /filename contacts` will export the data to `contacts.csv`.
+* Note that you **need not** add the `.csv` file extension to the filename argument when executing this command.<br>
+i.e. Hi:Re will do this for you! Hence, the command `@ /filename contacts` will export the data to `contacts.csv`.
   
 * The filename should follow standard filename conventions on your system. (e.g. no special characters)
 
-* If a CSV file already exists with the given filename, the command will **not** execute and an error will be thrown.
+* If a `.csv` file already exists with the given filename, the command will **not** execute and an error will be thrown.
+</box>
 
-  </box>
+**Confirmation of Successful Export**<br>
 
-* **Confirmation of Successful Export**<br>
-
-   Following a valid set of inputs for the command, a GUI indicative of a successful export will be displayed, as illustrated below.<br>
+   Upon a successful export, you will see a similar GUI as illustrated below..<br>
 
   <box type="success">
     GUI upon successful export command <br><br>
@@ -923,14 +935,14 @@ Example: <code> export /file contacts </code><br>
 
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-* **Error Handling Protocols**<br>
-  1. Invalid Filename Error: If the given filename is invalid given for the current system, an error will be triggered.<br>
+* **How to handle errors when exporting data?**<br>
+  1. <u>Invalid filename error</u>: If you have provided an invalid filename for your current system, the error will be triggered. You can search up and follow the specific filename requirements for your system.<br>
       <box type="wrong">
       Invalid filename error <br><br>
       <img src="images/ui/export/invalidName.png" width="452.5"><br><br>
       </box>
 
-  1. Filename Already Taken Error: If a CSV file with the given filename already exists in the same directory as the program, an error will be triggered.<br>
+  1. <u>Filename already taken error</u>: If you have provided a name that is a duplicate of a `.csv` file exisitng in the same directory as the program, the error will be triggered.<br>
       <box type="wrong">
       Filename already taken error <br><br>
       <img src="images/ui/export/alreadyExists.png" width="452.5"><br><br>
@@ -947,9 +959,8 @@ Example: <code> export /file contacts </code><br>
 
 ### Link to our User Guide: `help`
 
-Leads you to our user guide (i.e. this page) for guidance when using Hi:Re.
-
-Format: `help`
+If you need to refer back to this guide, you can simply use the `help` command. It will lead you to our user guide (i.e. this page) when using Hi:Re!<br><br>
+Format: `help`<br>
 
  <box type="success">
     Pop-up box upon running the command.<br><br>
@@ -966,7 +977,7 @@ Format: `help`
 
 ### Exit the application: `exit`
 
-Logs the user out of their account, and closes the Hi:Re application window.
+After using Hi:Re, you can close the application by using the `exit` command. It will log the user out of their account, and close the Hi:Re application window.
 
 Format: `exit`
 
@@ -981,7 +992,18 @@ Format: `exit`
 
 ## Built-In Features
 
-Features are built-in for your ease of use. No commands are required for it to work.
+These are features built-in for your ease of use! No commands are required for it to work.
+
+* Sort
+* Deletion of sample data upon first addition
+
+<div style="text-align: right;">
+  <a href=#table-of-contents>
+    back to top
+    </a>
+  </div>
+
+---
 
 ### Sort
   The addressbook is sorted in alphabetical order by name every time you add / edit / delete a new contact.<br>
@@ -994,12 +1016,13 @@ Features are built-in for your ease of use. No commands are required for it to w
 
 ---
 
-### Delete sample data
+### Deletion of sample data upon first addition
 
-Sample data is deleted when you add the first contact into the addressbook.<br><br>
+By adding your first contact into Hi:Re, the sample data will be deleted! This function will be in place for every new account.<br><br>
   
 <box type="important" seamless>
-  It is important that you do **NOT** perform any operations other than adding contacts upon the sample data as there is no guarantee that this feature will work properly afterwards.
+
+  It is important that you do **NOT** perform any operations other than adding contacts upon your first log in, as there is no guarantee that this feature will work properly afterwards.
   </box>
 
   <box type="definition">
@@ -1022,11 +1045,11 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
 
 ### Information security
 
-  Hi:Re seeks to protect the private information in your addressbook.<br><br>
+  Hi:Re seeks to protect the private and personal information in your addressbook.<br><br>
 
   1. **Password Hashing**<br>
      We use the SHA-256 hashing algorithm to hash the passwords.<br>
-     Passwords are hashed before being stored. Hence, even if the data file is compromised, the passwords are not easily retrievable.<br>
+     Passwords are hashed before being stored. Hence, even if your data file is compromised, your passwords are not easily retrievable.<br>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -1037,7 +1060,7 @@ Sample data is deleted when you add the first contact into the addressbook.<br><
 ---
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
-## Design Methodology
+## Design Philosophy
 
 Our software development team has meticulously crafted this application to provide
 you with a seamless and intuitive user experience.
@@ -1081,16 +1104,14 @@ unwavering commitment to enhancing your productivity and satisfaction.
 
 ## FAQ
 
-<panel header="**Q**: How do I transfer my data to another Computer?">
+**Q**: How do I transfer my data to another Computer?"<br>
 
-**A**: Install Hi:Re in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hi:Re home folder.
-</panel>
+**A**: You can install Hi:Re in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hi:Re home folder.<br><br>
 
-<panel header="**Q**: What is Java 11 and where can I download it?">
 
-**A**: Java 11 is the version of the Java Programming Language that our application uses to function. Any version of Java, 11 and above will work. You can download it from
-the [official Java website](https://www.oracle.com/sg/java/).
-</panel>
+**Q**: What is Java 11 and where can I download it?"<br>
+
+**A**: Java 11 is the version of the Java Programming Language that our application uses to function. Any version of Java, 11 and above will work. You can download it from the [official Java website](https://www.oracle.com/sg/java/).<br><br>
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -1104,12 +1125,11 @@ the [official Java website](https://www.oracle.com/sg/java/).
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
-2. Sample data sometimes does not clear if edited before a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re before executing any other commands.
+2. Sample data sometimes does not clear if it is edited **before** a new contact is added. As such, we recommend that you add a new contact immediately upon first logging into Hi:Re **before** executing any other commands.
 
-3. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything.
-   Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
+3. **When your contacts panel is hidden**, commands that show a list of contacts (like `ls` or `?`) will consequently not appear to do anything Thus, if your result of one of these commands is unexpectedly empty, try toggling the panel and re-entering the command again.
 
-4. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then you can launch the application and register an account with the same username to access the original addressbook. But apart from this, please do not arbitrarily edit the txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
+4. Currently you cannot directly recover passwords of your accounts. If you forget the account password for a certain addressbook, please open `accounts.txt` and delete the whole line with the username of that addressbook. Then, you can launch the application and `register` an account with the **same username** to access the original addressbook. Apart from this, please do not arbitrarily edit the .txt file, as this may cause account information to be read incorrectly or even cause the application to fail to start.
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -1156,13 +1176,15 @@ Link to user guide | `help`
 
 **In the future, we plan to integrate some of the following features:**
 
-1. **A more rigorous account management system**, which will allow us to manage users as an admin, and assign different 
-    levels of authentication or security.
-2. **A remote database management system**, which links all Hi:Re instances on different machines to the same
-    Hi:Re database, which will allow for collaboration and other benefits.
-3. **More open-ended tagging and field options**, allowing for Hi:Re to be fully customisable as per the
-    organisation's requirements.
-4. **Multiple phone numbers**, allowing for contacts to add in both their office and personal phone numbers.
+1. **A more rigorous account management system**, which will allow you to manage users as an administrator, and assign different levels of authentication or security to the different personal data collected.
+
+2. **A remote database management system**, which links all Hi:Re instances on different machines to the same Hi:Re database. This will allow you to collaborate with other Hi:Re users! There are more benefits to having a database system in place.
+
+3. **More open-ended tagging and field options**, allowing for Hi:Re to be fully customisable by you as per your organisation's requirements.
+
+4. **Multiple phone numbers**, you to add in both the employees' office and personal phone numbers to the same contact.
+
+5. **Improving input acceptance**, will allow you to be more flexible with the case-sensitivity and characters when it comes to `name`s and `tag`s.
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
@@ -1174,9 +1196,9 @@ Link to user guide | `help`
 
 ## Support and Feedback
 
-We are a dedicated team of developers committed to evolving Hi:Re to always be better.
+We are a dedicated team of developers committed to evolving Hi:Re to always be better, and to serve you better!
 
-Should you have any enquiries or feedback, do reach out to us at our [website!](https://github.com/AY2324S2-CS2103T-T12-3)
+If you have any enquiries or feedback, do reach out to us at our [website!](https://github.com/AY2324S2-CS2103T-T12-3)
 
 <div style="text-align: right;">
   <a href=#table-of-contents>
