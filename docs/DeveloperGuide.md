@@ -782,6 +782,33 @@ For manual testing of other commands, run the following commands to add the spec
    Expected: No tag removed. Error message will be displayed.<br>
    Tag is still in use by a contact in the addressbook.
 
+### Finding contacts
+
+1. Entering a keyword that does not match any contact entries (case-sensitive)
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+
+    1. Test case: `? kevin` <br>
+       Expected: No matching contacts found. Message displayed indicates as such.
+    2. Test case: `? jOhN` <br>
+       Expected: One matching contact found (John). Keywords are **case-insensitive**.
+
+### Listing contacts
+
+1. Finding a person with a tag which does not match those in the tag list. (case-sensitive)
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+    * The following is done with the default tag list.
+
+    1. Test case: `ls ABCDEFG` <br>
+       Expected: No contacts listed. Message displayed indicates as such.
+    2. Test case: `ls Finance` <br>
+       Expected: 1 contact listed. Message displayed indicates as such. Tags are **case-insensitive**.
+
 ### Register an account
 
 1. Invalid inputs.
@@ -1007,4 +1034,94 @@ In developing Hi:Re, we are proud to have done the following given the constrain
 
   3) For most of the commands that AB3 had and we kept, we upgraded them to fit our new functionality.
      In the process, `Command` and `Parser` files were used as reference for new features that we implemented.
+
+
+## **Appendix: Planned Enhancements**
+
+
+### Number of Planned Enhancements
+
+**Hi:Re**'s team size is **5**. As such, we will be providing 10 planned enhancements for Hi:Re. <br>
+
+
+### List of Planned Enhancements
+<br>
+
+#### 1. Enforcement of Case-sensitivity for Delete command
+
+One of our users brought up the issue of the **Delete** command being case-insensitive. For example, a contact with ID `alex123`
+could be deleted by using the command `- /id AlEx123`. For commands that make amendments to the contact list, it would be
+a better choice to make them case-sensitive, whilst the other commands used for displaying results (like the **Find** and **List**
+commands) can have their case-insensitivity maintained. This will make it more difficult for users to accidentally perform
+an unwanted deletion, which is a **serious** flaw.
+
+#### 2. Allowing for Multiple Phone Numbers
+
+Some personnel may have **multiple phone numbers** under their contact details, such as **Home** and **Mobile** phone numbers. As such,
+in the future, we plan to add **multiple** phone numbers per contact, to allow for more flexibility. In addition, we plan
+to allow HR personnel to declare which phone number is which, by allowing for phone numbers under a certain contact to be **tagged**.
+
+This was brought up by one of our users as a significant issue, as people typically have multiple contact numbers.
+
+#### 3. Improve the Clarity of Add Command Error (Incomplete Fields)
+
+The current error message for the **Incomplete Fields error** for the **Add** command is long, and covers multiple lines. However, our display box has
+to be kept small, in order to maximise the user's view of the entire contact list. As such, there is the issue where the
+error message is cut off, which prevents users from seeing the entire error message. We plan to fix this issue by making
+the error message more concise, and fit it within a single line. This will allow for users to understand the issue they are
+facing and rectify it simply.
+
+#### 4. Improve the Clarity of Add Command Error (Invalid ID)
+
+The current error message for the **Invalid ID error** for the **Add** command is too long, and can be improved by just simply
+indicating that the user can only choose lowercase alphanumeric characters for the ID. In addition to this, the system
+can be made to detect which special character violated the rule, and highlight it to the user. This will streamline the
+troubleshooting process for users.
+
+#### 5. Improve the Clarity of Delete Command Error (No matching ID)
+
+The current error message for the **No Matching ID error** for the **Delete** command is too long, and can be improved
+by just simply indicating that the user can double-check the contact database to ensure that the user's ID was correctly
+entered. There is some unnecessary text in the message that when removed, can greatly improve the user's experience and
+hence the troubleshooting procedure.
+
+#### 6. Improve the Clarity of Delete Command Error (Incomplete Fields)
+
+The current error message for the **Incomplete Fields error** for the **Delete** command is long, and covers multiple lines.
+However, our display box has to be kept small, in order to maximise the user's view of the entire contact list. As such,
+there is the issue where the error message is cut off, which prevents users from seeing the entire error message. We 
+plan to fix this issue by making the error message more concise, and fit it within a single line. This will allow for users
+to understand the issue they are facing and rectify it simply.
+
+#### 7. Improve the Clarity of Delete Command Error (Invalid ID)
+
+Like **4.**, The current error message for the **Invalid ID error** for the **Delete** command is too long, and can be
+improved by just simply indicating that the user can only choose lowercase alphanumeric characters for the ID. In addition
+to this, the system can be made to detect which special character violated the rule, and highlight it to the user.
+This will streamline the troubleshooting process for users.
+
+#### 8. Enabling Redo and Undo Function for Other Commands
+
+In order to implement a **true** **Redo and Undo** feature to Hi:Re, the feature should be able to **redo and undo** all
+modifications to the contact list, bar some commands such as our **Export** feature. The current lack of this feature is
+an issue, and implementing it will add to the completeness of our application. We plan to introduce this to **Hi:Re** as
+soon as possible.
+
+#### 9. Allow for Special Characters in Name Field
+
+As brought up by multiple users of **Hi:Re**, our applications `name` field for contacts does not permit the usage of
+special characters, which might be an issue when certain personnel have special characters in their name. One such example
+brought up by one of our users is the presence of **'S/O'** or **'D/O'** in many indian names. The forward slash character `/`
+is currently not permitted to be used in the name field.
+
+In order to maintain inclusivity, we plan to allow for special characters in our name field in the next iteration of **Hi:Re**.
+
+#### 10. Toggle Display Command Fix when List Command is used
+
+The current **Toggle Display** command in **Hi:Re** has some minor flaws. When the display is toggled off, the user will
+still be unable to view contacts in their contact list, even after using commands such as `ls -a`, which is supposed to list
+all contacts in the contact database. As a result, this may confuse the user, and make them think that there are no contacts
+available in the contact database.
+
+We plan to fix this issue in the next iteration of **Hi:Re** in order to provide more clarity of use to our dedicated users.
 
