@@ -592,7 +592,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC15 - Open guide**
 
+**MSS**
+
+1. User requests Hi:Re for the user guide
+1. Hi:Re opens a window with a copyable link to the user guide
+1. Hi:Re shows a message for the successful opening of the help window
+
+    Use case ends.
+
+**Use case: UC16 - Register user**
+
+**MSS**
+
+1. User attempts to register to Hi:Re 
+1. Hi:Re saves user's username and encrypted password 
+1. Hi:Re shows a message for the successful registration
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Username given is invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+* 2a. Password given is invalid.
+
+    * 2a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC17 - Log into System**
+
+**MSS**
+
+1. User attempts to log into Hi:Re with a given username and password.
+1. Hi:Re logs the user in
+1. Hi:Re shows a message for the successful login
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
+
+**Use case: UC18 - Log out of System**
+
+**MSS**
+
+1. User attempts to log out of Hi:Re.
+1. Hi:Re logs the user out
+1. Hi:Re shows a message for the successful logout
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User is not logged into the system (and thus cannot be logged out)
+
+    * 1a1. Hi:Re shows an error message
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
