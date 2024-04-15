@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# Hi:Re Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+Hi:Re is a brownfield project that builds on the Addressbook Level-3 project. Both the product and inspiration are projects
+under the module CS2103T: Software Engineering from the National University of Singapore, offered by the School of Computing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -454,9 +455,51 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Adding a contact
+
+For manual testing of other commands, run the following commands to add the specified few contacts
+(this is assuming the default tag list given is not edited in any way):
+  1) `+ /name John Doe /id johndoe61 /hp 98765432 /tag finance`
+  2) `+ /name Ali /id ali21 /hp 99795422 /tag sales`
+  3) `+ /name Rose /id rose84 /hp 98631422 /tag RnD`
+
+1. Adding a person while display is off.
+
+   1. Prerequisites:
+     * Clear all contacts using the `clear` command.
+     * Toggle the display using the `$` command, to turn it off.
+     * Ensure the tag `RnD` exists in the tag list by running `ls -t`
+   
+   1. Test case: `+ /name Rose /id rose84 /hp 98631422 /tag RnD` <br>
+      Expected: Contact is added. Details of added contact shown in message box. Display remains off.
+   2. Test case: `+ /name Rose /id rose84 /tag RnD` <br>
+      Expected: No contact is added. Error details shown in the message box. Display remains off.
+
+1. Adding a person with S/O or hyphen in the name.
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Ensure the tag `RnD` exists in the tag list by running `ls -t`
+
+    1. Test case: `+ /name Rose S/O Dan /id rose84 /hp 98631422 /tag RnD` <br>
+       Expected: No contact is added. Error details shown in the message box.
+    2. Test case: `+ /name Rose-Dan /id rose84 /hp 98631422 /tag RnD` <br>
+       Expected: No contact is added. Error details shown in the message box.
+
+### Editing a contact
+
+1. Editing a person with a tag not in the tag list.
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+    * The following is done with the default tag list.
+
+    1. Test case: `> rose84 /tag ABCDEFG` <br>
+       Expected: Contact is not edited. Error details shown in the message box.
+    2. Test case: `> rose84 /tag Finance` <br>
+       Expected: Contact is not edited. Error details shown in the message box. Tags are **case-sensitive**.    
 
 ### Deleting a contact
 
@@ -464,14 +507,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: 
       * Clear all contacts using the `clear` command. 
-      * Add a few contacts in according to [this section](#adding-a-person).
+      * Add a few contacts in according to [this section](#adding-a-contact).
       * Toggle the display using the `$` command, to turn it off.
 
    1. Test case: `- /id johndoe61`<br>
-      Expected: Contact with the ID johndoe61 will be deleted. Details of the deleted contact shown in the status message. Display remains off. 
+      Expected: Contact with the ID johndoe61 will be deleted. Details of the deleted contact shown in the message box. Display remains off. 
 
    1. Test case: `- /id `<br>
-      Expected: No person is deleted. Error details shown in the status message.
+      Expected: No person is deleted. Error details shown in the message box.
 
 ### Clearing the addressbook
 
@@ -479,7 +522,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: 
    * Clear all contacts using the `clear` command.
-   * Add a few contacts in according to [this section](#adding-a-person).
+   * Add a few contacts in according to [this section](#adding-a-contact).
    * Toggle the display using the `$` command, to turn it off.
    <br><br>
 
@@ -519,17 +562,96 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: 
    * Clear all contacts using the `clear` command.
-   * Add a few contacts in according to [this section](#adding-a-person).
+   * Add a few contacts in according to [this section](#adding-a-contact).
    <br><br>
    
    2. Test case: `tag- finance`<br>
    Expected: No tag removed. Error message will be displayed.<br>
    Tag is still in use by a contact in the addressbook.
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+      
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+## **Appendix: Effort**
 
-1. _{ more test cases …​ }_
+### Difficulty Level 
+
+In our development of Hi:Re, we give the difficulty rating as **8.5 / 10**.
+
+The reasons for our rating will be expounded on in the following sections. <br>
+
+### Challenges Faced
+<br>
+
+#### 1.Brownfield Project
+
+When we were first introduced to the **software architecture** of Addressbook Level-3(AB3), as well as its **source code**,
+we needed time to **dissect, simplify and understand** how every single section of AB3 worked. This was
+to ensure that we did not dive in immediately and develop tunnel vision for something we would like to implement that
+would cause the software architecture or application to have problems down the road.
+
+**From there, we:**
+
+Engaged in the tutorial provided by the course coordinators to practise adding code to the existing AB3. For most of our team,
+it was the first time that we were adding on to a completed project's work, which gave us confidence and helped us gain
+familiarity with the source code and its various files. Through the tutorial, we were able to have a glimpse into how
+a chain of files and classes worked in tandem to produce the functionality as seen when we ran the application.
+
+#### 2. Target Audience and Implementation
+
+**Understanding AB3 was not a 1 time process, but ongoing**. As we looked back on our initial ideas in our document, we realised 
+that given our time frame for development, we were **unable to implement some features immediately** due to us still getting used
+to working with pre-existing AB3 source code. Having looked at AB3 again now in detail, we had to **ideate for new features**
+that our **target audience would need and want**, as well as **crossing out previous ideas that now are not feasible**.
+
+#### 3. Version Control
+
+For our team, this was the **first time collaborating with others using version control**. We had to familiarise ourselves with
+the standard workflow process, as well as helping to **review and test each other's code** before approving Pull Requests.
+During v1.3's development phase, we encountered **merge conflicts** as features inadvertently affected one another. **Bugs** also
+sprouted out that could not be seen from resolving merge conflicts, and we had to push out more changes to solve these bugs.
+
+#### Learning outcomes for our team
+
+Through the challenges faced, we came out as **more professional, responsible, collaborative and adaptive teammates**. 
+Communication was key in our project, and we are all confident to say that we have emerged stronger from the challenges,
+and have become a **close-knit team that helps one another**.
+
+
+### Effort Required
+     
+We held **weekly meetings** to discuss work updates and plans for the next week, as well as communicated frequently in our channel
+about updates, help needed, suggestions and ideas.
+
+In the process of allocating each feature to a team member to implement, each team member needed to do **documentation, development,
+testing and reviewing other's work**. As aforementioned, it was **difficult to work off an existing code base** and **integrate new features**
+for our target audience in a **seamless and effective manner**. In our discussions itself, we **planned meticulously** as to minimise
+any form of functionality overlap between members so that development would be smooth. In the cases where we had 2 members
+work on a larger feature, they **collaborated to implement the feature in parts**.
+
+Version control mastering also **takes time and effort to get it right every time**. With each week, we helped each other with 
+understanding and getting the workflow right so that our work can follow a smooth and efficient process.
+
+
+### Achievements of Project
+
+In developing Hi:Re, we are proud to have done the following given the constraints and development time frame:
+
+  1) Built features that our target audience (HR department employees and managers) would appreciate, such as the Exporting data Command.
+
+  2) Improved the UI and upgraded AB3's original features to cater to our target audience. (See Design Methodology Section in UG)
+
+  3) Created an advanced tag system feature to optimise contact tag management.
+
+  4) For security and target audience consideration, our Account features serve to allow our target audience to 
+     manage multiple addressbooks should they collaborate with different companies! (Refer to Disclaimer for Account Features in UG under Commands section)
+
+### Code Reuse
+
+  1) In making an advanced tag feature system, we referenced AB3's storage portion to create our own taglist.
+
+  2) With ID becoming our main identifier of contacts, we referenced how AB3 did it for names previously and also
+     continued that development path when we changed the delete feature.
+
+  3) For most of the commands that AB3 had and we kept, we upgraded them to fit our new functionality.
+     In the process, `Command` and `Parser` files were used as reference for new features that we implemented.
