@@ -138,13 +138,13 @@ Contacts are also labelled with one mandatory tag and optional additional tags.
 
 1. Type commands in the `command box` and press the `[Enter]` key to execute it, but first...
 
-1. [Register](#registering-an-account-coderegistercode) an account before you are ready to use Hi:Re!
+1. [Register](#registering-an-account-register) an account before you are ready to use Hi:Re!
 
-1. [Log into](#login-into-account-codelogincode) your newly registered account with the correct username and password!
+1. [Log into](#login-into-account-login) your newly registered account with the correct username and password!
 
 1. Refer to the [Commands](#commands) below for details of each command.
 
-1. Refer to the [Built-In Features](#features) below for details of built-in features.
+1. Refer to the [Built-In Features](#built-in-features) below for details of built-in features.
 
 
 <div style="text-align: right;">
