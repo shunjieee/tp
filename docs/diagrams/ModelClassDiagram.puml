@@ -11,6 +11,7 @@ Class "<<interface>>\nModel" as Model
 Class AddressBook
 Class ModelManager
 Class UserPrefs
+Class TagList
 
 Class UniquePersonList
 Class Person
@@ -18,7 +19,7 @@ Class Person
 'Class Email
 Class Name
 Class Phone
-'Class Tag
+Class Tag
 Class ID
 
 Class I #FFFFFF
@@ -41,6 +42,7 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> ID
 Person *--> Phone
+Person *--> Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -49,4 +51,9 @@ Name -[hidden]right-> ID
 ID -[hidden]right-> Phone
 
 ModelManager --> "~* filtered" Person
+ModelManager --> TagList
+ModelManager --> Tag
+
+TagList --> Tag
+
 @enduml
