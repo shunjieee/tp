@@ -31,7 +31,9 @@ LogicManager .up.|> Logic
 ModelManager .up.|> Model
 StorageManager .up.|> Storage
 
-LogicManager --> AccountManager
+
 LogicManager --> Model
 LogicManager --> Storage
+
+AccountManager <--> LogicManager
 @enduml
