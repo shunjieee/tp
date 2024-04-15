@@ -46,12 +46,13 @@ public class Messages {
                 .append("; Id: ")
                 .append(person.getId())
                 .append("; Phone: ")
-                .append(person.getPhone());
+                .append(person.getPhone())
+                .append("; Tags: ")
+                .append(person.getTags());
         //.append("; Email: ")
         //.append(person.getEmail())
         //.append("; Address: ")
-        //.append(person.getAddress())
-        //.append("; Tags: ")
+
 
         //person.getTags().forEach(builder::append);
         return builder.toString();

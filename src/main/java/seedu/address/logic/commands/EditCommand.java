@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_TAG_NOT_IN_TAG_LIST;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -42,11 +41,13 @@ public class EditCommand extends Command {
             + "by the id in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: ID"
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "Example: " + COMMAND_WORD + "john41 "
-            + PREFIX_NAME + "Johnathan "
-            + PREFIX_PHONE + "91234567 ";
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_TAG + "TAG \n"
+            + "Example: " + COMMAND_WORD + " johndoe41 "
+            + PREFIX_NAME + "John Joe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_TAG + "RnD";;
 
 
     //+ PREFIX_EMAIL + "johndoe@example.com";
@@ -292,6 +293,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("id", id)
                     .add("phone", phone)
+                    .add("tags", tags)
                     //.add("email", email)
                     //.add("address", address)
                     //.add("tags", tags)
