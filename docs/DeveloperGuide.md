@@ -50,7 +50,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `+ /name Tan Ah Gao /id chihuahua69 /hp 999 /tag finance`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -90,7 +90,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("- id abc123")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
@@ -101,7 +101,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is first passed to an `AccountManagerParser` object which in turn creates a parser that matches the command (e.g., `LoginCommandParser`) and uses it to parse the command.
+1. If the parsing result returned by `AccountManagerParser` is null, the command is then passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,6 +113,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
+* When called upon to parse a user command, the `AccountManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `LoginCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `LoginCommand`) which the `AccountManagerParser` returns back as a `Command` object.
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -124,18 +126,10 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the tag data i.e., all `Tag` objects (which are contained in a `TagList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
-
 
 ### Storage component
 
@@ -144,8 +138,8 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, user preference data and tag list data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `TagListStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -525,6 +519,58 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `tag- finance`<br>
    Expected: No tag removed. Error message will be displayed.<br>
    Tag is still in use by a contact in the addressbook.
+
+### Register an account
+
+1. Invalid inputs.
+   
+   1. Invalid username: `register /u 12 /p abc12345`<br>
+      Expected: No account created. Error message will be displayed.
+
+   2. Invalid password: `register /u test /p 123`<br>
+      Expected: No account created. Error message will be displayed.
+
+2. Invalid command.
+   
+   1. Missing field: `register /u test`<br>
+      Expected: No account created. Error message will be displayed.<br><br>
+
+3. Duplicate username.
+   
+   Test case:<br><br>
+   Execute `register /u test /p abc12345` twice.<br><br>
+   Expected: Only the first command will create an account. Error message will be displayed for the second command.
+
+### Login an account
+
+1. Invalid inputs.
+
+    1. Invalid username: `login /u 12 /p abc12345`<br>
+       Expected: Login fails. Error message will be displayed.
+
+    2. Invalid password: `login /u test /p 123`<br>
+       Expected: Login fails. Error message will be displayed.
+
+2. Invalid command.
+
+    1. Missing field: `login /u test`<br>
+       Expected: Login fails. Error message will be displayed.<br><br>
+
+3. Another user already logged in.
+
+   Test case: 
+   1. Execute `register /u test /p abc12345`.<br>
+   2. Execute `login /u test /p abc12345` twice.<br><br>
+   
+   Expected: Only the first login command will succeed. Error message will be displayed for the second login command.
+
+### Logout an account
+
+1. The user has not logged in.
+
+   Test case: <br><br>
+   Launch Hi:Re and then execute `logout` first.<br><br>
+   Expected: Logout fails. Error message will be displayed.
 
 ### Saving data
 
