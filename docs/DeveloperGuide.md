@@ -456,22 +456,75 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+### Deleting a contact
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Deleting a person while display is off.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Prerequisites: 
+      * Clear all contacts using the `clear` command. 
+      * Add a few contacts in according to [this section](#adding-a-person).
+      * Toggle the display using the `$` command, to turn it off.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `- /id johndoe61`<br>
+      Expected: Contact with the ID johndoe61 will be deleted. Details of the deleted contact shown in the status message. Display remains off. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `- /id `<br>
+      Expected: No person is deleted. Error details shown in the status message.
+
+### Clearing the addressbook
+
+1. Clearing the addressbook while display is off.
+
+   1. Prerequisites: 
+   * Clear all contacts using the `clear` command.
+   * Add a few contacts in according to [this section](#adding-a-person).
+   * Toggle the display using the `$` command, to turn it off.
+   <br><br>
+
+   1. Test case: `clear`<br>
+      Expected: Addressbook will be cleared. Success message will be displayed. Display remains off. 
+
+   1. Test case: `clear this` _(where there are additional inputs after `clear`)_<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding tags
+
+1. Invalid commands / inputs
+
+   1. Test case: Non-alphanumeric: `tag+ Human Resource`, `tag+ $@Les`<br>
+   Expected: No tags added. Error message will be displayed.
+   
+   2. "Multiple" tags: `tag+ HR, Finance`, `tag+ sales + marketing`<br>
+   Expected: Similar to previous.
+
+
+2. Adding duplicate inputs
+
+   1. Prerequisites:
+   * Add in a new tag, e.g. `tag+ test`
+   <br><br>
+   
+   2. Test case: `tag+ test` _(2nd time)_<br>
+   Expected: No tags added. Error message will be displayed.
+
+   3. Test case: `tag+ Test` _("duplicated" tag)_<br>
+   Expected: Tag will be added. Success message will be displayed.<br>
+   Tags are **case-sensitive**.
+
+### Deleting tags
+
+1. Removing a tag that is in use.
+
+   1. Prerequisites: 
+   * Clear all contacts using the `clear` command.
+   * Add a few contacts in according to [this section](#adding-a-person).
+   <br><br>
+   
+   2. Test case: `tag- finance`<br>
+   Expected: No tag removed. Error message will be displayed.<br>
+   Tag is still in use by a contact in the addressbook.
 
 ### Saving data
 
