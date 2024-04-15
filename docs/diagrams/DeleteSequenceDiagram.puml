@@ -4,6 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AccountManagerParser" as AccountManagerParser LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "id:Id" as Id LOGIC_COLOR
@@ -17,6 +18,12 @@ end box
 
 [-> LogicManager : execute("- /id abc123")
 activate LogicManager
+
+LogicManager -> AccountManagerParser : parseCommand("- /id abc123")
+activate AccountManagerParser
+
+AccountManagerParser --> LogicManager : null
+deactivate AccountManagerParser
 
 LogicManager -> AddressBookParser : parseCommand("- /id abc123")
 activate AddressBookParser
