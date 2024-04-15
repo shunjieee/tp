@@ -74,10 +74,10 @@ public class AccountManagerParser {
             return logoutCommand;
 
         default:
-            logger.finer("User hasn't logged in, cannot parse and execute: " + userInput);
             if (isUserLogin) {
                 return null;
             } else {
+                logger.finer("User hasn't logged in, cannot parse and execute: " + userInput);
                 throw new AccountException("Please login first.");
             }
         }
