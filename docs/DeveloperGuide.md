@@ -526,6 +526,58 @@ testers are expected to do more *exploratory* testing.
    Expected: No tag removed. Error message will be displayed.<br>
    Tag is still in use by a contact in the addressbook.
 
+### Register an account
+
+1. Invalid inputs.
+   
+   1. Invalid username: `register /u 12 /p abc12345`<br>
+      Expected: No account created. Error message will be displayed.
+
+   2. Invalid password: `register /u test /p 123`<br>
+      Expected: No account created. Error message will be displayed.
+
+2. Invalid command.
+   
+   1. Missing field: `register /u test`<br>
+      Expected: No account created. Error message will be displayed.<br><br>
+
+3. Duplicate username.
+   
+   Test case:<br><br>
+   Execute `register /u test /p abc12345` twice.<br><br>
+   Expected: Only the first command will create an account. Error message will be displayed for the second command.
+
+### Login an account
+
+1. Invalid inputs.
+
+    1. Invalid username: `login /u 12 /p abc12345`<br>
+       Expected: Login fails. Error message will be displayed.
+
+    2. Invalid password: `login /u test /p 123`<br>
+       Expected: Login fails. Error message will be displayed.
+
+2. Invalid command.
+
+    1. Missing field: `login /u test`<br>
+       Expected: Login fails. Error message will be displayed.<br><br>
+
+3. Another user already logged in.
+
+   Test case: 
+   1. Execute `register /u test /p abc12345`.<br>
+   2. Execute `login /u test /p abc12345` twice.<br><br>
+   
+   Expected: Only the first login command will succeed. Error message will be displayed for the second login command.
+
+### Logout an account
+
+1. The user has not logged in.
+
+   Test case: <br><br>
+   Launch Hi:Re and then execute `logout` first.<br><br>
+   Expected: Logout fails. Error message will be displayed.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
