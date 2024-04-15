@@ -108,7 +108,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 **<u>NOTE</u>:exclamation:**
 **In Hi:Re, we adopt a system where contacts are identified by their email identity (ID for short) without the company email domain.** <br> 
-The ID is c**ase-insensitive** and **accepts special characters**, but **NOT whitespaces**.
+The ID is **case-insensitive** and **accepts special characters**, but **NOT whitespaces**.
 
 Example: John is identified by his ID, `john123` without the domain, @123company.com
 
