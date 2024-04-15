@@ -45,6 +45,7 @@ The bulk of the app's work is done by the following four components:
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`AccountManager`**](#accountmanager-component): Manages the user accounts and the current addressbook the user is accessing.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
