@@ -419,6 +419,7 @@ If you log out successfully, a GUI indicative of a successful logout will be dis
    </box>
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
    <box type="wrong"> 
+
    * Invalid phone number
    
    <img src="images/ui/add/invalidhp.png" width="452.5"><br><br>
