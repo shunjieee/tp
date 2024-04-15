@@ -520,6 +520,33 @@ testers are expected to do more *exploratory* testing.
    Expected: No tag removed. Error message will be displayed.<br>
    Tag is still in use by a contact in the addressbook.
 
+### Finding contacts
+
+1. Entering a keyword that does not match any contact entries (case-sensitive)
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+
+    1. Test case: `? kevin` <br>
+       Expected: No matching contacts found. Message displayed indicates as such.
+    2. Test case: `? jOhN` <br>
+       Expected: One matching contact found (John). Keywords are **case-insensitive**.
+
+### Listing contacts
+
+1. Finding a person with a tag which does not match those in the tag list. (case-sensitive)
+
+    1. Prerequisites:
+    * Clear all contacts using the `clear` command.
+    * Add a few contacts in according to [this section](#adding-a-contact).
+    * The following is done with the default tag list.
+
+    1. Test case: `ls ABCDEFG` <br>
+       Expected: No contacts listed. Message displayed indicates as such.
+    2. Test case: `ls Finance` <br>
+       Expected: 1 contact listed. Message displayed indicates as such. Tags are **case-insensitive**.
+
 ### Register an account
 
 1. Invalid inputs.
