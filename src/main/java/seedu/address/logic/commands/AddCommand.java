@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -34,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_ID + "johndoe41 "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_TAG + "Finance";
+            + PREFIX_TAG + "finance";
 
     //+ PREFIX_EMAIL + "EMAIL "
     //+ PREFIX_ADDRESS + "ADDRESS "
@@ -75,7 +76,7 @@ public class AddCommand extends Command {
         // Clear sample data upon first entry
         boolean isSample = model.getUserPrefs().getIsSample();
         if (isSample) {
-            new ClearCommand().execute(model);
+            model.setAddressBook(new AddressBook());
             model.setUserPrefsIsSample(model.getUserPrefs(), false);
         }
 
