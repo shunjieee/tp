@@ -177,99 +177,62 @@ hence any ID changes would mean that the employee needs to be deleted and added 
 
 
 
-### \[Proposed\] Undo/redo feature
+### \[Implemented\] Undo/redo feature
 
-#### Proposed Implementation
+Our undo/redo mechanism is facilitated by a `CommandList` inside the `Model` and an internal pointer to track the current command, offering a command-centric approach, which can be highly efficient and flexible.<br><br>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+**Core Components**
+1. `CommandList`: This list stores all the commands that have been executed. Each command in this list should be capable of reversing its effect (undo) and reapplying its effect (redo).
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+2. `CommandList.currentCommandIndex`: This pointer indicates the current position in the commandList. It helps determine which commands have been executed and which ones have been undone.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Functionalities**
+1. Executing a command:
+   * When a new command is executed, it is added to the end of the commandList.
+   * The current command pointer is moved to this new command's position.
+   * Commands following the current command pointer (if any) are cleared from the list, as the new command creates a new "branch" of history, invalidating the redo history.<br><br>
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+2. Undoing a command:
+   * To undo, check if the pointer is not at the beginning of the list.
+   * The command at the current pointer position knows how to undo itself. It executes its undo method.
+   * The pointer is then decremented, moving backwards in the command list.<br><br>
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+3. Redoing a command:
+   * To redo, check if the pointer is not at the end of the list.
+   * Increment the pointer to move to the next command in the list.
+   * The command at this new pointer position knows how to redo itself and executes its redo method.<br><br>
 
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+4. Self-contained commands:
+   * Each command object contains all the information necessary to both apply and reverse its effects. When a command is executed, it also prepares for its potential undo by storing any relevant state changes or backups of the data it modifies. Currently our undo/redo only supports the following commands.
+   * Add: Stores a reference to the added person. To undo, it removes this person from the address book. To redo, it simply re-adds the stored person to the address book.
+   * Delete: Stores a reference to the deleted person. To undo, it re-adds this person to the address book using the stored details. To redo, is removes the person again from the address book.
+   * Edit: Stores a reference to the person before edit and another reference to the person after edit. To undo, it removes the person after edit and re-adds the person before edit. To redo, it removes the person before edit and re-adds the person after edit.
+   * Clear: Stores a reference to the address book before clearing. To undo, it restores the address book to the state before clearing. To redo, it clears the address book again.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+Compared with the recommended way that stores the entire address book for each undo/redo, our command-centric approach has the following pros and cons:
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+**Pros:**
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* Reduced Memory Usage: Since only changes are stored rather than the entire application state, this method typically consumes less memory. For instance, the delete command only needs to store the details of the deleted person, not the state of the entire address book.
 
-_{more aspects and alternatives to be added}_
+* Scalability: As operations increase in complexity or frequency, storing individual command effects rather than snapshots of the entire state scales better. This makes the system more efficient and responsive as the volume of data grows.
 
+* Flexibility and Modularity: Commands encapsulate their functionality, making the system more modular. This separation allows for easier updates and modifications to individual commands without affecting the overall system.
+
+* Targeted Undo/Redo: This approach allows for precise control over what gets undone or redone, making the operations more predictable and less prone to errors that can occur when rolling back a full state.
+
+**Cons:**
+
+* Implementation Complexity: Each command must be correctly implemented with its own undo and redo logic. This increases the complexity of each command's implementation and requires careful design to ensure that each command properly and completely reverses its effects.
+
+* Testing Overhead: The need for thorough testing increases as each command has its own undo/redo logic. There's a higher risk of bugs in individual commands, especially in scenarios where commands might interact or affect the results of each other.
+
+* Dependency and State Consistency: Commands must be designed not to rely excessively on the specific state of the application that may be altered by other commands. Ensuring consistency and managing dependencies between commands can be challenging.
+
+* Recovery from Errors: If an error occurs during the execution of an undo or redo operation, recovering and ensuring data integrity can be more complex, as the system must handle partial undos or redos gracefully.
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
