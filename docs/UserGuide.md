@@ -827,6 +827,8 @@ Format: `undo`<br>
 * **Undoable commands**: those commands that modify the address book’s content ([add](#adding-a-contact), [delete](#deleting-a-contact), [edit](#editing-a-contact) and [clear](#clearing-all-contacts-clear)). 
 
 * All other commands (including adding and deleting tags) **CANNOT** be undone _(as of the latest version)_.
+
+* `undo` does not revert the [deletion of sample data](#deletion-of-sample-data-upon-first-addition).
   </box>
 <div markdown="block" class="alert alert-primary">
 
@@ -1023,6 +1025,8 @@ By adding your first contact into Hi:Re, the sample data will be deleted! This f
 <box type="important" seamless>
 
   It is important that you do **NOT** perform any operations other than adding contacts upon your first log in, as there is no guarantee that this feature will work properly afterwards.
+
+  **Note**: `undo` does not revert this action.
   </box>
 
   <box type="definition">
