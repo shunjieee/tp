@@ -58,7 +58,7 @@
 ---
 
 ## Welcome Note
-Greetings HR employees, managers and executives! 
+Greetings HR executives, managers and employees! 
 
 - Tired from **scrolling** through endless rows in **spreadsheet** applications?
 - Worried about **data leak** issues caused by the lack in security of such applications?
